@@ -1,0 +1,29 @@
+body {
+  font-size: 16px;
+}
+h1 {
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 10px 0 5px;
+}
+h2 {
+  font-size: 1.1rem;
+  text-align: center;
+  padding: 5px;
+}
+
+.img-h-250 {
+  margin: auto;
+  height: 250px;
+  max-width: 100%;
+  display: block;
+  margin: auto;
+}
+
+.btn-ws-normal {
+  white-space: normal !important;
+}
+
+.min-h-80 {
+  min-height: 80px;
+}
