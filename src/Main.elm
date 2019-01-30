@@ -4,7 +4,7 @@ import Array
 import ArrayHelper
 import Browser
 import Html exposing (Html, button, div, h1, h2, img, text)
-import Html.Attributes exposing (class, disabled, src)
+import Html.Attributes exposing (class, disabled, src, title)
 import Html.Events exposing (onClick)
 import Quiz exposing (QuizItem, QuizQa, belgianBirdsQuiz, pickQuizQa)
 import Time
@@ -47,7 +47,7 @@ init _ =
     ( { quizQas = belgianBirdsQuiz
       , remainingQuizQas = belgianBirdsQuiz
       , currentQuizItem =
-            { qa = ( "", "" )
+            { qa = { question = "", answer = "", title = ""}
             , answers = []
             }
       , status = "Trouve la bonne réponse..."
@@ -76,7 +76,7 @@ update msg model =
         CheckAnswer answer ->
             let
                 status =
-                    if answer == Tuple.second model.currentQuizItem.qa then
+                    if answer == model.currentQuizItem.qa.answer then
                         "Bien joué !"
 
                     else
@@ -113,7 +113,7 @@ update msg model =
                     else
                         model.quizQas
               }
-            , ArrayHelper.provideShuffled SetOtherAnswers (Array.filter (\val -> Tuple.first val /= Tuple.first chosen.qa) model.quizQas)
+            , ArrayHelper.provideShuffled SetOtherAnswers (Array.filter (\val -> val.question /= chosen.qa.question) model.quizQas)
             )
 
         SetOtherAnswers arr ->
@@ -136,7 +136,7 @@ update msg model =
             ( { model
                 | currentQuizItem =
                     { item
-                        | answers = Array.toList (Array.map Tuple.second arr)
+                        | answers = Array.toList (Array.map (\qa -> qa.answer) arr)
                     }
               }
             , Cmd.none
@@ -160,9 +160,10 @@ view model =
             [ div [ class "col p-3" ]
                 [ img
                     [ class "img-h-250"
+                    , title model.currentQuizItem.qa.title
                     , let
                         imgSrc =
-                            Tuple.first model.currentQuizItem.qa
+                            model.currentQuizItem.qa.question
                       in
                       src
                         (if imgSrc /= "" then
@@ -186,7 +187,7 @@ view model =
                                         ++ (if not model.waitNextQuestion then
                                                 " btn-light "
 
-                                            else if answer == Tuple.second model.currentQuizItem.qa then
+                                            else if answer == model.currentQuizItem.qa.answer then
                                                 " btn-success"
 
                                             else

@@ -5,7 +5,11 @@ import ArrayHelper
 
 
 type alias QuizQa =
-    ( String, String )
+    {
+        question: String,
+        answer: String,
+        title: String
+    }
 
 
 type alias QuizItem =
@@ -20,7 +24,7 @@ pickQuizQa randomIdx qas allQas =
         ( qa, remainingQas ) =
             ArrayHelper.sliceByIndex qas randomIdx
     in
-    ( { qa = Maybe.withDefault ( "", "" ) qa
+    ( { qa = Maybe.withDefault { question = "", answer = "", title = "" } qa
       , answers = []
       }
     , remainingQas
@@ -30,20 +34,24 @@ pickQuizQa randomIdx qas allQas =
 periodicTableQuiz : Array.Array QuizQa
 periodicTableQuiz =
     Array.fromList
-        [ ( "Hélium", "He" )
-        , ( "Hydrogène", "H" )
-        , ( "Lithium", "Li" )
-        , ( "Béryllium", "Be" )
-        , ( "Bore", "B" )
-        , ( "Carbone", "C" )
-        , ( "Azote", "N" )
-        , ( "Oxygène", "O" )
+        [ { question = "Hélium", answer = "He", title = "" }
+        , { question = "Hydrogène", answer = "H", title = "" }
+        , { question = "Lithium", answer = "Li", title = "" }
+        , { question = "Béryllium", answer = "Be", title = "" }
+        , { question = "Bore", answer = "B", title = "" }
+        , { question = "Carbone", answer = "C", title = "" }
+        , { question = "Azote", answer = "N", title = "" }
+        , { question = "Oxygène", answer = "O", title = "" }
         ]
 
 
 belgianBirdsQuiz : Array.Array QuizQa
 belgianBirdsQuiz =
-    Array.fromList (List.map (\bird -> ( "assets/img/" ++ bird.id ++ ".jpg", bird.vernacularName )) belgianBirds)
+    Array.fromList (List.map (\bird -> { 
+        question = "assets/img/" ++ bird.id ++ ".jpg", 
+        answer = bird.vernacularName, 
+        title = bird.license 
+        } ) belgianBirds) 
 
 
 type alias ImgQuizItem =
@@ -69,11 +77,31 @@ belgianBirds =
     , { id = "bb61"
       , vernacularName = "Autour des palombes"
       , binominalName = "Accipiter gentilis"
-      , license = "Par Elon Howard Eaton (1866-1935, author), Louis Agassiz Fuertes (artist, 1874-1927) — Birds of New York (New York State Museum. Memoir 12), Albany: University of the State of New York. Plates by Fuertes later reproduced in Birds of America (1917?) by Thomas Gilbert Pearson (1873-1943) et al., Domaine public, https://commons.wikimedia.org/w/index.php?curid=715780"
+      , license = "Par Cymbella — Travail personnel, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=21467538"
       }
     , { id = "bb62"
       , vernacularName = "Avocette élégante"
       , binominalName = "Recurvirostra avosetta"
       , license = "Par Andreas Trepte — Travail personnel, CC BY-SA 2.5, https://commons.wikimedia.org/w/index.php?curid=10610115"
+      }
+    , { id = "bb63"
+      , vernacularName = "Balbuzard pêcheur"
+      , binominalName = "Pandion haliaetus"
+      , license = "Par Yathin S Krishnappa — Travail personnel, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=21376478"
+      }
+    , { id = "bb64"
+      , vernacularName = "Bec-croisé des sapins"
+      , binominalName = "Loxia curvirostra"
+      , license = "Par User:Aelwyn — Travail personnel, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=2230007"
+      }
+    , { id = "bb65"
+      , vernacularName = "Bécasse des bois"
+      , binominalName = "Scolopax rusticola"
+      , license = "Par Ronald Slabke — Travail personnel, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=5703078"
+      }
+    , { id = "bb66"
+      , vernacularName = "Bécasseau variable"
+      , binominalName = "Calidris alpina"
+      , license = "Par Jevgenijs Slihto from Riga, Latvia — Dunlin, CC BY 2.0, https://commons.wikimedia.org/w/index.php?curid=42966339"
       }
     ]
