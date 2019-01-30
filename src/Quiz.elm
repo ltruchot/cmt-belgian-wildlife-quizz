@@ -48,7 +48,7 @@ periodicTableQuiz =
 belgianBirdsQuiz : Array.Array QuizQa
 belgianBirdsQuiz =
     Array.fromList (List.map (\bird -> { 
-        question = "assets/img/" ++ bird.id ++ ".jpg", 
+        question = "assets/img/resized/" ++ bird.id ++ ".jpg", 
         answer = bird.vernacularName, 
         title = bird.license 
         } ) belgianBirds) 

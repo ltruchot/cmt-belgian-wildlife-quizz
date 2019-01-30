@@ -5,7 +5,7 @@ import ArrayHelper
 import Browser
 import Html exposing (Html, button, div, h1, h2, img, text)
 import Html.Attributes exposing (class, disabled, src, title)
-import Html.Events exposing (onClick)
+import Html.Events exposing (onClick, on)
 import Quiz exposing (QuizItem, QuizQa, belgianBirdsQuiz, pickQuizQa)
 import Time
 
