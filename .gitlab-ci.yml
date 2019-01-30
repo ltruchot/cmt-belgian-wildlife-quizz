@@ -7,10 +7,13 @@ stages:
   - deploy
 
 variables:
-  IMAGE_TAG: gitlab.committers.ngo:5555/elm-generic-quiz/v1:latest
+  IMAGE_TAG: $CI_REGISTRY_IMAGE:latest
+  APP_HOST: autoquizz.com
 
 before_script:
-  - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN gitlab.committers.ngo:5555
+  - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+after_script:
+  - docker logout $CI_REGISTRY
 
 build:
   stage: build
@@ -56,8 +59,8 @@ deploy:
     - echo "$CI_SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
     - chmod 644 ~/.ssh/known_hosts
     - ssh -p22 root@206.189.14.224 "sudo docker pull $IMAGE_TAG"
-    - scp -p22 docker-compose.yml root@206.189.14.224:~/autoquizz.com
-    - ssh -p22 root@206.189.14.224 "cd autoquizz.com && sudo docker-compose up -d"
-    - ssh -p22 root@206.189.14.224 "sudo docker exec autoquizz.com node server.js""
+    - scp -p22 docker-compose.yml .env root@206.189.14.224:~/$APP_HOST
+    - ssh -p22 root@206.189.14.224 "cd $APP_HOST && sudo docker-compose up -d"
+    - ssh -p22 root@206.189.14.224 "sudo docker exec $APP_HOST npm run deploy""
   only:
     - master
