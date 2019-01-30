@@ -1,0 +1,20 @@
+version: "3"
+services:
+  web:
+    image: gitlab.committers.ngo:5555/${APP_REPO}:latest
+    container_name: ${APP_HOST}
+    labels:
+      traefik.docker.network: "proxy"
+      traefik.enable: "true"
+      traefik.frontend.rule: Host:${APP_HOST},www.${APP_HOST}
+      traefik.frontend.redirect.regex: "^https?://www.${APP_HOST}/(.*)"
+      traefik.frontend.redirect.replacement: "https://${APP_HOST}/$${1}"
+      traefik.frontend.redirect.permanent: "true"
+      traefik.frontend.entryPoints: "http,https"
+      traefik.port: "${APP_PORT}"
+
+    networks:
+      - proxy
+networks:
+  proxy:
+    external: true

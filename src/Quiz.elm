@@ -1,6 +1,6 @@
 module Quiz exposing (QuizItem, QuizQa, belgianBirdsQuiz, periodicTableQuiz, pickQuizQa)
 
-import Array exposing (Array)
+import Array
 import ArrayHelper
 
 
@@ -14,7 +14,7 @@ type alias QuizItem =
     }
 
 
-pickQuizQa : Int -> Array QuizQa -> Array QuizQa -> ( QuizItem, Array QuizQa )
+pickQuizQa : Int -> Array.Array QuizQa -> Array.Array QuizQa -> ( QuizItem, Array.Array QuizQa )
 pickQuizQa randomIdx qas allQas =
     let
         ( qa, remainingQas ) =
@@ -27,7 +27,7 @@ pickQuizQa randomIdx qas allQas =
     )
 
 
-periodicTableQuiz : Array QuizQa
+periodicTableQuiz : Array.Array QuizQa
 periodicTableQuiz =
     Array.fromList
         [ ( "Hélium", "He" )
@@ -41,7 +41,7 @@ periodicTableQuiz =
         ]
 
 
-belgianBirdsQuiz : Array QuizQa
+belgianBirdsQuiz : Array.Array QuizQa
 belgianBirdsQuiz =
     Array.fromList (List.map (\bird -> ( "assets/img/" ++ bird.id ++ ".jpg", bird.vernacularName )) belgianBirds)
 

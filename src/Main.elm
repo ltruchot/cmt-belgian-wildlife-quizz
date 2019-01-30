@@ -1,6 +1,6 @@
 module Main exposing (Model, Msg(..), init, main, update, view)
 
-import Array exposing (Array)
+import Array
 import ArrayHelper
 import Browser
 import Html exposing (Html, button, div, h1, h2, img, text)
@@ -33,8 +33,8 @@ subscriptions model =
 
 
 type alias Model =
-    { quizQas : Array QuizQa
-    , remainingQuizQas : Array QuizQa
+    { quizQas : Array.Array QuizQa
+    , remainingQuizQas : Array.Array QuizQa
     , currentQuizItem : QuizItem
     , status : String
     , waitNextQuestion : Bool
@@ -66,8 +66,8 @@ type Msg
     = DisplayNextQuestion Int
     | PickNextQuestion
     | CheckAnswer String
-    | SetOtherAnswers (Array QuizQa)
-    | DisplayAnswers (Array QuizQa)
+    | SetOtherAnswers (Array.Array QuizQa)
+    | DisplayAnswers (Array.Array QuizQa)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
