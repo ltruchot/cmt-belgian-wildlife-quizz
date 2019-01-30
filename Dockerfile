@@ -13,5 +13,5 @@ RUN npm i
 # Bundle app source
 COPY . .
 
-RUN elm-app build
+RUN npm run build
 CMD tail -f /dev/null
