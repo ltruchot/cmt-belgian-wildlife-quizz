@@ -4,4 +4,3 @@ docker-compose.yml
 Dockerfile
 .git
 .gitlab-ci.yml
-.env
