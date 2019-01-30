@@ -61,6 +61,6 @@ deploy:
     - ssh -p22 root@206.189.14.224 "sudo docker pull $IMAGE_TAG"
     - scp -p22 docker-compose.yml .env root@206.189.14.224:~/$APP_HOST
     - ssh -p22 root@206.189.14.224 "cd $APP_HOST && sudo docker-compose up -d"
-    - ssh -p22 root@206.189.14.224 "sudo docker exec $APP_HOST npm run deploy""
+    - ssh -p22 root@206.189.14.224 "sudo docker exec $APP_HOST npm run deploy"
   only:
     - master
