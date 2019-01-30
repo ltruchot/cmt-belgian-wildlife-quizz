@@ -7,7 +7,7 @@ stages:
   - deploy
 
 variables:
-  IMAGE_TAG: gitlab.committers.ngo:5555/elm-generic-quizz/v1:latest
+  IMAGE_TAG: gitlab.committers.ngo:5555/elm-generic-quiz/v1:latest
 
 before_script:
   - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN gitlab.committers.ngo:5555

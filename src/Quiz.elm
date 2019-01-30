@@ -46,7 +46,7 @@ belgianBirdsQuiz =
     Array.fromList (List.map (\bird -> ( "assets/img/" ++ bird.id ++ ".jpg", bird.vernacularName )) belgianBirds)
 
 
-type alias ImgQuizzItem =
+type alias ImgQuizItem =
     { id : String
     , vernacularName : String
     , binominalName : String
@@ -54,7 +54,7 @@ type alias ImgQuizzItem =
     }
 
 
-belgianBirds : List ImgQuizzItem
+belgianBirds : List ImgQuizItem
 belgianBirds =
     [ { id = "bb59"
       , vernacularName = "Accenteur mouchet"
