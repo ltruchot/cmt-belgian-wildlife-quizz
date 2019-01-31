@@ -5,10 +5,9 @@ import ArrayHelper
 
 
 type alias QuizQa =
-    {
-        question: String,
-        answer: String,
-        title: String
+    { question : String
+    , answer : String
+    , title : String
     }
 
 
@@ -47,11 +46,16 @@ periodicTableQuiz =
 
 belgianBirdsQuiz : Array.Array QuizQa
 belgianBirdsQuiz =
-    Array.fromList (List.map (\bird -> { 
-        question = "assets/img/resized/" ++ bird.id ++ ".jpg", 
-        answer = bird.vernacularName, 
-        title = bird.license 
-        } ) belgianBirds) 
+    Array.fromList
+        (List.map
+            (\bird ->
+                { question = "assets/img/belgian_birds/resized/" ++ bird.id ++ ".jpg"
+                , answer = bird.vernacularName
+                , title = bird.license
+                }
+            )
+            belgianBirds
+        )
 
 
 type alias ImgQuizItem =
@@ -103,5 +107,65 @@ belgianBirds =
       , vernacularName = "Bécasseau variable"
       , binominalName = "Calidris alpina"
       , license = "Par Jevgenijs Slihto from Riga, Latvia — Dunlin, CC BY 2.0, https://commons.wikimedia.org/w/index.php?curid=42966339"
+      }
+    , { id = "bb67"
+      , vernacularName = "Bécassine des marais"
+      , binominalName = "Gallinago gallinago"
+      , license = "Par Pierre DalousLieu — Travail personnel, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=21528551"
+      }
+    , { id = "bb68"
+      , vernacularName = "Bergeronnette des ruisseaux"
+      , binominalName = "Motacilla cinerea"
+      , license = "Par Lip Kee Yap — Flickr: Grey wagtail, CC BY-SA 2.0, https://commons.wikimedia.org/w/index.php?curid=14637693"
+      }
+    , { id = "bb69"
+      , vernacularName = "Bergeronnette grise"
+      , binominalName = "Motacilla alba"
+      , license = "Par Andreas Trepte — Travail personnel, CC BY-SA 2.5, https://commons.wikimedia.org/w/index.php?curid=3800685"
+      }
+    , { id = "bb70"
+      , vernacularName = "Bergeronnette printanière"
+      , binominalName = "Motacilla flava"
+      , license = "Par Andreas Trepte — Travail personnel, CC BY-SA 2.5, https://commons.wikimedia.org/w/index.php?curid=6685421"
+      }
+    , { id = "bb71"
+      , vernacularName = "Bernache du Canada"
+      , binominalName = "Branta canadensis"
+      , license = "Par Connormah — Travail personnel, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=27394270"
+      }
+    , { id = "bb72"
+      , vernacularName = "Bouvreuil pivoine"
+      , binominalName = "Pyrrhula pyrrhula"
+      , license = "Par Francis C. Franklin / CC-BY-SA-3.0, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=37675952"
+      }
+    , { id = "bb73"
+      , vernacularName = "Bruant des roseaux"
+      , binominalName = "Emberiza schoeniclus"
+      , license = "Par Gidzy, CC BY 2.0, https://commons.wikimedia.org/w/index.php?curid=6447232"
+      }
+    , { id = "bb74"
+      , vernacularName = "Bruant jaune"
+      , binominalName = "Emberiza citrinella"
+      , license = "Par Andreas Trepte — Travail personnel, CC BY-SA 2.5, https://commons.wikimedia.org/w/index.php?curid=3986639"
+      }
+    , { id = "bb75"
+      , vernacularName = "Busard des roseaux"
+      , binominalName = "Circus aeruginosus"
+      , license = "Par Sumeet Moghe — Travail personnel, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=49477506"
+      }
+    , { id = "bb76"
+      , vernacularName = "Busard Saint-Martin"
+      , binominalName = "Circus cyaneus"
+      , license = "Par Katy Prairie Conservancy — Travail personnel, Domaine public, https://commons.wikimedia.org/w/index.php?curid=5100533"
+      }
+    , { id = "bb77"
+      , vernacularName = "Buse variable"
+      , binominalName = "Buteo buteo"
+      , license = "Par Marek Szczepanek — Travail personnel, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=90587"
+      }
+    , { id = "bb78"
+      , vernacularName = "Butor étoilé"
+      , binominalName = "Botaurus stellaris"
+      , license = "Par Marek Szczepanek — Travail personnel, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=63238"
       }
     ]

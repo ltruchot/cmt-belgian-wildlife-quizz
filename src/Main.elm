@@ -3,9 +3,9 @@ module Main exposing (Model, Msg(..), init, main, update, view)
 import Array
 import ArrayHelper
 import Browser
-import Html exposing (Html, button, div, h1, h2, img, text)
-import Html.Attributes exposing (class, disabled, src, title)
-import Html.Events exposing (onClick, on)
+import Html exposing (Html, button, div, h1, h2, img, label, option, select, text)
+import Html.Attributes exposing (class, disabled, for, id, src, title)
+import Html.Events exposing (on, onClick)
 import Quiz exposing (QuizItem, QuizQa, belgianBirdsQuiz, pickQuizQa)
 import Time
 
@@ -47,7 +47,7 @@ init _ =
     ( { quizQas = belgianBirdsQuiz
       , remainingQuizQas = belgianBirdsQuiz
       , currentQuizItem =
-            { qa = { question = "", answer = "", title = ""}
+            { qa = { question = "", answer = "", title = "" }
             , answers = []
             }
       , status = "Trouve la bonne réponse..."
@@ -150,11 +150,19 @@ update msg model =
 view : Model -> Html Msg
 view model =
     div [ class "container" ]
-        [ div [ class "col" ]
-            [ h1 []
-                [ text "Oiseaux de Belgique" ]
-            , h2 []
-                [ text "Mode « infini »" ]
+        [ h1 [] [ text "Oiseaux de Belgique" ]
+        , div [ class "form-group row m-0" ]
+            [ label
+                [ for "mode"
+                , class "col-4 col-form-label"
+                ]
+                [ text "Mode :" ]
+            , div [ class "col-8" ]
+                [ select [ class "form-control", id "mode" ]
+                    [ option [] [ text "Infini" ]
+                    , option [] [ text "Examen" ]
+                    ]
+                ]
             ]
         , div [ class "row" ]
             [ div [ class "col p-3" ]
@@ -183,15 +191,23 @@ view model =
                         [ div [ class "h-100" ]
                             [ button
                                 [ class
-                                    ("btn-ws-normal btn btn-lg btn-block h-100"
+                                    ("custom-btn btn btn-lg btn-block no-transition h-100"
                                         ++ (if not model.waitNextQuestion then
-                                                " btn-light "
+                                                " btn-light"
 
                                             else if answer == model.currentQuizItem.qa.answer then
                                                 " btn-success"
 
-                                            else
+                                            else if
+                                                answer
+                                                    /= model.currentQuizItem.qa.answer
+                                                    && answer
+                                                    == model.chosenAnswer
+                                            then
                                                 " btn-danger"
+
+                                            else
+                                                " btn-light"
                                            )
                                     )
                                 , disabled model.waitNextQuestion

@@ -9,18 +9,21 @@
   height: inherit;
 }
 
+html {
+  height: 100%;
+}
 body {
   font-size: 16px;
+  background-image: url("/assets/img/bg-light-green.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  height: 100%;
 }
+
 h1 {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   text-align: center;
-  padding: 10px 0 5px;
-}
-h2 {
-  font-size: 1.1rem;
-  text-align: center;
-  padding: 5px;
+  margin: 10px;
 }
 
 .img-h-250 {
@@ -31,10 +34,23 @@ h2 {
   margin: auto;
 }
 
-.btn-ws-normal {
+.custom-btn {
   white-space: normal !important;
+  border: 1px solid #ced4da;
+}
+
+.btn-light:hover {
+  background-color: #f8f9fa;
 }
 
 .min-h-80 {
   min-height: 80px;
+}
+
+.no-transition {
+  -webkit-transition: 0s !important;
+  -moz-transition: 0s !important;
+  -ms-transition: 0s !important;
+  -o-transition: 0s !important;
+  transition: 0s !important;
 }
