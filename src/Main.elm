@@ -4,10 +4,15 @@ import Array
 import ArrayHelper
 import Browser
 import Html exposing (Html, button, div, h1, h2, img, label, option, select, text)
-import Html.Attributes exposing (class, disabled, for, id, src, title)
-import Html.Events exposing (on, onClick)
+import Html.Attributes exposing (class, disabled, for, id, src, title, value)
+import Html.Events exposing (on, onClick, onInput)
 import Quiz exposing (QuizItem, QuizQa, belgianBirdsQuiz, pickQuizQa)
 import Time
+
+
+type Mode
+    = Infinite
+    | Exam
 
 
 main =
@@ -39,6 +44,9 @@ type alias Model =
     , status : String
     , waitNextQuestion : Bool
     , chosenAnswer : String
+    , mode : Mode
+    , score : Int
+    , gameOver : Bool
     }
 
 
@@ -53,6 +61,9 @@ init _ =
       , status = "Trouve la bonne réponse..."
       , waitNextQuestion = False
       , chosenAnswer = ""
+      , mode = Infinite
+      , score = 0
+      , gameOver = False
       }
     , ArrayHelper.provideRandomElt DisplayNextQuestion belgianBirdsQuiz
     )
@@ -68,6 +79,7 @@ type Msg
     | CheckAnswer String
     | SetOtherAnswers (Array.Array QuizQa)
     | DisplayAnswers (Array.Array QuizQa)
+    | ChangeMode String
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -75,17 +87,25 @@ update msg model =
     case msg of
         CheckAnswer answer ->
             let
-                status =
-                    if answer == model.currentQuizItem.qa.answer then
+                hasWon =
+                    answer == model.currentQuizItem.qa.answer
+            in
+            ( { model
+                | chosenAnswer = answer
+                , status =
+                    if hasWon then
                         "Bien joué !"
 
                     else
                         "Perdu..."
-            in
-            ( { model
-                | chosenAnswer = answer
-                , status = status
+                , score =
+                    if hasWon then
+                        model.score + 1
+
+                    else
+                        model.score
                 , waitNextQuestion = True
+                , gameOver = Array.length model.remainingQuizQas == Array.length model.quizQas
               }
             , Cmd.none
             )
@@ -134,13 +154,45 @@ update msg model =
                     model.currentQuizItem
             in
             ( { model
-                | currentQuizItem =
+                | gameOver = False
+                , score =
+                    if model.gameOver then
+                        0
+
+                    else
+                        model.score
+                , currentQuizItem =
                     { item
                         | answers = Array.toList (Array.map (\qa -> qa.answer) arr)
                     }
               }
             , Cmd.none
             )
+
+        ChangeMode mode ->
+            let
+                newModel =
+                    { model | remainingQuizQas = model.quizQas }
+            in
+            case mode of
+                "Infinite" ->
+                    ( { newModel
+                        | mode = Infinite
+                        , status = "Trouve la bonne réponse..."
+                      }
+                    , ArrayHelper.provideRandomElt DisplayNextQuestion newModel.remainingQuizQas
+                    )
+
+                "Exam" ->
+                    ( { newModel
+                        | mode = Exam
+                        , score = 0
+                      }
+                    , ArrayHelper.provideRandomElt DisplayNextQuestion newModel.remainingQuizQas
+                    )
+
+                _ ->
+                    ( newModel, ArrayHelper.provideRandomElt DisplayNextQuestion newModel.remainingQuizQas )
 
 
 
@@ -154,13 +206,13 @@ view model =
         , div [ class "form-group row m-0" ]
             [ label
                 [ for "mode"
-                , class "col-4 col-form-label"
+                , class "col-3 col-form-label"
                 ]
                 [ text "Mode :" ]
-            , div [ class "col-8" ]
-                [ select [ class "form-control", id "mode" ]
-                    [ option [] [ text "Infini" ]
-                    , option [] [ text "Examen" ]
+            , div [ class "col-9" ]
+                [ select [ class "form-control", id "mode", onInput ChangeMode ]
+                    [ option [ value "Infinite" ] [ text "Infini" ]
+                    , option [ value "Exam" ] [ text "Examen" ]
                     ]
                 ]
             ]
@@ -220,6 +272,22 @@ view model =
                 model.currentQuizItem.answers
             )
         , div [ class "row" ]
-            [ div [ class "col text-center p-3" ] [ text model.status ]
+            [ div [ class "col text-center p-3" ]
+                [ text
+                    (if model.mode == Infinite then
+                        model.status
+
+                     else
+                        (if model.gameOver then
+                            "Final score : "
+
+                         else
+                            "Score : "
+                        )
+                            ++ String.fromInt model.score
+                            ++ "/"
+                            ++ String.fromInt (Array.length model.quizQas)
+                    )
+                ]
             ]
         ]
