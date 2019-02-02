@@ -207,15 +207,14 @@ update msg model =
 view : Model -> Html Msg
 view model =
     div [ class "container" ]
-        [ h1 [] [ text "Oiseaux de Belgique" ]
-        , div [ class "form-group row m-0" ]
-            [ label
-                [ for "mode"
-                , class "col-3 col-form-label"
+        [ div [ class "form-group row m-1 mt-2" ]
+            [ div [ class "col-8 p-0" ]
+                [ select [ class "form-control form-control-sm" ]
+                    [ option [ value "BelgianBirds" ] [ text "Oiseaux de Belgique" ]
+                    ]
                 ]
-                [ text "Mode :" ]
-            , div [ class "col-9" ]
-                [ select [ class "form-control", id "mode", onInput ChangeMode ]
+            , div [ class "col-4 p-0" ]
+                [ select [ class "form-control  form-control-sm", onInput ChangeMode ]
                     [ option [ value "Infinite" ] [ text "Infini" ]
                     , option [ value "Exam" ] [ text "Examen" ]
                     ]

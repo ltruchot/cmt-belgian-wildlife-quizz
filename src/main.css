@@ -10,12 +10,12 @@
 }
 
 html {
-  height: 100%;
   height: calc(100%);
+  min-height: 100vh;
 }
 
 body {
-  font-size: 16px;
+  font-size: 14px;
   background-image: url("/assets/img/bg-light-green.jpg");
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -23,10 +23,9 @@ body {
   min-height: 100vh;
 }
 
-h1 {
-  font-size: 1.3rem;
-  text-align: center;
-  margin: 8px;
+.main-container {
+  height: calc(100%);
+  min-height: 100vh;
 }
 
 .img-h-250 {
@@ -40,6 +39,7 @@ h1 {
 .custom-btn {
   white-space: normal !important;
   border: 1px solid #ced4da;
+  font-size: 1.15rem;
 }
 
 .btn-light:hover {
