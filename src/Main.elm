@@ -1,6 +1,6 @@
 module Main exposing (Model, Msg(..), init, main, update, view)
 
-import Array
+import Array exposing (Array)
 import ArrayHelper
 import Browser
 import Html exposing (Html, button, div, h1, h2, img, label, option, select, text)
@@ -38,8 +38,8 @@ subscriptions model =
 
 
 type alias Model =
-    { quizQas : Array.Array QuizQa
-    , remainingQuizQas : Array.Array QuizQa
+    { quizQas : Array QuizQa
+    , remainingQuizQas : Array QuizQa
     , currentQuizItem : QuizItem
     , status : String
     , waitNextQuestion : Bool
@@ -65,8 +65,13 @@ init _ =
       , score = 0
       , gameOver = False
       }
-    , ArrayHelper.provideRandomElt DisplayNextQuestion belgianBirdsQuiz
+    , cmdNextQuestion belgianBirdsQuiz
     )
+
+
+cmdNextQuestion : Array QuizQa -> Cmd Msg
+cmdNextQuestion qas =
+    ArrayHelper.provideRandomElt DisplayNextQuestion qas
 
 
 
@@ -77,8 +82,8 @@ type Msg
     = DisplayNextQuestion Int
     | PickNextQuestion
     | CheckAnswer String
-    | SetOtherAnswers (Array.Array QuizQa)
-    | DisplayAnswers (Array.Array QuizQa)
+    | SetOtherAnswers (Array QuizQa)
+    | DisplayAnswers (Array QuizQa)
     | ChangeMode String
 
 
@@ -116,7 +121,7 @@ update msg model =
                 , chosenAnswer = ""
                 , status = ""
               }
-            , ArrayHelper.provideRandomElt DisplayNextQuestion model.remainingQuizQas
+            , cmdNextQuestion model.remainingQuizQas
             )
 
         DisplayNextQuestion randomIdx ->
@@ -180,7 +185,7 @@ update msg model =
                         | mode = Infinite
                         , status = "Trouve la bonne réponse..."
                       }
-                    , ArrayHelper.provideRandomElt DisplayNextQuestion newModel.remainingQuizQas
+                    , cmdNextQuestion newModel.remainingQuizQas
                     )
 
                 "Exam" ->
@@ -188,11 +193,11 @@ update msg model =
                         | mode = Exam
                         , score = 0
                       }
-                    , ArrayHelper.provideRandomElt DisplayNextQuestion newModel.remainingQuizQas
+                    , cmdNextQuestion newModel.remainingQuizQas
                     )
 
                 _ ->
-                    ( newModel, ArrayHelper.provideRandomElt DisplayNextQuestion newModel.remainingQuizQas )
+                    ( newModel, cmdNextQuestion newModel.remainingQuizQas )
 
 
 
