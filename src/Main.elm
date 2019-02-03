@@ -223,7 +223,7 @@ view model =
         , div [ class "row" ]
             [ div [ class "col p-3" ]
                 [ img
-                    [ class "img-h-250"
+                    [ class "img-h-230"
                     , title model.currentQuizItem.qa.title
                     , let
                         imgSrc =

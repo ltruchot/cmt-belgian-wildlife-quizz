@@ -6,7 +6,7 @@ const sharp = require("sharp");
 
 const imgSrc = "./public/assets/img/belgian_birds";
 const imgDest = "./public/assets/img/belgian_birds/resized";
-const imgHeight = 250;
+const imgHeight = 230;
 
 const rmDirP = path =>
   new Promise((resolve, reject) => {

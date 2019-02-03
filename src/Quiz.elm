@@ -168,4 +168,28 @@ belgianBirds =
       , binominalName = "Botaurus stellaris"
       , license = "Par Marek Szczepanek — Travail personnel, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=63238"
       }
+    
     ]
+
+{- 
+Canard colvert	Anas platyrhynchos
+Canard pilet	Anas acuta
+Canard souchet	Anas clypeata
+Cassenoix moucheté	Nucifraga caryocatactes
+Chardonneret élégant	Carduelis carduelis
+Chevalier culblanc	Tringa ochropus
+Chevalier gambette	Tringa totanus
+Chevalier guignette	Actitis hypoleucos
+Chevêche d'Athéna	Athene noctua
+Choucas des tours	Coloeus monedula
+Chouette hulotte	Strix aluco
+Cigogne blanche	Ciconia ciconia
+Cigogne noire	Ciconia nigra
+Cincle plongeur	Cinclus cinclus
+Corbeau freux	Corvus frugilegus
+Corneille noire	Corvus corone
+Coucou gris	Cuculus canorus
+Courlis cendré	Numenius arquata
+Cygne chanteur	Cygnus cygnus
+Cygne tuberculé	Cygnus olor 
+-}

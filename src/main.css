@@ -10,8 +10,7 @@
 }
 
 html {
-  height: calc(100%);
-  min-height: 100vh;
+  height: 100%;
 }
 
 body {
@@ -19,18 +18,20 @@ body {
   background-image: url("/assets/img/bg-light-green.jpg");
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  height: calc(100%);
-  min-height: 100vh;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
 }
 
 .main-container {
-  height: calc(100%);
-  min-height: 100vh;
+  height: 100%;
 }
 
-.img-h-250 {
+.img-h-230 {
   margin: auto;
-  height: 250px;
+  height: 230px;
   max-width: 100%;
   display: block;
   margin: auto;
