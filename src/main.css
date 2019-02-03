@@ -15,9 +15,10 @@ html {
 
 body {
   font-size: 14px;
-  background-image: url("/assets/img/bg-light-green.jpg");
+  background-image: url("/assets/img/bg-light-green-2.jpg");
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-attachment: fixed;
+  background-position: center top;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -26,7 +27,8 @@ body {
 }
 
 .main-container {
-  height: 100%;
+  max-width: 900px;
+  box-sizing: border-box;
 }
 
 .img-h-230 {

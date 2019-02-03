@@ -3,9 +3,11 @@ module Main exposing (Model, Msg(..), init, main, update, view)
 import Array exposing (Array)
 import ArrayHelper
 import Browser
+import FHelper
 import Html exposing (Html, button, div, h1, h2, img, label, option, select, text)
 import Html.Attributes exposing (class, disabled, for, id, src, title, value)
 import Html.Events exposing (on, onClick, onInput)
+import Json.Decode as JD
 import Quiz exposing (QuizItem, QuizQa, belgianBirdsQuiz, pickQuizQa)
 import Time
 
@@ -47,6 +49,7 @@ type alias Model =
     , mode : Mode
     , score : Int
     , gameOver : Bool
+    , imgLoaded : Bool
     }
 
 
@@ -64,6 +67,7 @@ init _ =
       , mode = Infinite
       , score = 0
       , gameOver = False
+      , imgLoaded = False
       }
     , cmdNextQuestion belgianBirdsQuiz
     )
@@ -85,11 +89,19 @@ type Msg
     | SetOtherAnswers (Array QuizQa)
     | DisplayAnswers (Array QuizQa)
     | ChangeMode String
+    | DisplayLoadedImg String
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
+        DisplayLoadedImg path ->
+            ( { model
+                | imgLoaded = True
+              }
+            , Cmd.none
+            )
+
         CheckAnswer answer ->
             let
                 hasWon =
@@ -103,12 +115,7 @@ update msg model =
 
                     else
                         "Perdu..."
-                , score =
-                    if hasWon then
-                        model.score + 1
-
-                    else
-                        model.score
+                , score = FHelper.ifThen hasWon ((+) 1) model.score
                 , waitNextQuestion = True
                 , gameOver = Array.length model.remainingQuizQas == Array.length model.quizQas
               }
@@ -116,6 +123,13 @@ update msg model =
             )
 
         PickNextQuestion ->
+            let
+                item =
+                    model.currentQuizItem
+
+                qa =
+                    model.currentQuizItem.qa
+            in
             ( { model
                 | waitNextQuestion = False
                 , chosenAnswer = ""
@@ -131,6 +145,7 @@ update msg model =
             in
             ( { model
                 | currentQuizItem = chosen
+                , imgLoaded = False
                 , remainingQuizQas =
                     if Array.length remaining > 0 then
                         remaining
@@ -206,7 +221,7 @@ update msg model =
 
 view : Model -> Html Msg
 view model =
-    div [ class "container" ]
+    div [ class "container main-container" ]
         [ div [ class "form-group row m-1 mt-2" ]
             [ div [ class "col-8 p-0" ]
                 [ select [ class "form-control form-control-sm" ]
@@ -223,19 +238,35 @@ view model =
         , div [ class "row" ]
             [ div [ class "col p-3" ]
                 [ img
-                    [ class "img-h-230"
+                    [ class
+                        ("img-h-230"
+                            ++ (if model.imgLoaded then
+                                    " d-block"
+
+                                else
+                                    " d-none"
+                               )
+                        )
                     , title model.currentQuizItem.qa.title
                     , let
                         imgSrc =
                             model.currentQuizItem.qa.question
                       in
-                      src
-                        (if imgSrc /= "" then
-                            imgSrc
+                      src imgSrc
+                    , onLoadSrc DisplayLoadedImg
+                    ]
+                    []
+                , img
+                    [ class
+                        ("img-h-230"
+                            ++ (if not model.imgLoaded then
+                                    " d-block"
 
-                         else
-                            "assets/img/loading.gif"
+                                else
+                                    " d-none"
+                               )
                         )
+                    , src "/assets/img/loader.svg"
                     ]
                     []
                 ]
@@ -295,3 +326,13 @@ view model =
                 ]
             ]
         ]
+
+
+onLoadSrc : (String -> msg) -> Html.Attribute msg
+onLoadSrc tagger =
+    on "load" (JD.map tagger targetSrc)
+
+
+targetSrc : JD.Decoder String
+targetSrc =
+    JD.at [ "target", "src" ] JD.string
