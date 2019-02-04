@@ -4,17 +4,22 @@ import Array exposing (Array)
 import ArrayHelper
 import Browser
 import FHelper
-import Html exposing (Html, button, div, h1, h2, img, label, option, select, text)
-import Html.Attributes exposing (class, disabled, for, id, src, title, value)
+import Html exposing (Html, button, div, h1, h2, img, label, option, select, text, p, a)
+import Html.Attributes exposing (class, classList, disabled, for, id, src, title, value, href)
 import Html.Events exposing (on, onClick, onInput)
 import Json.Decode as JD
-import Quiz exposing (QuizItem, QuizQa, belgianBirdsQuiz, pickQuizQa)
+import Quiz exposing (QuizItem, QuizQa, belgianBirdsQuiz, pickQuizQa, latinBirdsQuiz)
 import Time
 
 
 type Mode
     = Infinite
     | Exam
+    | Credits
+
+type Quiz
+    = BelgianBirds
+    | LatinBirds
 
 
 main =
@@ -29,7 +34,7 @@ main =
 subscriptions : Model -> Sub Msg
 subscriptions model =
     if model.waitNextQuestion then
-        Time.every 2000 (always PickNextQuestion)
+        Time.every (if model.hasWonLast then 1000 else 2000) (always PickNextQuestion)
 
     else
         Sub.none
@@ -50,6 +55,8 @@ type alias Model =
     , score : Int
     , gameOver : Bool
     , imgLoaded : Bool
+    , hasWonLast : Bool
+    , displayCredits : Bool
     }
 
 
@@ -68,6 +75,8 @@ init _ =
       , score = 0
       , gameOver = False
       , imgLoaded = False
+      , hasWonLast = False
+      , displayCredits = False
       }
     , cmdNextQuestion belgianBirdsQuiz
     )
@@ -88,8 +97,9 @@ type Msg
     | CheckAnswer String
     | SetOtherAnswers (Array QuizQa)
     | DisplayAnswers (Array QuizQa)
-    | ChangeMode String
     | DisplayLoadedImg String
+    | ChangeMode String
+    | ChangeQuiz String
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -115,6 +125,7 @@ update msg model =
 
                     else
                         "Perdu..."
+                , hasWonLast = hasWon
                 , score = FHelper.ifThen hasWon ((+) 1) model.score
                 , waitNextQuestion = True
                 , gameOver = Array.length model.remainingQuizQas == Array.length model.quizQas
@@ -192,7 +203,7 @@ update msg model =
         ChangeMode mode ->
             let
                 newModel =
-                    { model | remainingQuizQas = model.quizQas }
+                    { model | remainingQuizQas = model.quizQas, displayCredits = False }
             in
             case mode of
                 "Infinite" ->
@@ -210,43 +221,64 @@ update msg model =
                       }
                     , cmdNextQuestion newModel.remainingQuizQas
                     )
+                "Credits" -> 
+                    ( {
+                        model | displayCredits = True
+                    }, Cmd.none)
 
                 _ ->
-                    ( newModel, cmdNextQuestion newModel.remainingQuizQas )
+                    ( model, Cmd.none )
+        ChangeQuiz quiz ->
+            case quiz of
+                "BelgianBirds" ->
+                    ( { model | 
+                        score = 0
+                        , quizQas = belgianBirdsQuiz
+                        , remainingQuizQas = belgianBirdsQuiz }
+                    , cmdNextQuestion belgianBirdsQuiz)
+
+                "LatinBirds" ->
+                    ( { model | 
+                        score = 0
+                        , quizQas = latinBirdsQuiz
+                        , remainingQuizQas = latinBirdsQuiz }
+                    , cmdNextQuestion latinBirdsQuiz
+                    )
+
+                _ ->
+                    ( model, Cmd.none)
 
 
 
 -- VIEW
 
 
+    
+
 view : Model -> Html Msg
 view model =
     div [ class "container main-container" ]
         [ div [ class "form-group row m-1 mt-2" ]
             [ div [ class "col-8 p-0" ]
-                [ select [ class "form-control form-control-sm" ]
+                [ select [ class "form-control form-control-sm", onInput ChangeQuiz ]
                     [ option [ value "BelgianBirds" ] [ text "Oiseaux de Belgique" ]
+                    , option [ value "LatinBirds" ] [ text "Oiseaux (latin)" ]
                     ]
                 ]
             , div [ class "col-4 p-0" ]
                 [ select [ class "form-control  form-control-sm", onInput ChangeMode ]
                     [ option [ value "Infinite" ] [ text "Infini" ]
                     , option [ value "Exam" ] [ text "Examen" ]
+                    , option [ value "Credits" ] [ text "Crédits" ]
                     ]
                 ]
             ]
-        , div [ class "row" ]
-            [ div [ class "col p-3" ]
+        , if model.displayCredits then viewCredits else
+        div [ class "container p-0 m-0"] [
+        div [ class "row" ]
+            [ div [ class "col py-2 px-3" ]
                 [ img
-                    [ class
-                        ("img-h-230"
-                            ++ (if model.imgLoaded then
-                                    " d-block"
-
-                                else
-                                    " d-none"
-                               )
-                        )
+                    [ classList [ ( "img-h-230", True ), ( "d-none", not model.imgLoaded ) ]
                     , title model.currentQuizItem.qa.title
                     , let
                         imgSrc =
@@ -257,15 +289,7 @@ view model =
                     ]
                     []
                 , img
-                    [ class
-                        ("img-h-230"
-                            ++ (if not model.imgLoaded then
-                                    " d-block"
-
-                                else
-                                    " d-none"
-                               )
-                        )
+                    [ classList [ ( "img-h-230", True ), ( "d-none", model.imgLoaded ) ]
                     , src "/assets/img/loader.svg"
                     ]
                     []
@@ -326,7 +350,37 @@ view model =
                 ]
             ]
         ]
+        ]
 
+
+viewCredits :  Html Msg
+viewCredits = 
+    div [ class "row" ] [
+        div [ class "col" ] [
+            h1 [ class  "mt-3"] [ text "Autoquizz" ]
+            , h2 [] [ 
+                text "Par Loïc TRUCHOT - Étudiant ", 
+                a [ href "https://www.guides-nature.be/" ] [ text "CNB"]
+            ]
+            , p [] [ 
+                text "Licence Open Source et gratuite : " , 
+                a [ href "https://creativecommons.org/licenses/by-nc/4.0/" ] [ text "CC-BY-NC-4.0" ]
+            ]
+            , p [] [ text "Cette application est destinée aux étudiants CNB et aux curieux de la nature, pour les aider à se familiariser avec la faune et la flore de Belgique." ]
+            , p [] [ 
+                text "Toutes les illustrations ont pour source " 
+                , a [ href "https://www.wikipedia.org/" ] [ text "Wikipédia" ]
+                , text "."
+            ]
+            , p [] [ 
+                text "Le code source en "
+                , a [ href "https://elm-lang.org/" ] [ text "Elm" ]
+                , text " est disponible sur le " 
+                , a [ href "https://gitlab.committers.ngo/elm-generic-quiz/v1" ] [ text "GitLab de l'ASBL Committers" ]
+                , text "."
+            ]    
+        ]
+    ]
 
 onLoadSrc : (String -> msg) -> Html.Attribute msg
 onLoadSrc tagger =

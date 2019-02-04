@@ -26,6 +26,13 @@ body {
   left: 0;
 }
 
+h1 {
+  font-size: 1.3rem;
+}
+h2 {
+  font-size: 1.1rem;
+}
+
 .main-container {
   max-width: 900px;
   box-sizing: border-box;
