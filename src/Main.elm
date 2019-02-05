@@ -134,13 +134,6 @@ update msg model =
             )
 
         PickNextQuestion ->
-            let
-                item =
-                    model.currentQuizItem
-
-                qa =
-                    model.currentQuizItem.qa
-            in
             ( { model
                 | waitNextQuestion = False
                 , chosenAnswer = ""
