@@ -4,11 +4,11 @@ import Array exposing (Array)
 import ArrayHelper
 import Browser
 import FHelper
-import Html exposing (Html, button, div, h1, h2, img, label, option, select, text, p, a)
-import Html.Attributes exposing (class, classList, disabled, for, id, src, title, value, href)
+import Html exposing (Html, a, button, div, h1, h2, img, label, option, p, select, text)
+import Html.Attributes exposing (class, classList, disabled, for, href, id, src, title, value)
 import Html.Events exposing (on, onClick, onInput)
 import Json.Decode as JD
-import Quiz exposing (QuizItem, QuizQa, belgianBirdsQuiz, pickQuizQa, latinBirdsQuiz)
+import Quiz exposing (QuizItem, QuizQa, belgianBirdsQuiz, latinBirdsQuiz, pickQuizQa)
 import Time
 
 
@@ -17,9 +17,13 @@ type Mode
     | Exam
     | Credits
 
-type Quiz
-    = BelgianBirds
-    | LatinBirds
+
+type GameState
+    = Start
+    | AskQuestion
+    | WaitNext
+    | Over
+    | DisplayCredits
 
 
 main =
@@ -33,8 +37,15 @@ main =
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
-    if model.waitNextQuestion then
-        Time.every (if model.hasWonLast then 1000 else 2000) (always PickNextQuestion)
+    if model.gameState == WaitNext then
+        Time.every
+            (if model.hasWonLast then
+                1000
+
+             else
+                2000
+            )
+            (always PickNextQuestion)
 
     else
         Sub.none
@@ -48,15 +59,13 @@ type alias Model =
     { quizQas : Array QuizQa
     , remainingQuizQas : Array QuizQa
     , currentQuizItem : QuizItem
-    , status : String
-    , waitNextQuestion : Bool
     , chosenAnswer : String
     , mode : Mode
-    , score : Int
-    , gameOver : Bool
+    , score : ( Int, Int )
     , imgLoaded : Bool
     , hasWonLast : Bool
-    , displayCredits : Bool
+    , gameState : GameState
+    , examLimit : Int
     }
 
 
@@ -68,15 +77,13 @@ init _ =
             { qa = { question = "", answer = "", title = "" }
             , answers = []
             }
-      , status = "Trouve la bonne réponse..."
-      , waitNextQuestion = False
       , chosenAnswer = ""
       , mode = Infinite
-      , score = 0
-      , gameOver = False
+      , score = ( 0, 1 )
       , imgLoaded = False
       , hasWonLast = False
-      , displayCredits = False
+      , gameState = Start
+      , examLimit = 5
       }
     , cmdNextQuestion belgianBirdsQuiz
     )
@@ -119,25 +126,26 @@ update msg model =
             in
             ( { model
                 | chosenAnswer = answer
-                , status =
-                    if hasWon then
-                        "Bien joué !"
+                , hasWonLast = hasWon
+                , score =
+                    ( FHelper.ifThen hasWon ((+) 1) (Tuple.first model.score)
+                    , Tuple.second model.score
+                    )
+                , gameState =
+                    if Tuple.second model.score == model.examLimit then
+                        Over
 
                     else
-                        "Perdu..."
-                , hasWonLast = hasWon
-                , score = FHelper.ifThen hasWon ((+) 1) model.score
-                , waitNextQuestion = True
-                , gameOver = Array.length model.remainingQuizQas == Array.length model.quizQas
+                        WaitNext
               }
             , Cmd.none
             )
 
         PickNextQuestion ->
             ( { model
-                | waitNextQuestion = False
+                | gameState = AskQuestion
                 , chosenAnswer = ""
-                , status = ""
+                , score = ( Tuple.first model.score, Tuple.second model.score + 1 )
               }
             , cmdNextQuestion model.remainingQuizQas
             )
@@ -178,10 +186,9 @@ update msg model =
                     model.currentQuizItem
             in
             ( { model
-                | gameOver = False
-                , score =
-                    if model.gameOver then
-                        0
+                | score =
+                    if model.gameState == Over then
+                        ( 0, 1 )
 
                     else
                         model.score
@@ -196,13 +203,12 @@ update msg model =
         ChangeMode mode ->
             let
                 newModel =
-                    { model | remainingQuizQas = model.quizQas, displayCredits = False }
+                    { model | remainingQuizQas = model.quizQas, gameState = Start }
             in
             case mode of
                 "Infinite" ->
                     ( { newModel
                         | mode = Infinite
-                        , status = "Trouve la bonne réponse..."
                       }
                     , cmdNextQuestion newModel.remainingQuizQas
                     )
@@ -210,43 +216,48 @@ update msg model =
                 "Exam" ->
                     ( { newModel
                         | mode = Exam
-                        , score = 0
+                        , score = ( 0, 1 )
                       }
                     , cmdNextQuestion newModel.remainingQuizQas
                     )
-                "Credits" -> 
-                    ( {
-                        model | displayCredits = True
-                    }, Cmd.none)
+
+                "Credits" ->
+                    ( { model
+                        | gameState = DisplayCredits
+                      }
+                    , Cmd.none
+                    )
 
                 _ ->
                     ( model, Cmd.none )
+
         ChangeQuiz quiz ->
             case quiz of
                 "BelgianBirds" ->
-                    ( { model | 
-                        score = 0
+                    ( { model
+                        | score = ( 0, 1 )
                         , quizQas = belgianBirdsQuiz
-                        , remainingQuizQas = belgianBirdsQuiz }
-                    , cmdNextQuestion belgianBirdsQuiz)
+                        , remainingQuizQas = belgianBirdsQuiz
+                      }
+                    , cmdNextQuestion belgianBirdsQuiz
+                    )
 
                 "LatinBirds" ->
-                    ( { model | 
-                        score = 0
+                    ( { model
+                        | score = ( 0, 1 )
                         , quizQas = latinBirdsQuiz
-                        , remainingQuizQas = latinBirdsQuiz }
+                        , remainingQuizQas = latinBirdsQuiz
+                      }
                     , cmdNextQuestion latinBirdsQuiz
                     )
 
                 _ ->
-                    ( model, Cmd.none)
+                    ( model, Cmd.none )
 
 
 
 -- VIEW
 
-
-    
 
 view : Model -> Html Msg
 view model =
@@ -266,114 +277,127 @@ view model =
                     ]
                 ]
             ]
-        , if model.displayCredits then viewCredits else
-        div [ class "container p-0 m-0"] [
-        div [ class "row" ]
-            [ div [ class "col py-2 px-3" ]
-                [ img
-                    [ classList [ ( "img-h-230", True ), ( "d-none", not model.imgLoaded ) ]
-                    , title model.currentQuizItem.qa.title
-                    , let
-                        imgSrc =
-                            model.currentQuizItem.qa.question
-                      in
-                      src imgSrc
-                    , onLoadSrc DisplayLoadedImg
-                    ]
-                    []
-                , img
-                    [ classList [ ( "img-h-230", True ), ( "d-none", model.imgLoaded ) ]
-                    , src "/assets/img/loader.svg"
-                    ]
-                    []
-                ]
-            ]
-        , div [ class "row" ]
-            (List.map
-                (\answer ->
-                    div [ class "col-6 col-md-3 p-1 min-h-80" ]
-                        [ div [ class "h-100" ]
-                            [ button
-                                [ class
-                                    ("custom-btn btn btn-lg btn-block no-transition h-100"
-                                        ++ (if not model.waitNextQuestion then
-                                                " btn-light"
+        , if model.gameState == DisplayCredits then
+            viewCredits
 
-                                            else if answer == model.currentQuizItem.qa.answer then
-                                                " btn-success"
-
-                                            else if
-                                                answer
-                                                    /= model.currentQuizItem.qa.answer
-                                                    && answer
-                                                    == model.chosenAnswer
-                                            then
-                                                " btn-danger"
-
-                                            else
-                                                " btn-light"
-                                           )
-                                    )
-                                , disabled model.waitNextQuestion
-                                , onClick (CheckAnswer answer)
-                                ]
-                                [ text answer ]
+          else
+            div [ class "container p-0 m-0" ]
+                [ div [ class "row" ]
+                    [ div [ class "col py-2 px-3" ]
+                        [ img
+                            [ classList [ ( "img-h-230", True ), ( "d-none", not model.imgLoaded ) ]
+                            , title model.currentQuizItem.qa.title
+                            , src model.currentQuizItem.qa.question
+                            , onLoadSrc DisplayLoadedImg
                             ]
+                            []
+                        , img
+                            [ classList [ ( "img-h-230", True ), ( "d-none", model.imgLoaded ) ]
+                            , src "/assets/img/loader.svg"
+                            ]
+                            []
                         ]
-                )
-                model.currentQuizItem.answers
-            )
-        , div [ class "row" ]
-            [ div [ class "col text-center p-3" ]
-                [ text
-                    (if model.mode == Infinite then
-                        model.status
+                    ]
+                , div [ classList [ ( "row", True ), ( "d-none", model.gameState == Over )  ] ]
+                    (List.map
+                        (\answer ->
+                            div [ class "col-6 col-md-3 p-1 min-h-80" ]
+                                [ div [ class "h-100" ]
+                                    [ button
+                                        [ class
+                                            ("custom-btn btn btn-lg btn-block no-transition h-100"
+                                                ++ (if not (model.gameState == WaitNext || model.gameState == Over) then
+                                                        " btn-light"
 
-                     else
-                        (if model.gameOver then
-                            "Final score : "
+                                                    else if answer == model.currentQuizItem.qa.answer then
+                                                        " btn-success"
 
-                         else
-                            "Score : "
+                                                    else if
+                                                        answer
+                                                            /= model.currentQuizItem.qa.answer
+                                                            && answer
+                                                            == model.chosenAnswer
+                                                    then
+                                                        " btn-danger"
+
+                                                    else
+                                                        " btn-light"
+                                                   )
+                                            )
+                                        , disabled (model.gameState == WaitNext)
+                                        , onClick (CheckAnswer answer)
+                                        ]
+                                        [ text answer ]
+                                    ]
+                                ]
                         )
-                            ++ String.fromInt model.score
-                            ++ "/"
-                            ++ String.fromInt (Array.length model.quizQas)
+                        model.currentQuizItem.answers
                     )
+                , div [ class "row" ]
+                    [ div [ class "col text-center p-3" ]
+                        (case model.mode of
+                            Infinite ->
+                                [ if model.gameState == WaitNext then
+                                    if model.hasWonLast then
+                                        text "Bien joué !"
+
+                                    else
+                                        text "Perdu..."
+
+                                  else
+                                    text ""
+                                ]
+
+                            Exam ->
+                                let
+                                    score =
+                                        String.fromInt (Tuple.first model.score) ++ "/" ++ String.fromInt model.examLimit
+                                in
+                                if model.gameState == Over then
+                                    [ h2 [] [text ("Final score : " ++ score)]
+                                    , button [ class "btn btn-primary d-block m-auto", onClick (ChangeMode "Exam") ] [ text "Recommencer" ] ]
+
+                                else
+                                    [ text ("Score : " ++ score)]
+                                
+
+                            Credits ->
+                                [ text "" ]
+                        )
+                    ]
                 ]
-            ]
-        ]
         ]
 
 
-viewCredits :  Html Msg
-viewCredits = 
-    div [ class "row" ] [
-        div [ class "col" ] [
-            h1 [ class  "mt-3"] [ text "Autoquizz" ]
-            , h2 [] [ 
-                text "Par Loïc TRUCHOT - Étudiant ", 
-                a [ href "https://www.guides-nature.be/" ] [ text "CNB"]
-            ]
-            , p [] [ 
-                text "Licence Open Source et gratuite : " , 
-                a [ href "https://creativecommons.org/licenses/by-nc/4.0/" ] [ text "CC-BY-NC-4.0" ]
-            ]
+viewCredits : Html Msg
+viewCredits =
+    div [ class "row" ]
+        [ div [ class "col" ]
+            [ h1 [ class "mt-3" ] [ text "Autoquizz" ]
+            , h2 []
+                [ text "Par Loïc TRUCHOT - Étudiant "
+                , a [ href "https://www.guides-nature.be/" ] [ text "CNB" ]
+                ]
+            , p []
+                [ text "Licence Open Source et gratuite : "
+                , a [ href "https://creativecommons.org/licenses/by-nc/4.0/" ] [ text "CC-BY-NC-4.0" ]
+                ]
             , p [] [ text "Cette application est destinée aux étudiants CNB et aux curieux de la nature, pour les aider à se familiariser avec la faune et la flore de Belgique." ]
-            , p [] [ 
-                text "Toutes les illustrations ont pour source " 
+            , p []
+                [ text "Toutes les illustrations ont pour source "
                 , a [ href "https://www.wikipedia.org/" ] [ text "Wikipédia" ]
                 , text "."
-            ]
-            , p [] [ 
-                text "Le code source en "
+                ]
+            , p []
+                [ text "Le code source en "
                 , a [ href "https://elm-lang.org/" ] [ text "Elm" ]
-                , text " est disponible sur le " 
+                , text " est disponible sur le "
                 , a [ href "https://gitlab.committers.ngo/elm-generic-quiz/v1" ] [ text "GitLab de l'ASBL Committers" ]
                 , text "."
-            ]    
+                ]
+            ]
         ]
-    ]
+
 
 onLoadSrc : (String -> msg) -> Html.Attribute msg
 onLoadSrc tagger =

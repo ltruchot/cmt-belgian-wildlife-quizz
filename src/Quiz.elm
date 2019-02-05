@@ -1,4 +1,4 @@
-module Quiz exposing (QuizItem, QuizQa, belgianBirdsQuiz, periodicTableQuiz, pickQuizQa, latinBirdsQuiz)
+module Quiz exposing (QuizItem, QuizQa, belgianBirdsQuiz, latinBirdsQuiz, periodicTableQuiz, pickQuizQa)
 
 import Array
 import ArrayHelper
@@ -56,6 +56,7 @@ belgianBirdsQuiz =
             )
             belgianBirds
         )
+
 
 latinBirdsQuiz : Array.Array QuizQa
 latinBirdsQuiz =
@@ -283,128 +284,130 @@ belgianBirds =
       }
     ]
 
-{-	
-Effraie des clochers	Tyto alba
-Épervier d'Europe	Accipiter nisus
-Étourneau sansonnet	Sturnus vulgaris
-Faisan de Colchide	Phasianus colchicus
-Faucon crécerelle	Falco tinnunculus
-Faucon hobereau	Falco subbuteo
-Faucon pèlerin	Falco peregrinus
-Fauvette à tête noire	Sylvia atricapilla
-Fauvette des jardins	Sylvia borin
-Fauvette grisette	Sylvia communis
-Foulque macroule	Fulica atra
-Fuligule milouin	Aythya ferina
-Fuligule morillon	Aythya fuligula
-Gallinule poule-d'eau	Gallinula chloropus
-Garrot à oeil d'or	Bucephala clangula
-Geai des chênes	Garrulus glandarius
-Gobemouche gris	Muscicapa striata
-Gobemouche noir	Ficedula hypoleuca
-Goéland argenté	Larus argentatus
-Goéland brun	Larus fuscus
-Goéland cendré	Larus canus
-Goéland marin	Larus marinus
-Gorgebleue à miroir	Luscinia svecica
-Grand-duc d'Europe	Bubo bubo
-Grand Corbeau	Corvus corax
-Grand Cormoran	Phalacrocorax carbo
-Grande Aigrette	Ardea alba
-Grèbe à cou noir	Podiceps nigricollis
-Grèbe castagneux	Tachybaptus ruficollis
-Grèbe huppé	Podiceps cristatus
-Grimpereau des bois	Certhia familiaris
-Grimpereau des jardins	Certhia brachydactyla
-Grive draine	Turdus viscivorus
-Grive litorne	Turdus pilaris
-Grive mauvis	Turdus iliacus
-Grive musicienne	Turdus philomelos
-Grosbec casse-noyaux	Coccothraustes coccothraustes
-Grue cendrée	Grus grus
-Harle bièvre	Mergus merganser
-Harle piette	Mergellus albellus
-Héron cendré	Ardea cinerea
-Hibou des marais	Asio flammeus
-Hibou moyen-duc	Asio otus
-Hirondelle de fenêtre	Delichon urbicum
-Hirondelle de rivage	Riparia riparia
-Hirondelle de rochers	Ptyonoprogne rupestris
-Hirondelle rustique	Hirundo rustica
-Huîtrier pie	Haematopus ostralegus
-Hypolaïs polyglotte	Hippolais polyglotta
-Jaseur boréal	Bombycilla garrulus
-Linotte mélodieuse	Carduelis cannabina
-Locustelle tachetée	Locustella naevia
-Loriot d'Europe	Oriolus oriolus
-Martin-pêcheur d'Europe	Alcedo atthis
-Martinet noir	Apus apus
-Merle à plastron	Turdus torquatus
-Merle noir	Turdus merula
-Mésange à longue queue	Aegithalos caudatus
-Mésange bleue	Cyanistes caeruleus
-Mésange boréale	Poecile montanus
-Mésange charbonnière	Parus major
-Mésange huppée	Lophophanes cristatus
-Mésange noire	Periparus ater
-Mésange nonnette	Poecile palustris
-Milan noir	Milvus migrans
-Milan royal	Milvus milvus
-Moineau domestique	Passer domesticus
-Moineau friquet	Passer montanus
-Mouette rieuse	Chroicocephalus ridibundus
-Oie cendrée	Anser anser
-Oie rieuse	Anser albifrons
-Ouette d'Égypte	Alopochen aegyptiaca
-Panure à moustaches	Panurus biarmicus
-Perdrix grise	Perdix perdix
-Perruche à collier	Psittacula krameri
-Petit Gravelot	Charadrius dubius
-Pic épeiche	Dendrocopos major
-Pic épeichette	Dendrocopos minor
-Pic mar	Dendrocopos medius
-Pic noir	Dryocopus martius
-Pic vert	Picus viridis
-Pie-grièche écorcheur	Lanius collurio
-Pie-grièche grise	Lanius excubitor
-Pie bavarde	Pica pica
-Pigeon biset	Columba livia
-Pigeon ramier	Columba palumbus
-Pinson des arbres	Fringilla coelebs
-Pinson du Nord	Fringilla montifringilla
-Pipit des arbres	Anthus trivialis
-Pipit farlouse	Anthus pratensis
-Pipit spioncelle	Anthus spinoletta
-Pluvier doré	Pluvialis apricaria
-Pouillot fitis	Phylloscopus trochilus
-Pouillot siffleur	Phylloscopus sibilatrix
-Pouillot véloce	Phylloscopus collybita
-Râle d'eau	Rallus aquaticus
-Râle des genêts	Crex crex
-Roitelet huppé	Regulus regulus
-Roitelet triple-bandeau	Regulus ignicapilla
-Rossignol philomèle	Luscinia megarhynchos
-Rougegorge familier	Erithacus rubecula
-Rougequeue à front blanc	Phoenicurus phoenicurus
-Rougequeue noir	Phoenicurus ochruros
-Rousserolle effarvatte	Acrocephalus scirpaceus
-Rousserolle verderolle	Acrocephalus palustris
-Sarcelle d'été	Anas querquedula
-Sarcelle d'hiver	Anas crecca
-Sittelle torchepot	Sitta europaea
-Sizerin flammé	Carduelis flammea
-Spatule blanche	Platalea leucorodia
-Sterne pierregarin	Sterna hirundo
-Tadorne de Belon	Tadorna tadorna
-Tarier des prés	Saxicola rubetra
-Tarier pâtre	Saxicola rubicola
-Tarin des aulnes	Carduelis spinus
-Tétras lyre	Lyrurus tetrix
-Tournepierre à collier	Arenaria interpres
-Tourterelle des bois	Streptopelia turtur
-Tourterelle turque	Streptopelia decaocto
-Traquet motteux	Oenanthe oenanthe
-Troglodyte mignon	Troglodytes troglodytes
-Vanneau huppé	Vanellus vanellus
-Verdier d'Europe	Chloris chloris
+
+
+{-
+   Effraie des clochers	Tyto alba
+   Épervier d'Europe	Accipiter nisus
+   Étourneau sansonnet	Sturnus vulgaris
+   Faisan de Colchide	Phasianus colchicus
+   Faucon crécerelle	Falco tinnunculus
+   Faucon hobereau	Falco subbuteo
+   Faucon pèlerin	Falco peregrinus
+   Fauvette à tête noire	Sylvia atricapilla
+   Fauvette des jardins	Sylvia borin
+   Fauvette grisette	Sylvia communis
+   Foulque macroule	Fulica atra
+   Fuligule milouin	Aythya ferina
+   Fuligule morillon	Aythya fuligula
+   Gallinule poule-d'eau	Gallinula chloropus
+   Garrot à oeil d'or	Bucephala clangula
+   Geai des chênes	Garrulus glandarius
+   Gobemouche gris	Muscicapa striata
+   Gobemouche noir	Ficedula hypoleuca
+   Goéland argenté	Larus argentatus
+   Goéland brun	Larus fuscus
+   Goéland cendré	Larus canus
+   Goéland marin	Larus marinus
+   Gorgebleue à miroir	Luscinia svecica
+   Grand-duc d'Europe	Bubo bubo
+   Grand Corbeau	Corvus corax
+   Grand Cormoran	Phalacrocorax carbo
+   Grande Aigrette	Ardea alba
+   Grèbe à cou noir	Podiceps nigricollis
+   Grèbe castagneux	Tachybaptus ruficollis
+   Grèbe huppé	Podiceps cristatus
+   Grimpereau des bois	Certhia familiaris
+   Grimpereau des jardins	Certhia brachydactyla
+   Grive draine	Turdus viscivorus
+   Grive litorne	Turdus pilaris
+   Grive mauvis	Turdus iliacus
+   Grive musicienne	Turdus philomelos
+   Grosbec casse-noyaux	Coccothraustes coccothraustes
+   Grue cendrée	Grus grus
+   Harle bièvre	Mergus merganser
+   Harle piette	Mergellus albellus
+   Héron cendré	Ardea cinerea
+   Hibou des marais	Asio flammeus
+   Hibou moyen-duc	Asio otus
+   Hirondelle de fenêtre	Delichon urbicum
+   Hirondelle de rivage	Riparia riparia
+   Hirondelle de rochers	Ptyonoprogne rupestris
+   Hirondelle rustique	Hirundo rustica
+   Huîtrier pie	Haematopus ostralegus
+   Hypolaïs polyglotte	Hippolais polyglotta
+   Jaseur boréal	Bombycilla garrulus
+   Linotte mélodieuse	Carduelis cannabina
+   Locustelle tachetée	Locustella naevia
+   Loriot d'Europe	Oriolus oriolus
+   Martin-pêcheur d'Europe	Alcedo atthis
+   Martinet noir	Apus apus
+   Merle à plastron	Turdus torquatus
+   Merle noir	Turdus merula
+   Mésange à longue queue	Aegithalos caudatus
+   Mésange bleue	Cyanistes caeruleus
+   Mésange boréale	Poecile montanus
+   Mésange charbonnière	Parus major
+   Mésange huppée	Lophophanes cristatus
+   Mésange noire	Periparus ater
+   Mésange nonnette	Poecile palustris
+   Milan noir	Milvus migrans
+   Milan royal	Milvus milvus
+   Moineau domestique	Passer domesticus
+   Moineau friquet	Passer montanus
+   Mouette rieuse	Chroicocephalus ridibundus
+   Oie cendrée	Anser anser
+   Oie rieuse	Anser albifrons
+   Ouette d'Égypte	Alopochen aegyptiaca
+   Panure à moustaches	Panurus biarmicus
+   Perdrix grise	Perdix perdix
+   Perruche à collier	Psittacula krameri
+   Petit Gravelot	Charadrius dubius
+   Pic épeiche	Dendrocopos major
+   Pic épeichette	Dendrocopos minor
+   Pic mar	Dendrocopos medius
+   Pic noir	Dryocopus martius
+   Pic vert	Picus viridis
+   Pie-grièche écorcheur	Lanius collurio
+   Pie-grièche grise	Lanius excubitor
+   Pie bavarde	Pica pica
+   Pigeon biset	Columba livia
+   Pigeon ramier	Columba palumbus
+   Pinson des arbres	Fringilla coelebs
+   Pinson du Nord	Fringilla montifringilla
+   Pipit des arbres	Anthus trivialis
+   Pipit farlouse	Anthus pratensis
+   Pipit spioncelle	Anthus spinoletta
+   Pluvier doré	Pluvialis apricaria
+   Pouillot fitis	Phylloscopus trochilus
+   Pouillot siffleur	Phylloscopus sibilatrix
+   Pouillot véloce	Phylloscopus collybita
+   Râle d'eau	Rallus aquaticus
+   Râle des genêts	Crex crex
+   Roitelet huppé	Regulus regulus
+   Roitelet triple-bandeau	Regulus ignicapilla
+   Rossignol philomèle	Luscinia megarhynchos
+   Rougegorge familier	Erithacus rubecula
+   Rougequeue à front blanc	Phoenicurus phoenicurus
+   Rougequeue noir	Phoenicurus ochruros
+   Rousserolle effarvatte	Acrocephalus scirpaceus
+   Rousserolle verderolle	Acrocephalus palustris
+   Sarcelle d'été	Anas querquedula
+   Sarcelle d'hiver	Anas crecca
+   Sittelle torchepot	Sitta europaea
+   Sizerin flammé	Carduelis flammea
+   Spatule blanche	Platalea leucorodia
+   Sterne pierregarin	Sterna hirundo
+   Tadorne de Belon	Tadorna tadorna
+   Tarier des prés	Saxicola rubetra
+   Tarier pâtre	Saxicola rubicola
+   Tarin des aulnes	Carduelis spinus
+   Tétras lyre	Lyrurus tetrix
+   Tournepierre à collier	Arenaria interpres
+   Tourterelle des bois	Streptopelia turtur
+   Tourterelle turque	Streptopelia decaocto
+   Traquet motteux	Oenanthe oenanthe
+   Troglodyte mignon	Troglodytes troglodytes
+   Vanneau huppé	Vanellus vanellus
+   Verdier d'Europe	Chloris chloris
 -}
