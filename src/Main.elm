@@ -26,6 +26,67 @@ type GameState
     | DisplayCredits
 
 
+type GameOverRatio
+    = Sad
+    | Neutral
+    | Happy
+    | Proud
+
+
+calculateGameOverRatio : ( Int, Int ) -> GameOverRatio
+calculateGameOverRatio score =
+    let
+        ratio =
+            toFloat (Tuple.first score) / toFloat (Tuple.second score)
+    in
+    if ratio == 1 then
+        Proud
+
+    else if ratio >= 0.75 then
+        Happy
+
+    else if ratio >= 0.5 then
+        Neutral
+
+    else
+        Sad
+
+
+getGameOverImg : GameOverRatio -> String
+getGameOverImg ratio =
+    "/assets/img/belgian_birds/resized/"
+        ++ (case ratio of
+                Sad ->
+                    "sad"
+
+                Neutral ->
+                    "neutral"
+
+                Happy ->
+                    "happy"
+
+                Proud ->
+                    "proud"
+           )
+        ++ ".jpg"
+
+
+getGameOverSentence : GameOverRatio -> String
+getGameOverSentence ratio =
+    (case ratio of
+        Sad ->
+            "Oh non ! Tu as rendu les oiseaux tristes avec ce mauvais score..."
+
+        Neutral ->
+            "Les oiseaux restent perplexes face à ton score..."
+
+        Happy ->
+            "Merci, tu as rendu les oiseaux heureux avec ce joli score..."
+
+        Proud ->
+            "Parfait ! Tu fais la fierté du chef de oiseaux avec ce magnifique score...")
+
+
 main =
     Browser.element
         { init = init
@@ -66,6 +127,7 @@ type alias Model =
     , hasWonLast : Bool
     , gameState : GameState
     , examLimit : Int
+    , gameOverRatio : GameOverRatio
     }
 
 
@@ -83,7 +145,8 @@ init _ =
       , imgLoaded = False
       , hasWonLast = False
       , gameState = Start
-      , examLimit = 5
+      , examLimit = 20
+      , gameOverRatio = Neutral
       }
     , cmdNextQuestion belgianBirdsQuiz
     )
@@ -123,20 +186,26 @@ update msg model =
             let
                 hasWon =
                     answer == model.currentQuizItem.qa.answer
+
+                score =
+                    ( FHelper.ifThen hasWon ((+) 1) (Tuple.first model.score), Tuple.second model.score )
             in
             ( { model
                 | chosenAnswer = answer
                 , hasWonLast = hasWon
-                , score =
-                    ( FHelper.ifThen hasWon ((+) 1) (Tuple.first model.score)
-                    , Tuple.second model.score
-                    )
+                , score = score
                 , gameState =
-                    if Tuple.second model.score == model.examLimit then
+                    if
+                        Tuple.second model.score
+                            == model.examLimit
+                            && model.mode
+                            == Exam
+                    then
                         Over
 
                     else
                         WaitNext
+                , gameOverRatio = calculateGameOverRatio score
               }
             , Cmd.none
             )
@@ -287,7 +356,13 @@ view model =
                         [ img
                             [ classList [ ( "img-h-230", True ), ( "d-none", not model.imgLoaded ) ]
                             , title model.currentQuizItem.qa.title
-                            , src model.currentQuizItem.qa.question
+                            , src
+                                (if model.gameState == Over then
+                                    getGameOverImg model.gameOverRatio
+
+                                 else
+                                    model.currentQuizItem.qa.question
+                                )
                             , onLoadSrc DisplayLoadedImg
                             ]
                             []
@@ -298,7 +373,7 @@ view model =
                             []
                         ]
                     ]
-                , div [ classList [ ( "row", True ), ( "d-none", model.gameState == Over )  ] ]
+                , div [ classList [ ( "row", True ), ( "d-none", model.gameState == Over ) ] ]
                     (List.map
                         (\answer ->
                             div [ class "col-6 col-md-3 p-1 min-h-80" ]
@@ -354,12 +429,13 @@ view model =
                                         String.fromInt (Tuple.first model.score) ++ "/" ++ String.fromInt model.examLimit
                                 in
                                 if model.gameState == Over then
-                                    [ h2 [] [text ("Final score : " ++ score)]
-                                    , button [ class "btn btn-primary d-block m-auto", onClick (ChangeMode "Exam") ] [ text "Recommencer" ] ]
+                                    [ h2 [] [ text ("Final score : " ++ score) ]
+                                    , p [] [text (getGameOverSentence model.gameOverRatio)]
+                                    , button [ class "btn btn-primary d-block m-auto", onClick (ChangeMode "Exam") ] [ text "Recommencer" ]
+                                    ]
 
                                 else
-                                    [ text ("Score : " ++ score)]
-                                
+                                    [ text ("Score : " ++ score) ]
 
                             Credits ->
                                 [ text "" ]

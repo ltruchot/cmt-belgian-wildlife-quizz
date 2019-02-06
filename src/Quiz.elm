@@ -95,27 +95,27 @@ belgianBirds =
     , { id = "bb61"
       , vernacularName = "Autour des palombes"
       , binominalName = "Accipiter gentilis"
-      , license = "Par Cymbella — Travail personnel, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=21467538"
+      , license = "Par Cymbella — CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=21467538"
       }
     , { id = "bb62"
       , vernacularName = "Avocette élégante"
       , binominalName = "Recurvirostra avosetta"
-      , license = "Par Andreas Trepte — Travail personnel, CC BY-SA 2.5, https://commons.wikimedia.org/w/index.php?curid=10610115"
+      , license = "Par Andreas Trepte — CC BY-SA 2.5, https://commons.wikimedia.org/w/index.php?curid=10610115"
       }
     , { id = "bb63"
       , vernacularName = "Balbuzard pêcheur"
       , binominalName = "Pandion haliaetus"
-      , license = "Par Yathin S Krishnappa — Travail personnel, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=21376478"
+      , license = "Par Yathin S Krishnappa — CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=21376478"
       }
     , { id = "bb64"
       , vernacularName = "Bec-croisé des sapins"
       , binominalName = "Loxia curvirostra"
-      , license = "Par User:Aelwyn — Travail personnel, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=2230007"
+      , license = "Par User:Aelwyn — CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=2230007"
       }
     , { id = "bb65"
       , vernacularName = "Bécasse des bois"
       , binominalName = "Scolopax rusticola"
-      , license = "Par Ronald Slabke — Travail personnel, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=5703078"
+      , license = "Par Ronald Slabke — CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=5703078"
       }
     , { id = "bb66"
       , vernacularName = "Bécasseau variable"
@@ -125,7 +125,7 @@ belgianBirds =
     , { id = "bb67"
       , vernacularName = "Bécassine des marais"
       , binominalName = "Gallinago gallinago"
-      , license = "Par Pierre DalousLieu — Travail personnel, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=21528551"
+      , license = "Par Pierre DalousLieu — CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=21528551"
       }
     , { id = "bb68"
       , vernacularName = "Bergeronnette des ruisseaux"
@@ -135,17 +135,17 @@ belgianBirds =
     , { id = "bb69"
       , vernacularName = "Bergeronnette grise"
       , binominalName = "Motacilla alba"
-      , license = "Par Andreas Trepte — Travail personnel, CC BY-SA 2.5, https://commons.wikimedia.org/w/index.php?curid=3800685"
+      , license = "Par Andreas Trepte — CC BY-SA 2.5, https://commons.wikimedia.org/w/index.php?curid=3800685"
       }
     , { id = "bb70"
       , vernacularName = "Bergeronnette printanière"
       , binominalName = "Motacilla flava"
-      , license = "Par Andreas Trepte — Travail personnel, CC BY-SA 2.5, https://commons.wikimedia.org/w/index.php?curid=6685421"
+      , license = "Par Andreas Trepte — CC BY-SA 2.5, https://commons.wikimedia.org/w/index.php?curid=6685421"
       }
     , { id = "bb71"
       , vernacularName = "Bernache du Canada"
       , binominalName = "Branta canadensis"
-      , license = "Par Connormah — Travail personnel, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=27394270"
+      , license = "Par Connormah — CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=27394270"
       }
     , { id = "bb72"
       , vernacularName = "Bouvreuil pivoine"
@@ -160,52 +160,52 @@ belgianBirds =
     , { id = "bb74"
       , vernacularName = "Bruant jaune"
       , binominalName = "Emberiza citrinella"
-      , license = "Par Andreas Trepte — Travail personnel, CC BY-SA 2.5, https://commons.wikimedia.org/w/index.php?curid=3986639"
+      , license = "Par Andreas Trepte — CC BY-SA 2.5, https://commons.wikimedia.org/w/index.php?curid=3986639"
       }
     , { id = "bb75"
       , vernacularName = "Busard des roseaux"
       , binominalName = "Circus aeruginosus"
-      , license = "Par Sumeet Moghe — Travail personnel, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=49477506"
+      , license = "Par Sumeet Moghe — CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=49477506"
       }
     , { id = "bb76"
       , vernacularName = "Busard Saint-Martin"
       , binominalName = "Circus cyaneus"
-      , license = "Par Katy Prairie Conservancy — Travail personnel, Domaine public, https://commons.wikimedia.org/w/index.php?curid=5100533"
+      , license = "Par Katy Prairie Conservancy — https://commons.wikimedia.org/w/index.php?curid=5100533"
       }
     , { id = "bb77"
       , vernacularName = "Buse variable"
       , binominalName = "Buteo buteo"
-      , license = "Par Marek Szczepanek — Travail personnel, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=90587"
+      , license = "Par Marek Szczepanek — CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=90587"
       }
     , { id = "bb78"
       , vernacularName = "Butor étoilé"
       , binominalName = "Botaurus stellaris"
-      , license = "Par Marek Szczepanek — Travail personnel, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=63238"
+      , license = "Par Marek Szczepanek — CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=63238"
       }
     , { id = "bb79"
       , vernacularName = "Canard colvert"
       , binominalName = "Anas platyrhynchos"
-      , license = "Par Richard Bartz — Travail personnel, CC BY-SA 2.5, https://commons.wikimedia.org/w/index.php?curid=6449086"
+      , license = "Par Richard Bartz — CC BY-SA 2.5, https://commons.wikimedia.org/w/index.php?curid=6449086"
       }
     , { id = "bb80"
       , vernacularName = "Canard pilet"
       , binominalName = "Anas acuta"
-      , license = "Par Adam Kumiszcza — Travail personnel, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=17692763"
+      , license = "Par Adam Kumiszcza — CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=17692763"
       }
     , { id = "bb81"
       , vernacularName = "Canard souchet"
       , binominalName = "Anas clypeata"
-      , license = "Par Andreas Trepte — Travail personnel, CC BY-SA 2.5, https://commons.wikimedia.org/w/index.php?curid=15010945"
+      , license = "Par Andreas Trepte — CC BY-SA 2.5, https://commons.wikimedia.org/w/index.php?curid=15010945"
       }
     , { id = "bb82"
       , vernacularName = "Cassenoix moucheté"
       , binominalName = "Nucifraga caryocatactes"
-      , license = "Par MurrayBHenson — Domaine public, https://commons.wikimedia.org/w/index.php?curid=3708573"
+      , license = "Par MurrayBHenson — https://commons.wikimedia.org/w/index.php?curid=3708573"
       }
     , { id = "bb83"
       , vernacularName = "Chardonneret élégant"
       , binominalName = "Carduelis carduelis"
-      , license = "Par Pierre Dalous — Travail personnel, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=22525310"
+      , license = "Par Pierre Dalous — CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=22525310"
       }
     , { id = "bb84"
       , vernacularName = "Chevalier culblanc"
@@ -220,7 +220,7 @@ belgianBirds =
     , { id = "bb86"
       , vernacularName = "Chevalier guignette"
       , binominalName = "Actitis hypoleucos"
-      , license = "Par Marek Szczepanek — Travail personnel, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=63227"
+      , license = "Par Marek Szczepanek — CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=63227"
       }
     , { id = "bb87"
       , vernacularName = "Chevêche d'Athéna"
@@ -230,17 +230,17 @@ belgianBirds =
     , { id = "bb88"
       , vernacularName = "Choucas des tours"
       , binominalName = "Coloeus monedula"
-      , license = "Par Darkone — Travail personnel, CC BY-SA 2.5, https://commons.wikimedia.org/w/index.php?curid=665741"
+      , license = "Par Darkone — CC BY-SA 2.5, https://commons.wikimedia.org/w/index.php?curid=665741"
       }
     , { id = "bb89"
       , vernacularName = "Chouette hulotte"
       , binominalName = "Strix aluco"
-      , license = "Par K.-M. Hansche — Travail personnel, CC BY-SA 2.5, https://commons.wikimedia.org/w/index.php?curid=775782"
+      , license = "Par K.-M. Hansche — CC BY-SA 2.5, https://commons.wikimedia.org/w/index.php?curid=775782"
       }
     , { id = "bb90"
       , vernacularName = "Cigogne blanche"
       , binominalName = "Ciconia ciconia"
-      , license = "Par Dcabrilo — Travail personnel, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=4675672"
+      , license = "Par Dcabrilo — CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=4675672"
       }
     , { id = "bb91"
       , vernacularName = "Cigogne noire"
@@ -255,12 +255,12 @@ belgianBirds =
     , { id = "bb93"
       , vernacularName = "Corbeau freux"
       , binominalName = "Corvus frugilegus"
-      , license = "Par Andreas Trepte — Travail personnel, CC BY-SA 2.5, https://commons.wikimedia.org/w/index.php?curid=19133958"
+      , license = "Par Andreas Trepte — CC BY-SA 2.5, https://commons.wikimedia.org/w/index.php?curid=19133958"
       }
     , { id = "bb94"
       , vernacularName = "Corneille noire"
       , binominalName = "Corvus corone"
-      , license = "Par Loz (L. B. Tettenborn) — Travail personnel, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=2380746"
+      , license = "Par Loz (L. B. Tettenborn) — CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=2380746"
       }
     , { id = "bb95"
       , vernacularName = "Coucou gris"
@@ -270,41 +270,114 @@ belgianBirds =
     , { id = "bb96"
       , vernacularName = "Courlis cendré"
       , binominalName = "Numenius arquata"
-      , license = "Par Ken Billington — Travail personnel, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=12307666"
+      , license = "Par Ken Billington — CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=12307666"
       }
     , { id = "bb97"
       , vernacularName = "Cygne chanteur"
       , binominalName = "Cygnus cygnus"
-      , license = "Par Rhion — Domaine public, https://commons.wikimedia.org/w/index.php?curid=450423"
+      , license = "Par Rhion — https://commons.wikimedia.org/w/index.php?curid=450423"
       }
     , { id = "bb98"
       , vernacularName = "Cygne tuberculé"
       , binominalName = "Cygnus olor"
-      , license = "Par Sanchezn — Travail personnel, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=3019282"
+      , license = "Par Sanchezn — CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=3019282"
       }
+    , { id = "bb99"
+      , vernacularName = "Effraie des clochers"
+      , binominalName = "Tyto alba"
+      , license = "Par Peter Trimming — CC BY 2.0, https://commons.wikimedia.org/w/index.php?curid=15975742"
+      }
+    , { id = "bb100"
+      , vernacularName = "Épervier d'Europe"
+      , binominalName = "Accipiter nisus"
+      , license = "Par Meneer Zjeroen — CC BY 2.0, https://commons.wikimedia.org/w/index.php?curid=8528830"
+      }
+    , { id = "bb101"
+      , vernacularName = "Étourneau sansonnet"
+      , binominalName = "Sturnus vulgaris"
+      , license = "Par Marek Szczepanek — CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=12866593"
+      }
+    , { id = "bb102"
+      , vernacularName = "Faisan de Colchide"
+      , binominalName = "Phasianus colchicus"
+      , license = "Par ChrisO — CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=2367271"
+      }
+    , { id = "bb103"
+      , vernacularName = "Faucon crécerelle"
+      , binominalName = "Falco tinnunculus"
+      , license = "Par Andreas Trepte — CC BY-SA 2.5, https://commons.wikimedia.org/w/index.php?curid=6542109"
+      }
+    , { id = "bb104"
+      , vernacularName = "Faucon hobereau"
+      , binominalName = "Falco subbuteo"
+      , license = "Par Mike Prince - CC BY 2.0, https://commons.wikimedia.org/w/index.php?curid=62046802"
+      }      
+    , { id = "bb105"
+      , vernacularName = "Faucon pèlerin"
+      , binominalName = "Falco peregrinus"
+      , license = "Par Carlos Delgado — CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=38755194"
+      } 
+    , { id = "bb106"
+      , vernacularName = "Fauvette à tête noire"
+      , binominalName = "Sylvia atricapilla"
+      , license = "Par Ron Knight — CC BY 2.0, https://commons.wikimedia.org/w/index.php?curid=31193932"
+      } 
+    , { id = "bb107"
+      , vernacularName = "Fauvette des jardins"
+      , binominalName = "Sylvia borin"
+      , license = "Par Biillyboy — CC BY 2.0, https://commons.wikimedia.org/w/index.php?curid=11427509"
+      }
+    , { id = "bb108"
+      , vernacularName = "Fauvette grisette"
+      , binominalName = "Sylvia communis"
+      , license = "Par markkilner — CC BY-SA 2.0, https://commons.wikimedia.org/w/index.php?curid=7607222"
+      }
+    , { id = "bb109"
+      , vernacularName = "Foulque macroule"
+      , binominalName = "Fulica atra"
+      , license = "Par Arpingstone — https://commons.wikimedia.org/w/index.php?curid=196325"
+      }
+    , { id = "bb110"
+      , vernacularName = "Fuligule milouin"
+      , binominalName = "Aythya ferina"
+      , license = "Par Neil Phillips — CC BY 2.0, https://commons.wikimedia.org/w/index.php?curid=4287883"
+      }
+    , { id = "bb111"
+      , vernacularName = "Fuligule morillon"
+      , binominalName = "Aythya fuligula"
+      , license = "Par Tim Felce — CC BY-SA 2.0, https://commons.wikimedia.org/w/index.php?curid=27813802"
+      } 
+    , { id = "bb112"
+      , vernacularName = "Gallinule poule-d'eau"
+      , binominalName = "Gallinula chloropus"
+      , license = "Par Mathias Bigge — CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=2686402"
+      } 
+    , { id = "bb113"
+      , vernacularName = "Garrot à oeil d'or"
+      , binominalName = "Bucephala clangula"
+      , license = "Par Adrian Pingstone — https://commons.wikimedia.org/w/index.php?curid=71030"
+      }
+    , { id = "bb114"
+      , vernacularName = "Geai des chênes"
+      , binominalName = "Garrulus glandarius"
+      , license = "Par Luc Viatour — CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=5933620"
+      } 
+    , { id = "bb115"
+      , vernacularName = "Gobemouche gris"
+      , binominalName = "Muscicapa striata"
+      , license = "Par Andrew Easton — https://commons.wikimedia.org/w/index.php?curid=251327"
+      }
+    , { id = "bb116"
+      , vernacularName = "Gobemouche noir"
+      , binominalName = "Ficedula hypoleuca"
+      , license = "Par Ron Knight — CC BY 2.0, https://commons.wikimedia.org/w/index.php?curid=26256664"
+      }          
     ]
 
-
-
 {-
-   Effraie des clochers	Tyto alba
-   Épervier d'Europe	Accipiter nisus
-   Étourneau sansonnet	Sturnus vulgaris
-   Faisan de Colchide	Phasianus colchicus
-   Faucon crécerelle	Falco tinnunculus
-   Faucon hobereau	Falco subbuteo
-   Faucon pèlerin	Falco peregrinus
-   Fauvette à tête noire	Sylvia atricapilla
-   Fauvette des jardins	Sylvia borin
-   Fauvette grisette	Sylvia communis
-   Foulque macroule	Fulica atra
-   Fuligule milouin	Aythya ferina
-   Fuligule morillon	Aythya fuligula
-   Gallinule poule-d'eau	Gallinula chloropus
-   Garrot à oeil d'or	Bucephala clangula
-   Geai des chênes	Garrulus glandarius
-   Gobemouche gris	Muscicapa striata
-   Gobemouche noir	Ficedula hypoleuca
+
+   	
+   	
    Goéland argenté	Larus argentatus
    Goéland brun	Larus fuscus
    Goéland cendré	Larus canus
