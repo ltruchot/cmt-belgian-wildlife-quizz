@@ -1,0 +1,391 @@
+[
+  {
+    "vernacularName": "Accenteur mouchet",
+    "binominalName": "Prunella modularis"
+  },
+  {
+    "vernacularName": "Alouette des champs",
+    "binominalName": "Alauda arvensis"
+  },
+  {
+    "vernacularName": "Autour des palombes",
+    "binominalName": "Accipiter gentilis"
+  },
+  {
+    "vernacularName": "Avocette élégante",
+    "binominalName": "Recurvirostra avosetta"
+  },
+  {
+    "vernacularName": "Balbuzard pêcheur",
+    "binominalName": "Pandion haliaetus"
+  },
+  {
+    "vernacularName": "Bec-croisé des sapins",
+    "binominalName": "Loxia curvirostra"
+  },
+  {
+    "vernacularName": "Bécasse des bois",
+    "binominalName": "Scolopax rusticola"
+  },
+  {
+    "vernacularName": "Bécasseau variable",
+    "binominalName": "Calidris alpina"
+  },
+  {
+    "vernacularName": "Bécassine des marais",
+    "binominalName": "Gallinago gallinago"
+  },
+  {
+    "vernacularName": "Bergeronnette des ruisseaux",
+    "binominalName": "Motacilla cinerea"
+  },
+  {
+    "vernacularName": "Bergeronnette grise",
+    "binominalName": "Motacilla alba"
+  },
+  {
+    "vernacularName": "Bergeronnette printanière",
+    "binominalName": "Motacilla flava"
+  },
+  {
+    "vernacularName": "Bernache du Canada",
+    "binominalName": "Branta canadensis"
+  },
+  {
+    "vernacularName": "Bouvreuil pivoine",
+    "binominalName": "Pyrrhula pyrrhula"
+  },
+  {
+    "vernacularName": "Bruant des roseaux",
+    "binominalName": "Emberiza schoeniclus"
+  },
+  { "vernacularName": "Bruant jaune", "binominalName": "Emberiza citrinella" },
+  {
+    "vernacularName": "Busard des roseaux",
+    "binominalName": "Circus aeruginosus"
+  },
+  {
+    "vernacularName": "Busard Saint-Martin",
+    "binominalName": "Circus cyaneus"
+  },
+  { "vernacularName": "Buse variable", "binominalName": "Buteo buteo" },
+  { "vernacularName": "Butor étoilé", "binominalName": "Botaurus stellaris" },
+  { "vernacularName": "Canard colvert", "binominalName": "Anas platyrhynchos" },
+  { "vernacularName": "Canard pilet", "binominalName": "Anas acuta" },
+  { "vernacularName": "Canard souchet", "binominalName": "Anas clypeata" },
+  {
+    "vernacularName": "Cassenoix moucheté",
+    "binominalName": "Nucifraga caryocatactes"
+  },
+  {
+    "vernacularName": "Chardonneret élégant",
+    "binominalName": "Carduelis carduelis"
+  },
+  {
+    "vernacularName": "Chevalier culblanc",
+    "binominalName": "Tringa ochropus"
+  },
+  { "vernacularName": "Chevalier gambette", "binominalName": "Tringa totanus" },
+  {
+    "vernacularName": "Chevalier guignette",
+    "binominalName": "Actitis hypoleucos"
+  },
+  { "vernacularName": "Chevêche d'Athéna", "binominalName": "Athene noctua" },
+  {
+    "vernacularName": "Choucas des tours",
+    "binominalName": "Coloeus monedula"
+  },
+  { "vernacularName": "Chouette hulotte", "binominalName": "Strix aluco" },
+  { "vernacularName": "Cigogne blanche", "binominalName": "Ciconia ciconia" },
+  { "vernacularName": "Cigogne noire", "binominalName": "Ciconia nigra" },
+  { "vernacularName": "Cincle plongeur", "binominalName": "Cinclus cinclus" },
+  { "vernacularName": "Corbeau freux", "binominalName": "Corvus frugilegus" },
+  { "vernacularName": "Corneille noire", "binominalName": "Corvus corone" },
+  { "vernacularName": "Coucou gris", "binominalName": "Cuculus canorus" },
+  { "vernacularName": "Courlis cendré", "binominalName": "Numenius arquata" },
+  { "vernacularName": "Cygne chanteur", "binominalName": "Cygnus cygnus" },
+  { "vernacularName": "Cygne tuberculé", "binominalName": "Cygnus olor" },
+  { "vernacularName": "Effraie des clochers", "binominalName": "Tyto alba" },
+  { "vernacularName": "Épervier d'Europe", "binominalName": "Accipiter nisus" },
+  {
+    "vernacularName": "Étourneau sansonnet",
+    "binominalName": "Sturnus vulgaris"
+  },
+  {
+    "vernacularName": "Faisan de Colchide",
+    "binominalName": "Phasianus colchicus"
+  },
+  {
+    "vernacularName": "Faucon crécerelle",
+    "binominalName": "Falco tinnunculus"
+  },
+  { "vernacularName": "Faucon hobereau", "binominalName": "Falco subbuteo" },
+  { "vernacularName": "Faucon pèlerin", "binominalName": "Falco peregrinus" },
+  {
+    "vernacularName": "Fauvette à tête noire",
+    "binominalName": "Sylvia atricapilla"
+  },
+  { "vernacularName": "Fauvette des jardins", "binominalName": "Sylvia borin" },
+  { "vernacularName": "Fauvette grisette", "binominalName": "Sylvia communis" },
+  { "vernacularName": "Foulque macroule", "binominalName": "Fulica atra" },
+  { "vernacularName": "Fuligule milouin", "binominalName": "Aythya ferina" },
+  { "vernacularName": "Fuligule morillon", "binominalName": "Aythya fuligula" },
+  {
+    "vernacularName": "Gallinule poule-d'eau",
+    "binominalName": "Gallinula chloropus"
+  },
+  {
+    "vernacularName": "Garrot à oeil d'or",
+    "binominalName": "Bucephala clangula"
+  },
+  {
+    "vernacularName": "Geai des chênes",
+    "binominalName": "Garrulus glandarius"
+  },
+  { "vernacularName": "Gobemouche gris", "binominalName": "Muscicapa striata" },
+  {
+    "vernacularName": "Gobemouche noir",
+    "binominalName": "Ficedula hypoleuca"
+  },
+  { "vernacularName": "Goéland argenté", "binominalName": "Larus argentatus" },
+  { "vernacularName": "Goéland brun", "binominalName": "Larus fuscus" },
+
+  { "vernacularName": "Goéland cendré", "binominalName": "Larus canus" },
+  { "vernacularName": "Goéland marin", "binominalName": "Larus marinus" },
+  {
+    "vernacularName": "Gorgebleue à miroir",
+    "binominalName": "Luscinia svecica"
+  },
+  { "vernacularName": "Grand-duc d'Europe", "binominalName": "Bubo bubo" },
+  { "vernacularName": "Grand Corbeau", "binominalName": "Corvus corax" },
+  {
+    "vernacularName": "Grand Cormoran",
+    "binominalName": "Phalacrocorax carbo"
+  },
+  { "vernacularName": "Grande Aigrette", "binominalName": "Ardea alba" },
+  {
+    "vernacularName": "Grèbe à cou noir",
+    "binominalName": "Podiceps nigricollis"
+  },
+  {
+    "vernacularName": "Grèbe castagneux",
+    "binominalName": "Tachybaptus ruficollis"
+  },
+  { "vernacularName": "Grèbe huppé", "binominalName": "Podiceps cristatus" },
+  {
+    "vernacularName": "Grimpereau des bois",
+    "binominalName": "Certhia familiaris"
+  },
+  {
+    "vernacularName": "Grimpereau des jardins",
+    "binominalName": "Certhia brachydactyla"
+  },
+  { "vernacularName": "Grive draine", "binominalName": "Turdus viscivorus" },
+  { "vernacularName": "Grive litorne", "binominalName": "Turdus pilaris" },
+  { "vernacularName": "Grive mauvis", "binominalName": "Turdus iliacus" },
+  {
+    "vernacularName": "Grive musicienne",
+    "binominalName": "Turdus philomelos"
+  },
+  {
+    "vernacularName": "Grosbec casse-noyaux",
+    "binominalName": "Coccothraustes coccothraustes"
+  },
+  { "vernacularName": "Grue cendrée", "binominalName": "Grus grus" },
+  { "vernacularName": "Harle bièvre", "binominalName": "Mergus merganser" },
+  { "vernacularName": "Harle piette", "binominalName": "Mergellus albellus" },
+  { "vernacularName": "Héron cendré", "binominalName": "Ardea cinerea" },
+  { "vernacularName": "Hibou des marais", "binominalName": "Asio flammeus" },
+  { "vernacularName": "Hibou moyen-duc", "binominalName": "Asio otus" },
+  {
+    "vernacularName": "Hirondelle de fenêtre",
+    "binominalName": "Delichon urbicum"
+  },
+  {
+    "vernacularName": "Hirondelle de rivage",
+    "binominalName": "Riparia riparia"
+  },
+  {
+    "vernacularName": "Hirondelle de rochers",
+    "binominalName": "Ptyonoprogne rupestris"
+  },
+  {
+    "vernacularName": "Hirondelle rustique",
+    "binominalName": "Hirundo rustica"
+  },
+  {
+    "vernacularName": "Huîtrier pie",
+    "binominalName": "Haematopus ostralegus"
+  },
+  {
+    "vernacularName": "Hypolaïs polyglotte",
+    "binominalName": "Hippolais polyglotta"
+  },
+  { "vernacularName": "Jaseur boréal", "binominalName": "Bombycilla garrulus" },
+  {
+    "vernacularName": "Linotte mélodieuse",
+    "binominalName": "Carduelis cannabina"
+  },
+  {
+    "vernacularName": "Locustelle tachetée",
+    "binominalName": "Locustella naevia"
+  },
+  { "vernacularName": "Loriot d'Europe", "binominalName": "Oriolus oriolus" },
+  {
+    "vernacularName": "Martin-pêcheur d'Europe",
+    "binominalName": "Alcedo atthis"
+  },
+  { "vernacularName": "Martinet noir", "binominalName": "Apus apus" },
+  { "vernacularName": "Merle à plastron", "binominalName": "Turdus torquatus" },
+  { "vernacularName": "Merle noir", "binominalName": "Turdus merula" },
+  {
+    "vernacularName": "Mésange à longue queue",
+    "binominalName": "Aegithalos caudatus"
+  },
+  { "vernacularName": "Mésange bleue", "binominalName": "Cyanistes caeruleus" },
+  { "vernacularName": "Mésange boréale", "binominalName": "Poecile montanus" },
+  { "vernacularName": "Mésange charbonnière", "binominalName": "Parus major" },
+  {
+    "vernacularName": "Mésange huppée",
+    "binominalName": "Lophophanes cristatus"
+  },
+  { "vernacularName": "Mésange noire", "binominalName": "Periparus ater" },
+  {
+    "vernacularName": "Mésange nonnette",
+    "binominalName": "Poecile palustris"
+  },
+  { "vernacularName": "Milan noir", "binominalName": "Milvus migrans" },
+  { "vernacularName": "Milan royal", "binominalName": "Milvus milvus" },
+  {
+    "vernacularName": "Moineau domestique",
+    "binominalName": "Passer domesticus"
+  },
+  { "vernacularName": "Moineau friquet", "binominalName": "Passer montanus" },
+  {
+    "vernacularName": "Mouette rieuse",
+    "binominalName": "Chroicocephalus ridibundus"
+  },
+  { "vernacularName": "Oie cendrée", "binominalName": "Anser anser" },
+  { "vernacularName": "Oie rieuse", "binominalName": "Anser albifrons" },
+  {
+    "vernacularName": "Ouette d'Égypte",
+    "binominalName": "Alopochen aegyptiaca"
+  },
+  {
+    "vernacularName": "Panure à moustaches",
+    "binominalName": "Panurus biarmicus"
+  },
+  { "vernacularName": "Perdrix grise", "binominalName": "Perdix perdix" },
+  {
+    "vernacularName": "Perruche à collier",
+    "binominalName": "Psittacula krameri"
+  },
+  { "vernacularName": "Petit Gravelot", "binominalName": "Charadrius dubius" },
+  { "vernacularName": "Pic épeiche", "binominalName": "Dendrocopos major" },
+  { "vernacularName": "Pic épeichette", "binominalName": "Dendrocopos minor" },
+  { "vernacularName": "Pic mar", "binominalName": "Dendrocopos medius" },
+  { "vernacularName": "Pic noir", "binominalName": "Dryocopus martius" },
+  { "vernacularName": "Pic vert", "binominalName": "Picus viridis" },
+  {
+    "vernacularName": "Pie-grièche écorcheur",
+    "binominalName": "Lanius collurio"
+  },
+  {
+    "vernacularName": "Pie-grièche grise",
+    "binominalName": "Lanius excubitor"
+  },
+  { "vernacularName": "Pie bavarde", "binominalName": "Pica pica" },
+  { "vernacularName": "Pigeon biset", "binominalName": "Columba livia" },
+  { "vernacularName": "Pigeon ramier", "binominalName": "Columba palumbus" },
+  {
+    "vernacularName": "Pinson des arbres",
+    "binominalName": "Fringilla coelebs"
+  },
+  {
+    "vernacularName": "Pinson du Nord",
+    "binominalName": "Fringilla montifringilla"
+  },
+  { "vernacularName": "Pipit des arbres", "binominalName": "Anthus trivialis" },
+  { "vernacularName": "Pipit farlouse", "binominalName": "Anthus pratensis" },
+  {
+    "vernacularName": "Pipit spioncelle",
+    "binominalName": "Anthus spinoletta"
+  },
+  { "vernacularName": "Pluvier doré", "binominalName": "Pluvialis apricaria" },
+  {
+    "vernacularName": "Pouillot fitis",
+    "binominalName": "Phylloscopus trochilus"
+  },
+  {
+    "vernacularName": "Pouillot siffleur",
+    "binominalName": "Phylloscopus sibilatrix"
+  },
+  {
+    "vernacularName": "Pouillot véloce",
+    "binominalName": "Phylloscopus collybita"
+  },
+  { "vernacularName": "Râle d'eau", "binominalName": "Rallus aquaticus" },
+  { "vernacularName": "Râle des genêts", "binominalName": "Crex crex" },
+  { "vernacularName": "Roitelet huppé", "binominalName": "Regulus regulus" },
+  {
+    "vernacularName": "Roitelet triple-bandeau",
+    "binominalName": "Regulus ignicapilla"
+  },
+  {
+    "vernacularName": "Rossignol philomèle",
+    "binominalName": "Luscinia megarhynchos"
+  },
+  {
+    "vernacularName": "Rougegorge familier",
+    "binominalName": "Erithacus rubecula"
+  },
+  {
+    "vernacularName": "Rougequeue à front blanc",
+    "binominalName": "Phoenicurus phoenicurus"
+  },
+  {
+    "vernacularName": "Rougequeue noir",
+    "binominalName": "Phoenicurus ochruros"
+  },
+  {
+    "vernacularName": "Rousserolle effarvatte",
+    "binominalName": "Acrocephalus scirpaceus"
+  },
+  {
+    "vernacularName": "Rousserolle verderolle",
+    "binominalName": "Acrocephalus palustris"
+  },
+  { "vernacularName": "Sarcelle d'été", "binominalName": "Anas querquedula" },
+  { "vernacularName": "Sarcelle d'hiver", "binominalName": "Anas crecca" },
+  { "vernacularName": "Sittelle torchepot", "binominalName": "Sitta europaea" },
+  { "vernacularName": "Sizerin flammé", "binominalName": "Carduelis flammea" },
+  {
+    "vernacularName": "Spatule blanche",
+    "binominalName": "Platalea leucorodia"
+  },
+  { "vernacularName": "Sterne pierregarin", "binominalName": "Sterna hirundo" },
+  { "vernacularName": "Tadorne de Belon", "binominalName": "Tadorna tadorna" },
+  { "vernacularName": "Tarier des prés", "binominalName": "Saxicola rubetra" },
+  { "vernacularName": "Tarier pâtre", "binominalName": "Saxicola rubicola" },
+  { "vernacularName": "Tarin des aulnes", "binominalName": "Carduelis spinus" },
+  { "vernacularName": "Tétras lyre", "binominalName": "Lyrurus tetrix" },
+  {
+    "vernacularName": "Tournepierre à collier",
+    "binominalName": "Arenaria interpres"
+  },
+  {
+    "vernacularName": "Tourterelle des bois",
+    "binominalName": "Streptopelia turtur"
+  },
+  {
+    "vernacularName": "Tourterelle turque",
+    "binominalName": "Streptopelia decaocto"
+  },
+  { "vernacularName": "Traquet motteux", "binominalName": "Oenanthe oenanthe" },
+  {
+    "vernacularName": "Troglodyte mignon",
+    "binominalName": "Troglodytes troglodytes"
+  },
+  { "vernacularName": "Vanneau huppé", "binominalName": "Vanellus vanellus" },
+  { "vernacularName": "Verdier d'Europe", "binominalName": "Chloris chloris" }
+]

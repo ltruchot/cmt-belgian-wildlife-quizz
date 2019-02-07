@@ -11,52 +11,87 @@ var client = new bot({
   debug: false
 });
 
+const log = a => !console.log(a) && a;
 const getArticleData = title =>
   new Promise((resolve, reject) =>
-    client.getArticle(title, (err, data) => (err ? reject(err) : resolve(data)))
+    client.getArticle(title, true, (err, data) =>
+      err ? reject(err) : resolve(data)
+    )
   );
 
 const getImageInfo = imgName =>
   Promise.all([
     new Promise((resolve, reject) =>
-      client.getImageInfo(
-        imgName,
-        (err, { url, descriptionshorturl, metadata }) =>
-          err
-            ? reject(err)
-            : resolve({
-                url,
-                descriptionshorturl,
-                artist: metadata
-                  .find(a => a.name === "Artist")
-                  .value.split(";")[0]
-              })
-      )
+      client.getImageInfo(imgName, (err, data) => {
+        const { url, descriptionshorturl } = data;
+        if (err) {
+          reject(err);
+          return;
+        }
+        resolve({
+          url,
+          descriptionshorturl
+        });
+      })
     ),
     new Promise((resolve, reject) =>
       client.fetchUrl(
-        `https://${server}/w/api.php?action=query&prop=imageinfo&iiprop=extmetadata&titles=${encodeURIComponent(
+        `https://${server}/w/api.php?action=query&redirects&prop=imageinfo&iiprop=extmetadata&titles=${encodeURIComponent(
           imgName
         )}&format=json`,
-        (err, data) =>
-          err
-            ? reject(err)
-            : resolve(
-                JSON.parse(data).query.pages["-1"].imageinfo[0].extmetadata
-                  .LicenseShortName.value
-              )
+        (err, data) => {
+          if (err) {
+            reject(err);
+            return;
+          }
+          const metadata = JSON.parse(data).query.pages["-1"].imageinfo[0]
+            .extmetadata;
+          let shortLicense = "";
+          let artist = "";
+          try {
+            shortLicense = metadata.LicenseShortName.value;
+          } catch (e) {
+            console.error("No license value in", metadata);
+          }
+          try {
+            const val = metadata.Artist.value;
+            artist = /<a/.test(val)
+              ? metadata.Artist.value.match(/<a [^>]+>([^<]+)<\/a>/)[1]
+              : val;
+          } catch (e) {
+            console.error("No artist value in", metadata);
+          }
+          resolve({ shortLicense, artist });
+        }
       )
     )
-  ]).then(([{ descriptionshorturl, artist, url }, shortLicense]) => ({
-    license: `Par ${artist} — ${
-      shortLicense ? shortLicense + "," : ""
-    } ${descriptionshorturl}`,
+  ]).then(([{ descriptionshorturl, url }, { shortLicense, artist }]) => ({
+    license: `${artist ? " Par " + artist + " — " : ""}${
+      shortLicense ? shortLicense + ", " : ""
+    }${descriptionshorturl}`,
     url
   }));
 
-const getTaxobox = data =>
-  data.split("\n").filter(str => /^\{\{Taxobox/.test(str));
-const extractImgName = taxobox => "File:" + taxobox[0].split("|")[3].trim();
+const getTaxobox = data => {
+  const taxobox = data.split("\n").filter(str => /^\{\{Taxobox/.test(str));
+  if (taxobox.length === 0) {
+    throw new Error("No taxobox in" + JSON.stringify(data));
+    return;
+  }
+  return taxobox;
+};
+
+const extractImgName = taxobox => {
+  let imgName;
+  try {
+    imgName = taxobox[0].split("|")[3].trim();
+  } catch (e) {
+    console.error("can't extract image name from ", taxobox);
+    throw e;
+    return;
+  }
+  return "File:" + imgName;
+};
 
 const downloadImg = storageName => imgInfos =>
   download
@@ -67,13 +102,8 @@ const downloadImg = storageName => imgInfos =>
     .then(() => ({ id: storageName, license: imgInfos.license }));
 
 const prefix = "bb";
-let lastId = 117;
-const subjects = [
-  {
-    vernacularName: "Goéland brun",
-    binominalName: "Larus fuscus"
-  }
-];
+let lastId = 118;
+const subjects = [];
 const composeEntry = subject => current => ({ ...current, ...subject });
 Promise.all(
   subjects.map(subject =>

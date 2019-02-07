@@ -8,7 +8,8 @@ import Html exposing (Html, a, button, div, h1, h2, img, label, option, p, selec
 import Html.Attributes exposing (class, classList, disabled, for, href, id, src, title, value)
 import Html.Events exposing (on, onClick, onInput)
 import Json.Decode as JD
-import Quiz exposing (QuizItem, QuizQa, belgianBirdsQuiz, latinBirdsQuiz, pickQuizQa)
+import Quiz exposing (QuizItem, QuizQa, pickQuizQa)
+import BelgianBirds  exposing(belgianBirdsQuiz, latinBirdsQuiz)
 import Time
 
 
@@ -73,7 +74,7 @@ getGameOverImg ratio =
 
 getGameOverSentence : GameOverRatio -> String
 getGameOverSentence ratio =
-    (case ratio of
+    case ratio of
         Sad ->
             "Oh non ! Tu as rendu les oiseaux tristes avec ce mauvais score..."
 
@@ -84,7 +85,7 @@ getGameOverSentence ratio =
             "Merci, tu as rendu les oiseaux heureux avec ce joli score..."
 
         Proud ->
-            "Parfait ! Tu fais la fierté du chef de oiseaux avec ce magnifique score...")
+            "Parfait ! Tu fais la fierté du chef de oiseaux avec ce magnifique score..."
 
 
 main =
@@ -430,7 +431,7 @@ view model =
                                 in
                                 if model.gameState == Over then
                                     [ h2 [] [ text ("Final score : " ++ score) ]
-                                    , p [] [text (getGameOverSentence model.gameOverRatio)]
+                                    , p [] [ text (getGameOverSentence model.gameOverRatio) ]
                                     , button [ class "btn btn-primary d-block m-auto", onClick (ChangeMode "Exam") ] [ text "Recommencer" ]
                                     ]
 
