@@ -3,6 +3,7 @@ module BelgianBirds exposing (belgianBirdsQuiz, latinBirdsQuiz)
 import Array
 import Quiz exposing (ImgQuizItem, QuizQa)
 
+
 belgianBirdsQuiz : Array.Array QuizQa
 belgianBirdsQuiz =
     Array.fromList

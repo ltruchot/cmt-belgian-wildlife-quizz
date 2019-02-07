@@ -2,6 +2,8 @@ module Main exposing (Model, Msg(..), init, main, update, view)
 
 import Array exposing (Array)
 import ArrayHelper
+import BelgianBirds exposing (belgianBirdsQuiz, latinBirdsQuiz)
+import BelgianPlants exposing (belgianPlantsQuiz, latinPlantsQuiz)
 import Browser
 import FHelper
 import Html exposing (Html, a, button, div, h1, h2, img, label, option, p, select, text)
@@ -9,7 +11,6 @@ import Html.Attributes exposing (class, classList, disabled, for, href, id, src,
 import Html.Events exposing (on, onClick, onInput)
 import Json.Decode as JD
 import Quiz exposing (QuizItem, QuizQa, pickQuizQa)
-import BelgianBirds  exposing(belgianBirdsQuiz, latinBirdsQuiz)
 import Time
 
 
@@ -321,6 +322,24 @@ update msg model =
                     , cmdNextQuestion latinBirdsQuiz
                     )
 
+                "BelgianPlants" ->
+                    ( { model
+                        | score = ( 0, 1 )
+                        , quizQas = belgianPlantsQuiz
+                        , remainingQuizQas = belgianPlantsQuiz
+                      }
+                    , cmdNextQuestion belgianPlantsQuiz
+                    )
+
+                "LatinPlants" ->
+                    ( { model
+                        | score = ( 0, 1 )
+                        , quizQas = latinPlantsQuiz
+                        , remainingQuizQas = latinPlantsQuiz
+                      }
+                    , cmdNextQuestion latinPlantsQuiz
+                    )
+
                 _ ->
                     ( model, Cmd.none )
 
@@ -337,6 +356,8 @@ view model =
                 [ select [ class "form-control form-control-sm", onInput ChangeQuiz ]
                     [ option [ value "BelgianBirds" ] [ text "Oiseaux de Belgique" ]
                     , option [ value "LatinBirds" ] [ text "Oiseaux (latin)" ]
+                    , option [ value "BelgianPlants" ] [ text "Plantes de Belgique" ]
+                    , option [ value "LatinPlants" ] [ text "Plantes (latin)" ]
                     ]
                 ]
             , div [ class "col-4 p-0" ]

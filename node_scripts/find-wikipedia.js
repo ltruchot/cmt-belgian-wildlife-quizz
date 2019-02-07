@@ -10,14 +10,24 @@ var client = new bot({
   path: "/w", // path to api.php script
   debug: false
 });
-
-const log = a => !console.log(a) && a;
-const getArticleData = title =>
-  new Promise((resolve, reject) =>
-    client.getArticle(title, true, (err, data) =>
-      err ? reject(err) : resolve(data)
-    )
-  );
+let open = 0;
+let close = 0;
+const getArticleData = (titles, main) =>
+  new Promise((resolve, reject) => {
+    main = main || titles[0];
+    console.log("open", ++open);
+    if (titles.length === 0) {
+      console.error(main + " does not exist in wikipedia");
+      reject(main);
+    }
+    return client.getArticle(titles[0], true, (err, data) =>
+      err
+        ? reject(err)
+        : data && data.length
+        ? !console.log("close", ++close) && resolve(data)
+        : resolve(getArticleData(titles.slice(1), main))
+    );
+  });
 
 const getImageInfo = imgName =>
   Promise.all([
@@ -51,7 +61,7 @@ const getImageInfo = imgName =>
           try {
             shortLicense = metadata.LicenseShortName.value;
           } catch (e) {
-            console.error("No license value in", metadata);
+            // console.error("No license value in", metadata);
           }
           try {
             const val = metadata.Artist.value;
@@ -59,23 +69,30 @@ const getImageInfo = imgName =>
               ? metadata.Artist.value.match(/<a [^>]+>([^<]+)<\/a>/)[1]
               : val;
           } catch (e) {
-            console.error("No artist value in", metadata);
+            // console.error("No artist value in", metadata);
           }
           resolve({ shortLicense, artist });
         }
       )
     )
   ]).then(([{ descriptionshorturl, url }, { shortLicense, artist }]) => ({
-    license: `${artist ? " Par " + artist + " — " : ""}${
+    license: `${artist ? "Par " + artist + " — " : ""}${
       shortLicense ? shortLicense + ", " : ""
     }${descriptionshorturl}`,
     url
   }));
 
 const getTaxobox = data => {
-  const taxobox = data.split("\n").filter(str => /^\{\{Taxobox/.test(str));
+  let taxobox;
+  try {
+    taxobox = data.split("\n").filter(str => /^\{\{Taxobox/.test(str));
+  } catch (e) {
+    throw new Error("No taxobox in " + JSON.stringify(data));
+    return;
+  }
+
   if (taxobox.length === 0) {
-    throw new Error("No taxobox in" + JSON.stringify(data));
+    throw new Error("No taxobox in " + JSON.stringify(data));
     return;
   }
   return taxobox;
@@ -93,31 +110,53 @@ const extractImgName = taxobox => {
   return "File:" + imgName;
 };
 
-const downloadImg = storageName => imgInfos =>
+const downloadImg = dest => imgInfos =>
   download
     .image({
       url: imgInfos.url,
-      dest: `public/assets/img/belgian_birds/${storageName}.jpg`
+      dest
     })
-    .then(() => ({ id: storageName, license: imgInfos.license }));
+    .then(() => ({ license: imgInfos.license }));
 
-const prefix = "bb";
-let lastId = 118;
-const subjects = [];
-const composeEntry = subject => current => ({ ...current, ...subject });
-Promise.all(
-  subjects.map(subject =>
-    getArticleData(subject.vernacularName)
-      .then(getTaxobox)
-      .then(extractImgName)
-      .then(getImageInfo)
-      .then(downloadImg(prefix + ++lastId))
-      .then(composeEntry(subject))
-  )
-)
-  .then(entries =>
-    fs.writeFile(`data/${prefix}.json`, JSON.stringify(entries), "utf8", err =>
-      err ? console.error(err) : console.log("done.")
+const combineEntries = a => b => ({ ...a, ...b });
+
+const prefix = "bp";
+const path = "public/assets/img/belgian_plants/";
+let lastId = 100;
+
+fs.readFile("node_scripts/listings_cnb/bp.json", (err, subjects) => {
+  subjects = JSON.parse(subjects);
+  console.log("total", subjects.length);
+  Promise.all(
+    subjects.map(subject =>
+      getArticleData(
+        [subject.binominalName, subject.vernacularName].concat(
+          subject.otherNames ? subject.otherNames : []
+        )
+      )
+        .then(getTaxobox)
+        .then(extractImgName)
+        .then(getImageInfo)
+        .then(downloadImg(path + prefix + ++lastId + ".jpg"))
+        .then(combineEntries({ ...subject, id: prefix + lastId }))
     )
   )
-  .catch(console.err);
+    .then(entries => {
+      let json;
+      try {
+        json = JSON.stringify(entries);
+      } catch (e) {
+        console.error("JSON invalide", entries);
+        throw e;
+      }
+      fs.writeFile(`data/${prefix}.json`, json, "utf8", err =>
+        err ? console.error("write err:", err) : console.log("done.")
+      );
+    })
+    .catch(err => console.error("all err:", err));
+});
+
+/* { "vernacularName": "ronce", "binominalName": "Rubus spp." },
+{ "vernacularName": "salicorne", "binominalName": "Salicornia spp." },
+{ "vernacularName": "pissenlit", "binominalName": "Taraxacum spp." },
+{ "vernacularName": "violette", "binominalName": "Viola spp." }, */

@@ -3,6 +3,7 @@ module PeriodicTable exposing (periodicTableQuiz)
 import Array
 import Quiz exposing (QuizQa)
 
+
 periodicTableQuiz : Array.Array QuizQa
 periodicTableQuiz =
     Array.fromList
