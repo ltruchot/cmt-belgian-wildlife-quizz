@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
+    "start": "elm-app start",
     "build": "elm-app build",
     "deploy": "pm2 start server.js"
   },
@@ -19,11 +19,14 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "compression": "^1.7.3",
-    "create-elm-app": "^3.0.3",
+    "compression": "1.7.3",
+    "create-elm-app": "3.0.3",
     "elm": "^0.19.0-bugfix6",
     "express": "4.16.4",
-    "pm2": "^3.2.9",
-    "sharp": "^0.21.3"
+    "image-downloader": "^3.4.2",
+    "nodemw": "^0.12.2",
+    "pm2": "3.2.9",
+    "sharp": "0.21.3",
+    "wikijs": "4.11.1"
   }
 }

@@ -371,14 +371,17 @@ belgianBirds =
       , vernacularName = "Gobemouche noir"
       , binominalName = "Ficedula hypoleuca"
       , license = "Par Ron Knight — CC BY 2.0, https://commons.wikimedia.org/w/index.php?curid=26256664"
-      }          
+      }     
+    , { id = "bb117"
+      , vernacularName = "Goéland argenté"
+      , binominalName = "Larus argentatus"
+      , license = "Par Aiwok — CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=11357929"
+      }       
     ]
 
 {-
 
-   	
-   	
-   Goéland argenté	Larus argentatus
+
    Goéland brun	Larus fuscus
    Goéland cendré	Larus canus
    Goéland marin	Larus marinus
