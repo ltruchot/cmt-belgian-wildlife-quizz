@@ -120,7 +120,7 @@ const downloadImg = dest => imgInfos =>
 
 const combineEntries = a => b => ({ ...a, ...b });
 
-const prefix = "bp";
+const prefix = "bp_";
 const path = "public/assets/img/belgian_plants/";
 let lastId = 100;
 
@@ -138,7 +138,7 @@ fs.readFile("node_scripts/listings_cnb/bp.json", (err, subjects) => {
         .then(extractImgName)
         .then(getImageInfo)
         .then(downloadImg(path + prefix + ++lastId + ".jpg"))
-        .then(combineEntries({ ...subject, id: prefix + lastId }))
+        .then(combineEntries({ ...subject, id: lastId }))
     )
   )
     .then(entries => {

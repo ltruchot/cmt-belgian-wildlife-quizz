@@ -12,6 +12,7 @@ import Html.Events exposing (on, onClick, onInput)
 import Json.Decode as JD
 import Quiz exposing (QuizItem, QuizQa, pickQuizQa)
 import Time
+import StringHelper
 
 
 type Mode
@@ -33,6 +34,13 @@ type GameOverRatio
     | Neutral
     | Happy
     | Proud
+
+
+
+{- question = "/assets/img/belgian_plants/resized/" ++ bird.id ++ ".jpg"
+   interpolate
+   question = "/assets/img/belgian_plants/resized/" ++ bird.id ++ ".jpg"
+-}
 
 
 calculateGameOverRatio : ( Int, Int ) -> GameOverRatio
@@ -384,7 +392,7 @@ view model =
 
                                  else
                                     model.currentQuizItem.qa.question
-                                )
+                              )
                             , onLoadSrc DisplayLoadedImg
                             ]
                             []

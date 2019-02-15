@@ -4,8 +4,8 @@ const path = require("path");
 // npm
 const sharp = require("sharp");
 
-const imgSrc = "./public/assets/img/belgian_plants";
-const imgDest = "./public/assets/img/belgian_plants/resized";
+const imgSrc = "./public/assets/img/belgian_birds";
+const imgDest = "./public/assets/img/belgian_birds/resized";
 const imgHeight = 230;
 
 const rmDirP = path =>

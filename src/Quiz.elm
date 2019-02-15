@@ -1,7 +1,18 @@
-module Quiz exposing (ImgQuizItem, QuizItem, QuizQa, pickQuizQa)
+module Quiz exposing (ImgQuizItem, QuizItem, QuizQa, pickQuizQa, WildlifeQuizType(..), getImgWildlifeQuiz)
 
-import Array
+import Array exposing (Array)
 import ArrayHelper
+import StringHelper
+
+
+type WildlifeQuizType = Vernacular
+    | Binominal
+
+type alias QuizBucketOptions =
+    { prefix : String
+    , folder : String
+    , wlType : WildlifeQuizType
+    }
 
 
 type alias QuizQa =
@@ -25,7 +36,31 @@ type alias ImgQuizItem =
     }
 
 
-pickQuizQa : Int -> Array.Array QuizQa -> Array.Array QuizQa -> ( QuizItem, Array.Array QuizQa )
+getImgWildlifeQuiz : List ImgQuizItem -> QuizBucketOptions -> Array QuizQa
+getImgWildlifeQuiz quizData options =
+        Array.fromList
+        (List.map
+            (\item ->
+                { question = StringHelper.interpolate 
+                    "/assets/img/${folder}/resized/${prefix}_${id}.jpg" 
+                    [("folder", options.folder)
+                    , ("prefix", options.prefix)
+                    , ("id", item.id)
+                    ]
+                , answer = case options.wlType of
+                    Vernacular ->
+                        item.vernacularName
+                
+                    Binominal ->
+                        item.binominalName
+                , title = item.license
+                }
+            )
+            quizData
+        )
+                                    
+
+pickQuizQa : Int -> Array QuizQa -> Array QuizQa -> ( QuizItem, Array QuizQa )
 pickQuizQa randomIdx qas allQas =
     let
         ( qa, remainingQas ) =
