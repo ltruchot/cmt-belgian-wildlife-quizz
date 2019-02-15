@@ -1,4 +1,4 @@
-module BelgianPlants exposing (belgianPlantsQuiz, latinPlantsQuiz, plantsOptions)
+module BelgianPlants exposing (belgianPlantsOptions, belgianPlantsQuiz, latinPlantsQuiz)
 
 import Array exposing (Array)
 import Quiz exposing (GameOverMsgs, ImgQuizItem, QuizOptions, QuizQa, WildlifeQuizType(..), getImgWildlifeQuiz)
@@ -17,8 +17,8 @@ plantsGameOverMsgs =
     }
 
 
-plantsOptions : QuizOptions
-plantsOptions =
+belgianPlantsOptions : QuizOptions
+belgianPlantsOptions =
     { prefix = "bp"
     , folder = "belgian_plants"
     , gameOverMsgs = plantsGameOverMsgs
@@ -27,12 +27,12 @@ plantsOptions =
 
 belgianPlantsQuiz : Array QuizQa
 belgianPlantsQuiz =
-    getImgWildlifeQuiz belgianPlantsData Vernacular plantsOptions
+    getImgWildlifeQuiz belgianPlantsData Vernacular belgianPlantsOptions
 
 
 latinPlantsQuiz : Array QuizQa
 latinPlantsQuiz =
-    getImgWildlifeQuiz belgianPlantsData Binominal plantsOptions
+    getImgWildlifeQuiz belgianPlantsData Binominal belgianPlantsOptions
 
 
 belgianPlantsData : List ImgQuizItem

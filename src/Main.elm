@@ -2,15 +2,15 @@ module Main exposing (Model, Msg(..), init, main, update, view)
 
 import Array exposing (Array)
 import ArrayHelper
-import BelgianBirds exposing (belgianBirdsQuiz, latinBirdsQuiz)
-import BelgianPlants exposing (belgianPlantsQuiz, latinPlantsQuiz)
+import BelgianBirds exposing (belgianBirdsOptions, belgianBirdsQuiz, latinBirdsQuiz)
+import BelgianPlants exposing (belgianPlantsOptions, belgianPlantsQuiz, latinPlantsQuiz)
 import Browser
 import FHelper
 import Html exposing (Html, a, button, div, h1, h2, img, label, option, p, select, text)
 import Html.Attributes exposing (class, classList, disabled, for, href, id, src, title, value)
 import Html.Events exposing (on, onClick, onInput)
 import Json.Decode as JD
-import Quiz exposing (QuizItem, QuizQa, pickQuizQa)
+import Quiz exposing (GameOverMsgs, QuizItem, QuizOptions, QuizQa, pickQuizQa)
 import StringHelper
 import Time
 
@@ -36,13 +36,6 @@ type GameOverRatio
     | Proud
 
 
-
-{- question = "/assets/img/belgian_plants/resized/" ++ bird.id ++ ".jpg"
-   interpolate
-   question = "/assets/img/belgian_plants/resized/" ++ bird.id ++ ".jpg"
--}
-
-
 calculateGameOverRatio : ( Int, Int ) -> GameOverRatio
 calculateGameOverRatio score =
     let
@@ -62,9 +55,13 @@ calculateGameOverRatio score =
         Sad
 
 
-getGameOverImg : GameOverRatio -> String
-getGameOverImg ratio =
-    "/assets/img/belgian_birds/resized/"
+getGameOverImg : GameOverRatio -> QuizOptions -> String
+getGameOverImg ratio options =
+    "/assets/img/"
+        ++ options.folder
+        ++ "/resized/"
+        ++ options.prefix
+        ++ "_"
         ++ (case ratio of
                 Sad ->
                     "sad"
@@ -81,20 +78,20 @@ getGameOverImg ratio =
         ++ ".jpg"
 
 
-getGameOverSentence : GameOverRatio -> String
-getGameOverSentence ratio =
+getGameOverSentence : GameOverRatio -> GameOverMsgs -> String
+getGameOverSentence ratio msgs =
     case ratio of
         Sad ->
-            "Oh non ! Tu as rendu les oiseaux tristes avec ce mauvais score..."
+            msgs.sad
 
         Neutral ->
-            "Les oiseaux restent perplexes face à ton score..."
+            msgs.neutral
 
         Happy ->
-            "Merci, tu as rendu les oiseaux heureux avec ce joli score..."
+            msgs.happy
 
         Proud ->
-            "Parfait ! Tu fais la fierté du chef de oiseaux avec ce magnifique score..."
+            msgs.proud
 
 
 main =
@@ -138,6 +135,7 @@ type alias Model =
     , gameState : GameState
     , examLimit : Int
     , gameOverRatio : GameOverRatio
+    , options : QuizOptions
     }
 
 
@@ -155,8 +153,9 @@ init _ =
       , imgLoaded = False
       , hasWonLast = False
       , gameState = Start
-      , examLimit = 20
+      , examLimit = 1
       , gameOverRatio = Neutral
+      , options = belgianBirdsOptions
       }
     , cmdNextQuestion belgianBirdsQuiz
     )
@@ -320,6 +319,7 @@ update msg model =
                     ( { newModel
                         | quizQas = belgianBirdsQuiz
                         , remainingQuizQas = belgianBirdsQuiz
+                        , options = belgianBirdsOptions
                       }
                     , cmdNextQuestion belgianBirdsQuiz
                     )
@@ -328,6 +328,7 @@ update msg model =
                     ( { newModel
                         | quizQas = latinBirdsQuiz
                         , remainingQuizQas = latinBirdsQuiz
+                        , options = belgianBirdsOptions
                       }
                     , cmdNextQuestion latinBirdsQuiz
                     )
@@ -336,6 +337,7 @@ update msg model =
                     ( { newModel
                         | quizQas = belgianPlantsQuiz
                         , remainingQuizQas = belgianPlantsQuiz
+                        , options = belgianPlantsOptions
                       }
                     , cmdNextQuestion belgianPlantsQuiz
                     )
@@ -344,6 +346,7 @@ update msg model =
                     ( { model
                         | quizQas = latinPlantsQuiz
                         , remainingQuizQas = latinPlantsQuiz
+                        , options = belgianPlantsOptions
                       }
                     , cmdNextQuestion latinPlantsQuiz
                     )
@@ -388,7 +391,7 @@ view model =
                             , title model.currentQuizItem.qa.title
                             , src
                                 (if model.gameState == Over then
-                                    getGameOverImg model.gameOverRatio
+                                    getGameOverImg model.gameOverRatio model.options
 
                                  else
                                     model.currentQuizItem.qa.question
@@ -460,7 +463,7 @@ view model =
                                 in
                                 if model.gameState == Over then
                                     [ h2 [] [ text ("Final score : " ++ score) ]
-                                    , p [] [ text (getGameOverSentence model.gameOverRatio) ]
+                                    , p [] [ text (getGameOverSentence model.gameOverRatio model.options.gameOverMsgs) ]
                                     , button [ class "btn btn-primary d-block m-auto", onClick (ChangeMode "Exam") ] [ text "Recommencer" ]
                                     ]
 

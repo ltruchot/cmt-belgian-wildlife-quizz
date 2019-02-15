@@ -1,4 +1,4 @@
-module BelgianBirds exposing (belgianBirdsQuiz, latinBirdsQuiz)
+module BelgianBirds exposing (belgianBirdsOptions, belgianBirdsQuiz, latinBirdsQuiz)
 
 import Array exposing (Array)
 import Quiz exposing (GameOverMsgs, ImgQuizItem, QuizOptions, QuizQa, WildlifeQuizType(..), getImgWildlifeQuiz)
@@ -17,8 +17,8 @@ birdsGameOverMsgs =
     }
 
 
-birdsOptions : QuizOptions
-birdsOptions =
+belgianBirdsOptions : QuizOptions
+belgianBirdsOptions =
     { prefix = "bb"
     , folder = "belgian_birds"
     , gameOverMsgs = birdsGameOverMsgs
@@ -27,12 +27,12 @@ birdsOptions =
 
 belgianBirdsQuiz : Array QuizQa
 belgianBirdsQuiz =
-    getImgWildlifeQuiz belgianBirdsData Vernacular birdsOptions
+    getImgWildlifeQuiz belgianBirdsData Vernacular belgianBirdsOptions
 
 
 latinBirdsQuiz : Array QuizQa
 latinBirdsQuiz =
-    getImgWildlifeQuiz belgianBirdsData Binominal birdsOptions
+    getImgWildlifeQuiz belgianBirdsData Binominal belgianBirdsOptions
 
 
 belgianBirdsData : List ImgQuizItem
