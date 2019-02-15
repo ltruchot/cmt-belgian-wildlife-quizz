@@ -153,7 +153,7 @@ init _ =
       , imgLoaded = False
       , hasWonLast = False
       , gameState = Start
-      , examLimit = 1
+      , examLimit = 20
       , gameOverRatio = Neutral
       , options = belgianBirdsOptions
       }
