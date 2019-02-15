@@ -155,7 +155,7 @@ init _ =
       , imgLoaded = False
       , hasWonLast = False
       , gameState = Start
-      , examLimit = 3
+      , examLimit = 20
       , gameOverRatio = Neutral
       }
     , cmdNextQuestion belgianBirdsQuiz
