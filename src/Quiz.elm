@@ -1,17 +1,19 @@
-module Quiz exposing (ImgQuizItem, QuizItem, QuizQa, pickQuizQa, WildlifeQuizType(..), getImgWildlifeQuiz)
+module Quiz exposing (GameOverMsgs, ImgQuizItem, QuizItem, QuizOptions, QuizQa, WildlifeQuizType(..), getImgWildlifeQuiz, pickQuizQa)
 
 import Array exposing (Array)
 import ArrayHelper
 import StringHelper
 
 
-type WildlifeQuizType = Vernacular
+type WildlifeQuizType
+    = Vernacular
     | Binominal
 
-type alias QuizBucketOptions =
+
+type alias QuizOptions =
     { prefix : String
     , folder : String
-    , wlType : WildlifeQuizType
+    , gameOverMsgs : GameOverMsgs
     }
 
 
@@ -36,29 +38,39 @@ type alias ImgQuizItem =
     }
 
 
-getImgWildlifeQuiz : List ImgQuizItem -> QuizBucketOptions -> Array QuizQa
-getImgWildlifeQuiz quizData options =
-        Array.fromList
+type alias GameOverMsgs =
+    { sad : String
+    , neutral : String
+    , happy : String
+    , proud : String
+    }
+
+
+getImgWildlifeQuiz : List ImgQuizItem -> WildlifeQuizType -> QuizOptions -> Array QuizQa
+getImgWildlifeQuiz quizData wlType options =
+    Array.fromList
         (List.map
             (\item ->
-                { question = StringHelper.interpolate 
-                    "/assets/img/${folder}/resized/${prefix}_${id}.jpg" 
-                    [("folder", options.folder)
-                    , ("prefix", options.prefix)
-                    , ("id", item.id)
-                    ]
-                , answer = case options.wlType of
-                    Vernacular ->
-                        item.vernacularName
-                
-                    Binominal ->
-                        item.binominalName
+                { question =
+                    StringHelper.interpolate
+                        "/assets/img/${folder}/resized/${prefix}_${id}.jpg"
+                        [ ( "folder", options.folder )
+                        , ( "prefix", options.prefix )
+                        , ( "id", item.id )
+                        ]
+                , answer =
+                    case wlType of
+                        Vernacular ->
+                            item.vernacularName
+
+                        Binominal ->
+                            item.binominalName
                 , title = item.license
                 }
             )
             quizData
         )
-                                    
+
 
 pickQuizQa : Int -> Array QuizQa -> Array QuizQa -> ( QuizItem, Array QuizQa )
 pickQuizQa randomIdx qas allQas =

@@ -11,8 +11,8 @@ import Html.Attributes exposing (class, classList, disabled, for, href, id, src,
 import Html.Events exposing (on, onClick, onInput)
 import Json.Decode as JD
 import Quiz exposing (QuizItem, QuizQa, pickQuizQa)
-import Time
 import StringHelper
+import Time
 
 
 type Mode
@@ -155,7 +155,7 @@ init _ =
       , imgLoaded = False
       , hasWonLast = False
       , gameState = Start
-      , examLimit = 20
+      , examLimit = 3
       , gameOverRatio = Neutral
       }
     , cmdNextQuestion belgianBirdsQuiz
@@ -311,29 +311,30 @@ update msg model =
                     ( model, Cmd.none )
 
         ChangeQuiz quiz ->
+            let
+                newModel =
+                    { model | score = ( 0, 1 ), gameState = Start }
+            in
             case quiz of
                 "BelgianBirds" ->
-                    ( { model
-                        | score = ( 0, 1 )
-                        , quizQas = belgianBirdsQuiz
+                    ( { newModel
+                        | quizQas = belgianBirdsQuiz
                         , remainingQuizQas = belgianBirdsQuiz
                       }
                     , cmdNextQuestion belgianBirdsQuiz
                     )
 
                 "LatinBirds" ->
-                    ( { model
-                        | score = ( 0, 1 )
-                        , quizQas = latinBirdsQuiz
+                    ( { newModel
+                        | quizQas = latinBirdsQuiz
                         , remainingQuizQas = latinBirdsQuiz
                       }
                     , cmdNextQuestion latinBirdsQuiz
                     )
 
                 "BelgianPlants" ->
-                    ( { model
-                        | score = ( 0, 1 )
-                        , quizQas = belgianPlantsQuiz
+                    ( { newModel
+                        | quizQas = belgianPlantsQuiz
                         , remainingQuizQas = belgianPlantsQuiz
                       }
                     , cmdNextQuestion belgianPlantsQuiz
@@ -341,8 +342,7 @@ update msg model =
 
                 "LatinPlants" ->
                     ( { model
-                        | score = ( 0, 1 )
-                        , quizQas = latinPlantsQuiz
+                        | quizQas = latinPlantsQuiz
                         , remainingQuizQas = latinPlantsQuiz
                       }
                     , cmdNextQuestion latinPlantsQuiz
@@ -392,7 +392,7 @@ view model =
 
                                  else
                                     model.currentQuizItem.qa.question
-                              )
+                                )
                             , onLoadSrc DisplayLoadedImg
                             ]
                             []

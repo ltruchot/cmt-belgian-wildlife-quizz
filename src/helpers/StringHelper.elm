@@ -10,9 +10,10 @@ interpolate originalStr replacementList =
         originalStr
         replacementList
 
-replaceTemplate : (String, String) -> String -> String
-replaceTemplate toReplace str  =
-  String.replace
-    ("${" ++ (Tuple.first toReplace) ++ "}")
-    (Tuple.second toReplace)
-    str
+
+replaceTemplate : ( String, String ) -> String -> String
+replaceTemplate toReplace str =
+    String.replace
+        ("${" ++ Tuple.first toReplace ++ "}")
+        (Tuple.second toReplace)
+        str

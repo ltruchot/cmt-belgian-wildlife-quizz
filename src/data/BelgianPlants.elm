@@ -1,25 +1,39 @@
-module BelgianPlants exposing (belgianPlantsQuiz, latinPlantsQuiz)
+module BelgianPlants exposing (belgianPlantsQuiz, latinPlantsQuiz, plantsOptions)
 
 import Array exposing (Array)
-import Quiz exposing (ImgQuizItem, QuizQa, WildlifeQuizType(..), getImgWildlifeQuiz)
+import Quiz exposing (GameOverMsgs, ImgQuizItem, QuizOptions, QuizQa, WildlifeQuizType(..), getImgWildlifeQuiz)
 
+
+plantsGameOverMsgs : GameOverMsgs
+plantsGameOverMsgs =
+    { sad =
+        "Oh non ! Tu as fané toutes les fleurs avec ce mauvais score..."
+    , neutral =
+        "Pas mal. Mais ta maîtrise des plantes est comme ces bourgeons: en devenir..."
+    , happy =
+        "Bravo ! Tu es aussi belle/beau que ces fleurs, mais encore un peu sauvage..."
+    , proud =
+        "Parfait ! La complexité des fleurs n'a plus aucun secret pour toi..."
+    }
+
+
+plantsOptions : QuizOptions
+plantsOptions =
+    { prefix = "bp"
+    , folder = "belgian_plants"
+    , gameOverMsgs = plantsGameOverMsgs
+    }
 
 
 belgianPlantsQuiz : Array QuizQa
 belgianPlantsQuiz =
-  getImgWildlifeQuiz belgianPlantsData { prefix = "bp"
-    , folder = "belgian_plants"
-    , wlType = Vernacular
-    }
-
+    getImgWildlifeQuiz belgianPlantsData Vernacular plantsOptions
 
 
 latinPlantsQuiz : Array QuizQa
 latinPlantsQuiz =
-  getImgWildlifeQuiz belgianPlantsData { prefix = "bp"
-    , folder = "belgian_plants"
-    , wlType = Binominal
-    }
+    getImgWildlifeQuiz belgianPlantsData Binominal plantsOptions
+
 
 belgianPlantsData : List ImgQuizItem
 belgianPlantsData =

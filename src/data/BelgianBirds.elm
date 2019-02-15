@@ -1,25 +1,38 @@
 module BelgianBirds exposing (belgianBirdsQuiz, latinBirdsQuiz)
 
 import Array exposing (Array)
-import Quiz exposing (ImgQuizItem, QuizQa, WildlifeQuizType(..), getImgWildlifeQuiz)
+import Quiz exposing (GameOverMsgs, ImgQuizItem, QuizOptions, QuizQa, WildlifeQuizType(..), getImgWildlifeQuiz)
 
+
+birdsGameOverMsgs : GameOverMsgs
+birdsGameOverMsgs =
+    { sad =
+        "Oh non ! Tu as rendu les oiseaux tristes avec ce mauvais score..."
+    , neutral =
+        "Les oiseaux restent perplexes face à ton score..."
+    , happy =
+        "Merci, tu as rendu les oiseaux heureux avec ce joli score..."
+    , proud =
+        "Parfait ! Tu fais la fierté du chef des oiseaux avec ce magnifique score..."
+    }
+
+
+birdsOptions : QuizOptions
+birdsOptions =
+    { prefix = "bb"
+    , folder = "belgian_birds"
+    , gameOverMsgs = birdsGameOverMsgs
+    }
 
 
 belgianBirdsQuiz : Array QuizQa
 belgianBirdsQuiz =
-  getImgWildlifeQuiz belgianBirdsData { prefix = "bb"
-    , folder = "belgian_birds"
-    , wlType = Vernacular
-    }
+    getImgWildlifeQuiz belgianBirdsData Vernacular birdsOptions
 
 
 latinBirdsQuiz : Array QuizQa
 latinBirdsQuiz =
-  getImgWildlifeQuiz belgianBirdsData { prefix = "bb"
-    , folder = "belgian_birds"
-    , wlType = Binominal
-    }
-
+    getImgWildlifeQuiz belgianBirdsData Binominal birdsOptions
 
 
 belgianBirdsData : List ImgQuizItem
