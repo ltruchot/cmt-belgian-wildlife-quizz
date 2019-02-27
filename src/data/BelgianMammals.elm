@@ -197,4 +197,9 @@ belgianMammalsData =
       , id = "250"
       , license = "Par Norbert Nagel — CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=23360757"
       }
+    , { vernacularName = "Lièvre d'Europe"
+      , binominalName = "Lepus europaeus"
+      , id = "251"
+      , license = "Par Jean-Jacques Boujot — CC BY-SA 2.0, https://commons.wikimedia.org/w/index.php?curid=37547558"
+      }
     ]

@@ -154,7 +154,7 @@ init _ =
       , imgLoaded = False
       , hasWonLast = False
       , gameState = Start
-      , examLimit = 20
+      , examLimit = 5
       , gameOverRatio = Neutral
       , options = belgianBirdsOptions
       }
@@ -165,6 +165,17 @@ init _ =
 cmdNextQuestion : Array QuizQa -> Cmd Msg
 cmdNextQuestion qas =
     ArrayHelper.provideRandomElt DisplayNextQuestion qas
+
+
+setQuiz : Model -> Array QuizQa -> QuizOptions -> ( Model, Cmd Msg )
+setQuiz model qas options =
+    ( { model
+        | quizQas = qas
+        , remainingQuizQas = qas
+        , options = options
+      }
+    , cmdNextQuestion qas
+    )
 
 
 
@@ -204,30 +215,33 @@ update msg model =
                 | chosenAnswer = answer
                 , hasWonLast = hasWon
                 , score = score
-                , gameState =
-                    if
-                        Tuple.second model.score
-                            == model.examLimit
-                            && model.mode
-                            == Exam
-                    then
-                        Over
-
-                    else
-                        WaitNext
+                , gameState = WaitNext
                 , gameOverRatio = calculateGameOverRatio score
               }
             , Cmd.none
             )
 
         PickNextQuestion ->
-            ( { model
-                | gameState = AskQuestion
-                , chosenAnswer = ""
-                , score = ( Tuple.first model.score, Tuple.second model.score + 1 )
-              }
-            , cmdNextQuestion model.remainingQuizQas
-            )
+            if
+                Tuple.second model.score
+                    == model.examLimit
+                    && model.mode
+                    == Exam
+            then
+                ( { model
+                    | gameState = Over
+                  }
+                , Cmd.none
+                )
+
+            else
+                ( { model
+                    | gameState = AskQuestion
+                    , chosenAnswer = ""
+                    , score = ( Tuple.first model.score, Tuple.second model.score + 1 )
+                  }
+                , cmdNextQuestion model.remainingQuizQas
+                )
 
         DisplayNextQuestion randomIdx ->
             let
@@ -314,61 +328,28 @@ update msg model =
             let
                 newModel =
                     { model | score = ( 0, 1 ), gameState = Start }
+
+                setNewQuiz =
+                    setQuiz newModel
             in
             case quiz of
                 "BelgianBirds" ->
-                    ( { newModel
-                        | quizQas = belgianBirdsQuiz
-                        , remainingQuizQas = belgianBirdsQuiz
-                        , options = belgianBirdsOptions
-                      }
-                    , cmdNextQuestion belgianBirdsQuiz
-                    )
+                    setNewQuiz belgianBirdsQuiz belgianBirdsOptions
 
                 "LatinBirds" ->
-                    ( { newModel
-                        | quizQas = latinBirdsQuiz
-                        , remainingQuizQas = latinBirdsQuiz
-                        , options = belgianBirdsOptions
-                      }
-                    , cmdNextQuestion latinBirdsQuiz
-                    )
+                    setNewQuiz latinBirdsQuiz belgianBirdsOptions
 
                 "BelgianPlants" ->
-                    ( { newModel
-                        | quizQas = belgianPlantsQuiz
-                        , remainingQuizQas = belgianPlantsQuiz
-                        , options = belgianPlantsOptions
-                      }
-                    , cmdNextQuestion belgianPlantsQuiz
-                    )
+                    setNewQuiz belgianPlantsQuiz belgianPlantsOptions
 
                 "LatinPlants" ->
-                    ( { model
-                        | quizQas = latinPlantsQuiz
-                        , remainingQuizQas = latinPlantsQuiz
-                        , options = belgianPlantsOptions
-                      }
-                    , cmdNextQuestion latinPlantsQuiz
-                    )
+                    setNewQuiz latinPlantsQuiz belgianPlantsOptions
 
                 "BelgianMammals" ->
-                    ( { newModel
-                        | quizQas = belgianMammalsQuiz
-                        , remainingQuizQas = belgianMammalsQuiz
-                        , options = belgianMammalsOptions
-                      }
-                    , cmdNextQuestion belgianMammalsQuiz
-                    )
+                    setNewQuiz belgianMammalsQuiz belgianMammalsOptions
 
                 "LatinMammals" ->
-                    ( { model
-                        | quizQas = latinMammalsQuiz
-                        , remainingQuizQas = latinMammalsQuiz
-                        , options = belgianMammalsOptions
-                      }
-                    , cmdNextQuestion latinPlantsQuiz
-                    )
+                    setNewQuiz latinMammalsQuiz belgianMammalsOptions
 
                 _ ->
                     ( model, Cmd.none )
