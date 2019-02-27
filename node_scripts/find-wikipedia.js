@@ -2,8 +2,13 @@ const bot = require("nodemw");
 const download = require("image-downloader");
 const fs = require("fs");
 
-const server = "fr.wikipedia.org";
+const prefix = "bm";
+const folder = "belgian_mammals";
+const path = `./../public/assets/img/${folder}/`;
 
+let lastId = 218;
+
+const server = "fr.wikipedia.org";
 var client = new bot({
   protocol: "https",
   server,
@@ -17,27 +22,26 @@ const getArticleData = (titles, main) =>
     main = main || titles[0];
     console.log("open", ++open);
     if (titles.length === 0) {
-      console.error(main + " does not exist in wikipedia");
-      reject(main);
+      reject(main + " does not exist in wikipedia");
     }
     return client.getArticle(titles[0], true, (err, data) =>
       err
-        ? reject(err)
+        ? reject({ method: "getArticle", args: titles[0], err, data })
         : data && data.length
         ? !console.log("close", ++close) && resolve(data)
         : resolve(getArticleData(titles.slice(1), main))
     );
   });
 
-const getImageInfo = imgName =>
+const getImageInfo = name => imgName =>
   Promise.all([
     new Promise((resolve, reject) =>
       client.getImageInfo(imgName, (err, data) => {
-        const { url, descriptionshorturl } = data;
-        if (err) {
-          reject(err);
+        if (err || !data) {
+          reject({ method: "getImageInfo", name, args: imgName, err, data });
           return;
         }
+        const { url, descriptionshorturl } = data;
         resolve({
           url,
           descriptionshorturl
@@ -54,13 +58,20 @@ const getImageInfo = imgName =>
             reject(err);
             return;
           }
-          const metadata = JSON.parse(data).query.pages["-1"].imageinfo[0]
-            .extmetadata;
+          let metadata;
+          try {
+            const imgInfo = JSON.parse(data).query.pages["-1"].imageinfo;
+            metadata = imgInfo && imgInfo[0] && imgInfo[0].extmetadata;
+          } catch (e) {
+            reject({ ...e, data });
+          }
+
           let shortLicense = "";
           let artist = "";
           try {
             shortLicense = metadata.LicenseShortName.value;
           } catch (e) {
+            shortLicense = "Unknown license";
             // console.error("No license value in", metadata);
           }
           try {
@@ -70,6 +81,7 @@ const getImageInfo = imgName =>
               : val;
           } catch (e) {
             // console.error("No artist value in", metadata);
+            artist = "Unknown artist";
           }
           resolve({ shortLicense, artist });
         }
@@ -120,11 +132,7 @@ const downloadImg = dest => imgInfos =>
 
 const combineEntries = a => b => ({ ...a, ...b });
 
-const prefix = "bp_";
-const path = "public/assets/img/belgian_plants/";
-let lastId = 100;
-
-fs.readFile("node_scripts/listings_cnb/bp.json", (err, subjects) => {
+fs.readFile(`./listings_cnb/${prefix}.json`, (err, subjects) => {
   subjects = JSON.parse(subjects);
   console.log("total", subjects.length);
   Promise.all(
@@ -136,8 +144,8 @@ fs.readFile("node_scripts/listings_cnb/bp.json", (err, subjects) => {
       )
         .then(getTaxobox)
         .then(extractImgName)
-        .then(getImageInfo)
-        .then(downloadImg(path + prefix + ++lastId + ".jpg"))
+        .then(getImageInfo(subject.binominalName))
+        .then(downloadImg(path + prefix + "_" + ++lastId + ".jpg"))
         .then(combineEntries({ ...subject, id: lastId }))
     )
   )
@@ -149,14 +157,20 @@ fs.readFile("node_scripts/listings_cnb/bp.json", (err, subjects) => {
         console.error("JSON invalide", entries);
         throw e;
       }
-      fs.writeFile(`data/${prefix}.json`, json, "utf8", err =>
+      fs.writeFile(`./../data/${prefix}.json`, json, "utf8", err =>
         err ? console.error("write err:", err) : console.log("done.")
       );
     })
     .catch(err => console.error("all err:", err));
 });
 
+// plants
 /* { "vernacularName": "ronce", "binominalName": "Rubus spp." },
 { "vernacularName": "salicorne", "binominalName": "Salicornia spp." },
 { "vernacularName": "pissenlit", "binominalName": "Taraxacum spp." },
 { "vernacularName": "violette", "binominalName": "Viola spp." }, */
+// mammals
+// { "vernacularName": "Musaraigne",	"binominalName": "Sorex spp., Neomys spp., Crocidura spp." },
+// { "vernacularName": "Campagnol",	"binominalName": "Microtus spp., Pitymys subterraneus, Arvicola spp." },
+// { "vernacularName": "Mulot",	"binominalName": "Apodemus spp" },
+// { "vernacularName": "Lièvre d'Europe", "binominalName": "Lepus europaeus" },

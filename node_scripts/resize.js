@@ -4,9 +4,11 @@ const path = require("path");
 // npm
 const sharp = require("sharp");
 
-const imgSrc = "./public/assets/img/belgian_birds";
-const imgDest = "./public/assets/img/belgian_birds/resized";
+const folder = "belgian_birds";
+const imgSrc = `./../public/assets/img/${folder}`;
+const imgDest = `${imgSrc}/resized`;
 const imgHeight = 230;
+const imgWidth = 288;
 
 const rmDirP = path =>
   new Promise((resolve, reject) => {
@@ -19,7 +21,12 @@ const mkDirP = path =>
 
 const resize = (fileName, width, height) => {
   return sharp(path.join(imgSrc, fileName))
-    .resize(width, height)
+    .resize({
+      height,
+      width,
+      fit: sharp.fit.inside,
+      withoutEnlargement: true
+    })
     .toBuffer()
     .then(buffer =>
       fs.writeFile(path.join(imgDest, fileName), buffer, err => {
@@ -34,7 +41,7 @@ rmDirP(imgDest)
   .then(() =>
     fs.readdir(imgSrc, (err, files) => {
       files.forEach(fileName => {
-        resize(fileName, null, imgHeight);
+        resize(fileName, imgWidth, imgHeight);
       });
     })
   );

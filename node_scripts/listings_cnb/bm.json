@@ -1,0 +1,49 @@
+[
+  { "vernacularName": "Chat sylvestre", "binominalName": "Felis sylvestris" },
+  { "vernacularName": "Lynx boréal", "binominalName": "Lynx lynx" },
+  { "vernacularName": "Renard roux", "binominalName": "Vulpes vulpes" },
+  { "vernacularName": "Blaireau", "binominalName": "Meles meles" },
+  { "vernacularName": "Martre", "binominalName": "Martes martes" },
+  { "vernacularName": "Fouine", "binominalName": "Martes foina" },
+  { "vernacularName": "Hermine", "binominalName": "Mustela erminea" },
+  { "vernacularName": "Belette", "binominalName": "Mustela nivalis" },
+  { "vernacularName": "Putois", "binominalName": "Mustela putorius" },
+  { "vernacularName": "Loutre", "binominalName": "Lutra lutra" },
+  { "vernacularName": "Hérisson", "binominalName": "Erinaceus europaeus" },
+  { "vernacularName": "Taupe", "binominalName": "Talpa europaea" },
+  { "vernacularName": "Sanglier", "binominalName": "Sus scrofa" },
+  { "vernacularName": "Cerf européen", "binominalName": "Cervus elaphus" },
+  { "vernacularName": "Daim", "binominalName": "Dama dama" },
+  { "vernacularName": "Chevreuil", "binominalName": "Capreolus capreolus" },
+  { "vernacularName": "Mouflon", "binominalName": "Ovis ammon" },
+  { "vernacularName": "Écureuil roux", "binominalName": "Sciurus vulgaris" },
+
+  { "vernacularName": "Loir", "binominalName": "Glis glis" },
+  {
+    "vernacularName": "Muscardin",
+    "binominalName": "Muscardinus avellanarius"
+  },
+  { "vernacularName": "Lérot", "binominalName": "Eliomys quercinus" },
+  { "vernacularName": "Castor d'Europe", "binominalName": "Castor fiber" },
+  { "vernacularName": "Rat surmulot", "binominalName": "Rattus norvegicus" },
+  { "vernacularName": "Rat noir", "binominalName": "Rattus rattus" },
+  { "vernacularName": "Souris grise", "binominalName": "Mus domesticus" },
+  { "vernacularName": "Rat des moissons", "binominalName": "Micromys minutus" },
+
+  { "vernacularName": "Hamster", "binominalName": "Cricetus cricetus" },
+  {
+    "vernacularName": "Campagnol roussâtre",
+    "binominalName": "Clethrionomys glareolus"
+  },
+
+  { "vernacularName": "Rat musqué", "binominalName": "Ondatra zibethicus" },
+  {
+    "vernacularName": "Lapin de garenne",
+    "binominalName": "Oryctolagus cuniculus"
+  },
+  {
+    "vernacularName": "Tamia de Sibérie",
+    "binominalName": "Eutamias sibiricus"
+  },
+  { "vernacularName": "Ragondin", "binominalName": "Myocastor coypus" }
+]

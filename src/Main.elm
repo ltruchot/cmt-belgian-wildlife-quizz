@@ -3,6 +3,7 @@ module Main exposing (Model, Msg(..), init, main, update, view)
 import Array exposing (Array)
 import ArrayHelper
 import BelgianBirds exposing (belgianBirdsOptions, belgianBirdsQuiz, latinBirdsQuiz)
+import BelgianMammals exposing (belgianMammalsOptions, belgianMammalsQuiz, latinMammalsQuiz)
 import BelgianPlants exposing (belgianPlantsOptions, belgianPlantsQuiz, latinPlantsQuiz)
 import Browser
 import FHelper
@@ -351,6 +352,24 @@ update msg model =
                     , cmdNextQuestion latinPlantsQuiz
                     )
 
+                "BelgianMammals" ->
+                    ( { newModel
+                        | quizQas = belgianMammalsQuiz
+                        , remainingQuizQas = belgianMammalsQuiz
+                        , options = belgianMammalsOptions
+                      }
+                    , cmdNextQuestion belgianMammalsQuiz
+                    )
+
+                "LatinMammals" ->
+                    ( { model
+                        | quizQas = latinMammalsQuiz
+                        , remainingQuizQas = latinMammalsQuiz
+                        , options = belgianMammalsOptions
+                      }
+                    , cmdNextQuestion latinPlantsQuiz
+                    )
+
                 _ ->
                     ( model, Cmd.none )
 
@@ -369,6 +388,8 @@ view model =
                     , option [ value "LatinBirds" ] [ text "Oiseaux (latin)" ]
                     , option [ value "BelgianPlants" ] [ text "Plantes de Belgique" ]
                     , option [ value "LatinPlants" ] [ text "Plantes (latin)" ]
+                    , option [ value "BelgianMammals" ] [ text "Mammifères de Belgique" ]
+                    , option [ value "LatinMammals" ] [ text "Mammifères (latin)" ]
                     ]
                 ]
             , div [ class "col-4 p-0" ]
@@ -385,7 +406,7 @@ view model =
           else
             div [ class "container p-0 m-0" ]
                 [ div [ class "row" ]
-                    [ div [ class "col py-2 px-3" ]
+                    [ div [ class "col py-2 px-3 img-container" ]
                         [ img
                             [ classList [ ( "img-h-230", True ), ( "d-none", not model.imgLoaded ) ]
                             , title model.currentQuizItem.qa.title
