@@ -202,4 +202,19 @@ belgianMammalsData =
       , id = "251"
       , license = "Par Jean-Jacques Boujot — CC BY-SA 2.0, https://commons.wikimedia.org/w/index.php?curid=37547558"
       }
+    , { vernacularName = "Mulot sylvestre"
+      , binominalName = "Apodemus sylvaticus"
+      , id = "284"
+      , license = "Par BlueBreezeWiki — CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=70256219"
+      }
+    , { vernacularName = "Musaraigne pygmée"
+      , binominalName = "Sorex minutus"
+      , id = "285"
+      , license = "Par Importé sur Commons par Salix. Sur Flikr par Polandeze — CC BY 2.0, https://commons.wikimedia.org/w/index.php?curid=5461289"
+      }
+    , { vernacularName = "Campagnol des champs"
+      , binominalName = "Microtus arvalis"
+      , id = "286"
+      , license = "Par Unknown artist — CC-BY-SA-3.0, https://commons.wikimedia.org/w/index.php?curid=174331"
+      }
     ]

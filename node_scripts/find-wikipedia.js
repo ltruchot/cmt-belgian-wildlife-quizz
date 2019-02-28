@@ -6,7 +6,7 @@ const prefix = "bm";
 const folder = "belgian_mammals";
 const path = `./../public/assets/img/${folder}/`;
 
-let lastId = 218;
+let lastId = 251;
 
 const server = "fr.wikipedia.org";
 var client = new bot({
@@ -164,13 +164,14 @@ fs.readFile(`./listings_cnb/${prefix}.json`, (err, subjects) => {
     .catch(err => console.error("all err:", err));
 });
 
-// plants
+// plants bugs
 /* { "vernacularName": "ronce", "binominalName": "Rubus spp." },
 { "vernacularName": "salicorne", "binominalName": "Salicornia spp." },
 { "vernacularName": "pissenlit", "binominalName": "Taraxacum spp." },
 { "vernacularName": "violette", "binominalName": "Viola spp." }, */
-// mammals
-// { "vernacularName": "Musaraigne",	"binominalName": "Sorex spp., Neomys spp., Crocidura spp." },
-// { "vernacularName": "Campagnol",	"binominalName": "Microtus spp., Pitymys subterraneus, Arvicola spp." },
-// { "vernacularName": "Mulot",	"binominalName": "Apodemus spp" },
-// { "vernacularName": "Lièvre d'Europe", "binominalName": "Lepus europaeus" },
+
+// mammals bugs
+/* {
+  "vernacularName": "Lièvre d'Europe",
+  "binominalName": "Lepus europaeus"
+}, */

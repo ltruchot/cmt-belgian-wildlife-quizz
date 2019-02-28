@@ -45,5 +45,17 @@
     "vernacularName": "Tamia de Sibérie",
     "binominalName": "Eutamias sibiricus"
   },
-  { "vernacularName": "Ragondin", "binominalName": "Myocastor coypus" }
+  { "vernacularName": "Ragondin", "binominalName": "Myocastor coypus" },
+  {
+    "vernacularName": "Mulot sylvestre",
+    "binominalName": "Apodemus sylvaticus"
+  },
+  {
+    "vernacularName": "Musaraigne pygmée",
+    "binominalName": "Sorex minutus"
+  },
+  {
+    "vernacularName": "Campagnol des champs",
+    "binominalName": "Microtus arvalis"
+  }
 ]
