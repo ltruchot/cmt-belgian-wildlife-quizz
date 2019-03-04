@@ -25,9 +25,8 @@
     "elm": "^0.19.0-bugfix6",
     "express": "4.16.4",
     "image-downloader": "^3.4.2",
-    "nodemw": "^0.12.2",
+    "nodemw": "0.12.2",
     "pm2": "3.2.9",
-    "sharp": "0.21.3",
-    "wikijs": "4.11.1"
+    "sharp": "0.21.3"
   }
 }

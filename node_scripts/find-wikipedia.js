@@ -2,11 +2,11 @@ const bot = require("nodemw");
 const download = require("image-downloader");
 const fs = require("fs");
 
-const prefix = "bm";
-const folder = "belgian_mammals";
+const prefix = "bp";
+const folder = "belgian_plants";
 const path = `./../public/assets/img/${folder}/`;
 
-let lastId = 251;
+let lastId = 100;
 
 const server = "fr.wikipedia.org";
 var client = new bot({
@@ -24,12 +24,18 @@ const getArticleData = (titles, main) =>
     if (titles.length === 0) {
       reject(main + " does not exist in wikipedia");
     }
-    return client.getArticle(titles[0], true, (err, data) =>
-      err
-        ? reject({ method: "getArticle", args: titles[0], err, data })
-        : data && data.length
-        ? !console.log("close", ++close) && resolve(data)
-        : resolve(getArticleData(titles.slice(1), main))
+    setTimeout(() =>
+      client.getArticle(titles[0], true, (err, data) => {
+        if (err && /getaddrinfo ENOTFOUND fr.wikipedia.org/.test(err)) {
+          console.log("getArticle, must retry, wp is busy for", titles[0]);
+          return resolve(getArticleData(titles, main));
+        }
+        return err
+          ? reject({ method: "getArticle", args: titles[0], err, data })
+          : data && data.length
+          ? !console.log("close", ++close) && resolve(data)
+          : resolve(getArticleData(titles.slice(1), main));
+      })
     );
   });
 
@@ -37,6 +43,10 @@ const getImageInfo = name => imgName =>
   Promise.all([
     new Promise((resolve, reject) =>
       client.getImageInfo(imgName, (err, data) => {
+        if (err && /getaddrinfo ENOTFOUND fr.wikipedia.org/.test(err)) {
+          console.log("getImageInfo, must retry, wp is busy for", name);
+          return resolve(getImageInfo(name)(imgName));
+        }
         if (err || !data) {
           reject({ method: "getImageInfo", name, args: imgName, err, data });
           return;
@@ -55,6 +65,10 @@ const getImageInfo = name => imgName =>
         )}&format=json`,
         (err, data) => {
           if (err) {
+            if (err.errno == "ENOTFOUND") {
+              console.log("getImageInfo, must retry, wp is busy for", name);
+              return resolve(getImageInfo(name)(imgName));
+            }
             reject(err);
             return;
           }
@@ -136,7 +150,7 @@ fs.readFile(`./listings_cnb/${prefix}.json`, (err, subjects) => {
   subjects = JSON.parse(subjects);
   console.log("total", subjects.length);
   Promise.all(
-    subjects.map(subject =>
+    subjects.map((subject, idx) =>
       getArticleData(
         [subject.binominalName, subject.vernacularName].concat(
           subject.otherNames ? subject.otherNames : []
@@ -165,10 +179,13 @@ fs.readFile(`./listings_cnb/${prefix}.json`, (err, subjects) => {
 });
 
 // plants bugs
-/* { "vernacularName": "ronce", "binominalName": "Rubus spp." },
-{ "vernacularName": "salicorne", "binominalName": "Salicornia spp." },
+/* 
+{ "vernacularName": "Ronce commune", "binominalName": "Rubus fruticosus" }
+{ "vernacularName": "Salicorne d'Europe", "binominalName": "Salicornia europaea" },
+{ "vernacularName": "Violette odorante", "binominalName": "Viola odorata" },
+{ "vernacularName": "Violette de Rivinus", "binominalName": "Viola riviniana" }, 
 { "vernacularName": "pissenlit", "binominalName": "Taraxacum spp." },
-{ "vernacularName": "violette", "binominalName": "Viola spp." }, */
+ */
 
 // mammals bugs
 /* {

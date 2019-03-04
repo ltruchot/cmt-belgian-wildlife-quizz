@@ -187,10 +187,6 @@
   },
   { "vernacularName": "gesse des prés", "binominalName": "Lathyrus pratensis" },
   { "vernacularName": "gouet tacheté", "binominalName": "Arum maculatum" },
-  {
-    "vernacularName": "grande marguerite",
-    "binominalName": "Leucanthemum vulgare"
-  },
   { "vernacularName": "grande pervenche", "binominalName": "Vinca major" },
   { "vernacularName": "gratteron", "binominalName": "Galium aparine" },
   { "vernacularName": "gui", "binominalName": "Viscum album" },
@@ -450,5 +446,19 @@
   { "vernacularName": "vesce à épis", "binominalName": "Vicia cracca" },
   { "vernacularName": "vesce des haies", "binominalName": "Vicia sepium" },
 
-  { "vernacularName": "vipérine commune", "binominalName": "Echium vulgare" }
+  { "vernacularName": "vipérine commune", "binominalName": "Echium vulgare" },
+  { "vernacularName": "Ronce commune", "binominalName": "Rubus fruticosus" },
+  {
+    "vernacularName": "Salicorne d'Europe",
+    "binominalName": "Salicornia europaea"
+  },
+  { "vernacularName": "Violette odorante", "binominalName": "Viola odorata" },
+  {
+    "vernacularName": "Violette de Rivinus",
+    "binominalName": "Viola riviniana"
+  },
+  {
+    "vernacularName": "Pissenlit",
+    "binominalName": "Taraxacum"
+  }
 ]
