@@ -1,4 +1,4 @@
-FROM mhart/alpine-node:latest
+FROM mhart/alpine-node:10.5
 RUN apk add --update bash
 
 # Create app directory
