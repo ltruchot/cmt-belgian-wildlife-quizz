@@ -5,6 +5,7 @@ import ArrayHelper
 import BelgianBirds exposing (belgianBirdsOptions, belgianBirdsQuiz, latinBirdsQuiz)
 import BelgianMammals exposing (belgianMammalsOptions, belgianMammalsQuiz, latinMammalsQuiz)
 import BelgianPlants exposing (belgianPlantsOptions, belgianPlantsQuiz, latinPlantsQuiz)
+import BelgianReptiles exposing (belgianReptilesOptions, belgianReptilesQuiz, latinReptilesQuiz)
 import Browser
 import FHelper
 import Html exposing (Html, a, button, div, h1, h2, img, label, option, p, select, text)
@@ -154,7 +155,7 @@ init _ =
       , imgLoaded = False
       , hasWonLast = False
       , gameState = Start
-      , examLimit = 20
+      , examLimit = 5
       , gameOverRatio = Neutral
       , options = belgianBirdsOptions
       }
@@ -351,6 +352,12 @@ update msg model =
                 "LatinMammals" ->
                     setNewQuiz latinMammalsQuiz belgianMammalsOptions
 
+                "BelgianReptiles" ->
+                    setNewQuiz belgianReptilesQuiz belgianReptilesOptions
+
+                "LatinReptiles" ->
+                    setNewQuiz latinReptilesQuiz belgianReptilesOptions
+
                 _ ->
                     ( model, Cmd.none )
 
@@ -371,6 +378,8 @@ view model =
                     , option [ value "LatinPlants" ] [ text "Plantes (latin)" ]
                     , option [ value "BelgianMammals" ] [ text "Mammifères de Belgique" ]
                     , option [ value "LatinMammals" ] [ text "Mammifères (latin)" ]
+                    , option [ value "BelgianReptiles" ] [ text "Reptiles de Belgique" ]
+                    , option [ value "LatinReptiles" ] [ text "Reptiles (latin)" ]
                     ]
                 ]
             , div [ class "col-4 p-0" ]

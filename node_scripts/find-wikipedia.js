@@ -2,8 +2,8 @@ const bot = require("nodemw");
 const download = require("image-downloader");
 const fs = require("fs");
 
-const prefix = "bp";
-const folder = "belgian_plants";
+const prefix = "br";
+const folder = "belgian_reptiles";
 const path = `./../public/assets/img/${folder}/`;
 
 let lastId = 100;

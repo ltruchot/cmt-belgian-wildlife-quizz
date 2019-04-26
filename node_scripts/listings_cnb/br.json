@@ -1,0 +1,53 @@
+[
+  {
+    "vernacularName": "alyte accoucheur",
+    "binominalName": "Alytes obstetricans",
+    "otherNames": ["crapaud accoucheur"]
+  },
+  { "vernacularName": "crapaud calamite", "binominalName": "Bufo calamita" },
+  { "vernacularName": "crapaud commun", "binominalName": "Bufo bufo" },
+  { "vernacularName": "grenouille rousse", "binominalName": "Rana temporaria" },
+  { "vernacularName": "grenouille verte", "binominalName": "Rana esculenta" },
+  { "vernacularName": "rainette verte", "binominalName": "Hyla arborea" },
+  {
+    "vernacularName": "salamandre terrestre",
+    "binominalName": "Salamandra salamandra"
+  },
+  {
+    "vernacularName": "sonneur à ventre jaune",
+    "binominalName": "Bombina variegata"
+  },
+  {
+    "vernacularName": "triton alpestre",
+    "binominalName": "Triturus alpestris"
+  },
+  { "vernacularName": "triton crêté", "binominalName": "Triturus cristatus" },
+  {
+    "vernacularName": "triton palmé",
+    "binominalName": "Triturus helveticus",
+    "otherNames": ["triton helvétique"]
+  },
+  {
+    "vernacularName": "triton ponctué",
+    "binominalName": "Triturus vulgaris",
+    "otherNames": ["triton vulgaire"]
+  },
+  {
+    "vernacularName": "coronelle lisse",
+    "binominalName": "Coronella austriaca",
+    "otherNames": ["couleuvre lisse"]
+  },
+  { "vernacularName": "couleuvre à collier", "binominalName": "Natrix natrix" },
+  {
+    "vernacularName": "lézard des murailles",
+    "binominalName": "Podarcis muralis"
+  },
+  { "vernacularName": "lézard des souches", "binominalName": "Lacerta agilis" },
+  { "vernacularName": "lézard vivipare", "binominalName": "Zootoca vivipara" },
+  {
+    "vernacularName": "orvet fragile",
+    "binominalName": "Anguis fragilis",
+    "otherNames": ["anguille de verre"]
+  },
+  { "vernacularName": "vipère péliade", "binominalName": "Vipera berus" }
+]
