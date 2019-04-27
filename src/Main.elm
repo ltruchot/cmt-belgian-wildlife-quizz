@@ -6,6 +6,7 @@ import BelgianBirds exposing (belgianBirdsOptions, belgianBirdsQuiz, latinBirdsQ
 import BelgianMammals exposing (belgianMammalsOptions, belgianMammalsQuiz, latinMammalsQuiz)
 import BelgianPlants exposing (belgianPlantsOptions, belgianPlantsQuiz, latinPlantsQuiz)
 import BelgianReptiles exposing (belgianReptilesOptions, belgianReptilesQuiz, latinReptilesQuiz)
+import BelgianInsects exposing (belgianInsectsOptions, belgianInsectsQuiz, latinInsectsQuiz)
 import Browser
 import FHelper
 import Html exposing (Html, a, button, div, h1, h2, img, label, option, p, select, text)
@@ -155,7 +156,7 @@ init _ =
       , imgLoaded = False
       , hasWonLast = False
       , gameState = Start
-      , examLimit = 5
+      , examLimit = 20
       , gameOverRatio = Neutral
       , options = belgianBirdsOptions
       }
@@ -358,6 +359,11 @@ update msg model =
                 "LatinReptiles" ->
                     setNewQuiz latinReptilesQuiz belgianReptilesOptions
 
+                "BelgianInsects" ->
+                    setNewQuiz belgianInsectsQuiz belgianInsectsOptions
+
+                "LatinInsects" ->
+                    setNewQuiz latinInsectsQuiz belgianInsectsOptions
                 _ ->
                     ( model, Cmd.none )
 
@@ -380,6 +386,8 @@ view model =
                     , option [ value "LatinMammals" ] [ text "Mammifères (latin)" ]
                     , option [ value "BelgianReptiles" ] [ text "Reptiles de Belgique" ]
                     , option [ value "LatinReptiles" ] [ text "Reptiles (latin)" ]
+                    , option [ value "BelgianInsects" ] [ text "Insectes de Belgique" ]
+                    , option [ value "LatinInsects" ] [ text "Insectes (latin)" ]
                     ]
                 ]
             , div [ class "col-4 p-0" ]

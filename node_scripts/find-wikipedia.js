@@ -2,8 +2,8 @@ const bot = require("nodemw");
 const download = require("image-downloader");
 const fs = require("fs");
 
-const prefix = "br";
-const folder = "belgian_reptiles";
+const prefix = "bi";
+const folder = "belgian_insects";
 const path = `./../public/assets/img/${folder}/`;
 
 let lastId = 100;
@@ -178,17 +178,32 @@ fs.readFile(`./listings_cnb/${prefix}.json`, (err, subjects) => {
     .catch(err => console.error("all err:", err));
 });
 
-// plants bugs
-/* 
-{ "vernacularName": "Ronce commune", "binominalName": "Rubus fruticosus" }
-{ "vernacularName": "Salicorne d'Europe", "binominalName": "Salicornia europaea" },
-{ "vernacularName": "Violette odorante", "binominalName": "Viola odorata" },
-{ "vernacularName": "Violette de Rivinus", "binominalName": "Viola riviniana" }, 
-{ "vernacularName": "pissenlit", "binominalName": "Taraxacum spp." },
- */
-
-// mammals bugs
-/* {
-  "vernacularName": "Lièvre d'Europe",
-  "binominalName": "Lepus europaeus"
-}, */
+// insect bugs (lol)
+/* Agrion	
+Belle
+Blatte	
+Bombyle	
+Bourdon	
+Caloptéryx	
+Charançon	
+Chrysope	
+Crache
+Demi
+Éphémère	
+Fourmi	
+Guêpe	
+Ichneumon	
+Lucane cerf
+Mouche
+Moustique	
+Perce-oreilles ou Forficule	
+Perle	
+Puceron	
+Scolyte	
+Sphinx	
+Staphylin	
+Syrphe 	
+Taon	
+Taupin	
+Tipule	
+Zygène	 */
