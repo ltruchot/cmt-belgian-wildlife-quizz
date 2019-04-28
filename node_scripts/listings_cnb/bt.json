@@ -1,0 +1,153 @@
+[
+  {
+    "vernacularName": "Alisier torminal",
+    "binominalName": "Sorbus torminalis"
+  },
+  {
+    "vernacularName": "Alouchier",
+    "binominalName": "Sorbus aria",
+    "otherNames": ["alisier blanc"]
+  },
+  {
+    "vernacularName": "Aubépine à un style",
+    "binominalName": "Crataegus monogyna",
+    "otherNames": ["monogyne"]
+  },
+  {
+    "vernacularName": "Aubépine à deux styles",
+    "binominalName": "Crataegus laevigata"
+  },
+  { "vernacularName": "Aulne blanc", "binominalName": "Alnus incana" },
+  { "vernacularName": "Aulne glutineux", "binominalName": "Alnus glutinosa" },
+  { "vernacularName": "Bouleau pubescent", "binominalName": "Betula alba" },
+  { "vernacularName": "Bouleau verruqueux", "binominalName": "Betula pendula" },
+  { "vernacularName": "Bourdaine", "binominalName": "Frangula alnus" },
+  { "vernacularName": "Buis", "binominalName": "Buxus sempervirens" },
+  { "vernacularName": "Cerisier à grappes", "binominalName": "Prunus padus" },
+  { "vernacularName": "Cerisier tardif", "binominalName": "Prunus serotina" },
+  { "vernacularName": "Charme", "binominalName": "Carpinus betulus" },
+  { "vernacularName": "Châtaignier", "binominalName": "Castanea sativa" },
+  { "vernacularName": "Chêne pédonculé", "binominalName": "Quercus robur" },
+  { "vernacularName": "Chêne pubescent", "binominalName": "Quercus pubescens" },
+  {
+    "vernacularName": "Chêne rouge (d'Amérique)",
+    "binominalName": "Quercus rubra"
+  },
+  { "vernacularName": "Chêne sessile", "binominalName": "Quercus petraea" },
+  {
+    "vernacularName": "Chèvrefeuille",
+    "binominalName": "Lonicera periclymenum"
+  },
+  {
+    "vernacularName": "Clématite des haies",
+    "binominalName": "Clematis vitalba",
+    "otherNames": ["clématite vigne-blanche"]
+  },
+  { "vernacularName": "Cornouiller mâle", "binominalName": "Cornus mas" },
+  {
+    "vernacularName": "Cornouiller sanguin",
+    "binominalName": "Cornus sanguinea"
+  },
+  { "vernacularName": "Douglas", "binominalName": "Pseudotsuga menziesii" },
+  {
+    "vernacularName": "Églantier",
+    "binominalName": "Rosa canina",
+    "otherNames": ["Rosier des chiens"]
+  },
+  { "vernacularName": "Épicéa commun", "binominalName": "Picea abies" },
+  { "vernacularName": "Érable champêtre", "binominalName": "Acer campestre" },
+  { "vernacularName": "Érable plane", "binominalName": "Acer platanoides" },
+  {
+    "vernacularName": "Érable sycomore",
+    "binominalName": "Acer pseudoplatanus"
+  },
+  { "vernacularName": "Frêne commun", "binominalName": "Fraxinus excelsior" },
+  {
+    "vernacularName": "Fusain d'Europe",
+    "binominalName": "Evonymus europaeus"
+  },
+  {
+    "vernacularName": "Genévrier commun",
+    "binominalName": "Juniperus communis"
+  },
+  {
+    "vernacularName": "Groseillier épineux",
+    "binominalName": "Ribes uvacrispa"
+  },
+  {
+    "vernacularName": "Groseillier noir",
+    "binominalName": "Ribes nigrum",
+    "otherNames": ["cassis"]
+  },
+  { "vernacularName": "Groseillier rouge", "binominalName": "Ribes rubrum" },
+  { "vernacularName": "Hêtre ", "binominalName": "Fagus sylvatica" },
+  { "vernacularName": "Houx", "binominalName": "Ilex aquifolium" },
+  { "vernacularName": "If", "binominalName": "Taxus baccata" },
+  { "vernacularName": "Lierre", "binominalName": "Hedera helix" },
+  {
+    "vernacularName": "Marronnier d'Inde",
+    "binominalName": "Aesculus hippocastanum"
+  },
+  { "vernacularName": "Mélèze d'Europe", "binominalName": "Larix decidua" },
+  { "vernacularName": "Merisier", "binominalName": "Prunus avium" },
+  { "vernacularName": "Néflier", "binominalName": "Mespilus germanica" },
+  {
+    "vernacularName": "Nerprun purgatif",
+    "binominalName": "Rhamnus cathartica"
+  },
+  {
+    "vernacularName": "Noisetier",
+    "binominalName": "Corylus avellana",
+    "otherNames": ["Coudrier"]
+  },
+  { "vernacularName": "Noyer royal", "binominalName": "Juglans regia" },
+  { "vernacularName": "Peuplier tremble", "binominalName": "Populus tremula" },
+  { "vernacularName": "Pin sylvestre", "binominalName": "Pinus sylvestris" },
+  { "vernacularName": "Poirier sauvage", "binominalName": "Pyrus pyraster" },
+  { "vernacularName": "Pommier sauvage", "binominalName": "Malus sylvestris" },
+  {
+    "vernacularName": "Prunellier",
+    "binominalName": "Prunus spinosa",
+    "otherNames": ["Épine noire"]
+  },
+  {
+    "vernacularName": "Robinier faux-acacia",
+    "binominalName": "Robinia pseudoacacia"
+  },
+  {
+    "vernacularName": "Sapin pectiné",
+    "binominalName": "Abies alba",
+    "otherNames": ["sapin blanc", "sapin argenté"]
+  },
+  { "vernacularName": "Saule blanc", "binominalName": "Salix alba" },
+  { "vernacularName": "Saule marsault", "binominalName": "Salix caprea" },
+  {
+    "vernacularName": "Sorbier des oiseleurs",
+    "binominalName": "Sorbus aucuparia"
+  },
+  {
+    "vernacularName": "Sureau à grappes",
+    "binominalName": "Sambucus racemosa"
+  },
+  { "vernacularName": "Sureau noir", "binominalName": "Sambucus nigra" },
+  { "vernacularName": "Symphorine ", "binominalName": "Symphoricarpos albus" },
+  {
+    "vernacularName": "Tilleul à grandes feuilles",
+    "binominalName": "Tilia platyphyllos"
+  },
+  {
+    "vernacularName": "Tilleul à petites feuilles",
+    "binominalName": "Tilia cordata"
+  },
+  { "vernacularName": "Troène commun", "binominalName": "Ligustrum vulgare" },
+  {
+    "vernacularName": "Troène des haies",
+    "binominalName": "Ligustrum ovalifolium"
+  },
+  {
+    "vernacularName": "Viorne mancienne",
+    "binominalName": "Viburnum lantana",
+    "otherNames": ["viorne lantane"]
+  },
+  { "vernacularName": "Viorne obier", "binominalName": "Viburnum opulus" }
+]

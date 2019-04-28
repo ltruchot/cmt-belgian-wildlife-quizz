@@ -4,7 +4,7 @@
   { "vernacularName": "Anax empereur", "binominalName": "Anax imperator" },
   { "vernacularName": "Aurore", "binominalName": "Anthocharis cardamines" },
   {
-    "vernacularName": "Dame",
+    "vernacularName": "Belle-Dame",
     "binominalName": "Cynthia cardui",
     "otherNames": ["Vanesse des chardons"]
   },
@@ -23,7 +23,7 @@
     "vernacularName": "Cicindèle champêtre",
     "binominalName": "Cicindela campestris"
   },
-  { "vernacularName": "Sang", "binominalName": "Timarcha tenebricosa" },
+  { "vernacularName": "Crache-Sang", "binominalName": "Timarcha tenebricosa" },
   {
     "vernacularName": "Criquet à ailes bleues",
     "binominalName": "Oedipoda caerulescens"
@@ -32,7 +32,7 @@
     "vernacularName": "Coccinelle à 7 points",
     "binominalName": "Coccinella septempunctata"
   },
-  { "vernacularName": "Deuil", "binominalName": "Melanargia galathea" },
+  { "vernacularName": "Demi-Deuil", "binominalName": "Melanargia galathea" },
   {
     "vernacularName": "Dytique marginé",
     "binominalName": "Dytiscus marginalis"
@@ -55,11 +55,11 @@
     "vernacularName": "Libellule déprimée",
     "binominalName": "Platetrum depressum"
   },
-  { "vernacularName": "Volant", "binominalName": "Lucanus cervus" },
+  { "vernacularName": "Lucane cerf-volant", "binominalName": "Lucanus cervus" },
   { "vernacularName": "Machaon", "binominalName": "Papilio machaon" },
   { "vernacularName": "Mante religieuse", "binominalName": "Mantis religiosa" },
   {
-    "vernacularName": "scorpion",
+    "vernacularName": "Mouche-scorpion",
     "binominalName": "Panorpa communis",
     "otherNames": ["Panorpe"]
   },
@@ -88,5 +88,32 @@
     "vernacularName": "Trichie fasciée",
     "binominalName": "Trichius fasciatus"
   },
-  { "vernacularName": "Vulcain", "binominalName": "Vanessa atalanta" }
+  { "vernacularName": "Vulcain", "binominalName": "Vanessa atalanta" },
+  { "vernacularName": "Agrion", "binominalName": "Ischnura elegans" },
+  { "vernacularName": "Blatte", "binominalName": "Blattella germanica" },
+  { "vernacularName": "Bombyle", "binominalName": "Bombylius major" },
+  { "vernacularName": "Bourdon", "binominalName": "Bombus lucorum" },
+  { "vernacularName": "Caloptéryx", "binominalName": "Calopteryx virgo" },
+  { "vernacularName": "Charançon", "binominalName": "Sitophilus oryzae" },
+  { "vernacularName": "Chrysope", "binominalName": "Nothochrysa fulviceps" },
+  { "vernacularName": "Éphémère", "binominalName": "Ephemera danica" },
+  { "vernacularName": "Fourmi", "binominalName": "Solenopsis invicta" },
+  { "vernacularName": "Guêpe", "binominalName": "Vespula germanica" },
+  { "vernacularName": "Ichneumon", "binominalName": "Ichneumon suspiciosus" },
+  { "vernacularName": "Mouche", "binominalName": "Musca domestica" },
+  { "vernacularName": "Moustique", "binominalName": "Aedes albopictus" },
+  {
+    "vernacularName": "Perce-oreilles",
+    "binominalName": "Forficula smyrnensis",
+    "otherNames": ["Forficule"]
+  },
+  { "vernacularName": "Puceron", "binominalName": "Calaphis flava" },
+  { "vernacularName": "Scolyte", "binominalName": "Scolytus multistriatus" },
+  { "vernacularName": "Sphinx", "binominalName": "Proserpinus flavofasciata" },
+  { "vernacularName": "Staphylin", "binominalName": "Paederus littoralis" },
+  { "vernacularName": "Syrphe", "binominalName": "Episyrphus balteatus" },
+  { "vernacularName": "Taon", "binominalName": "Chrysops relictus" },
+  { "vernacularName": "Taupin", "binominalName": "Agriotes lineatus" },
+  { "vernacularName": "Tipule", "binominalName": "Tipula oleracea" },
+  { "vernacularName": "Zygène", "binominalName": "Zygaena trifolii" }
 ]

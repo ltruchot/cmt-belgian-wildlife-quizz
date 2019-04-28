@@ -3,10 +3,10 @@ module Main exposing (Model, Msg(..), init, main, update, view)
 import Array exposing (Array)
 import ArrayHelper
 import BelgianBirds exposing (belgianBirdsOptions, belgianBirdsQuiz, latinBirdsQuiz)
+import BelgianInsects exposing (belgianInsectsOptions, belgianInsectsQuiz, latinInsectsQuiz)
 import BelgianMammals exposing (belgianMammalsOptions, belgianMammalsQuiz, latinMammalsQuiz)
 import BelgianPlants exposing (belgianPlantsOptions, belgianPlantsQuiz, latinPlantsQuiz)
 import BelgianReptiles exposing (belgianReptilesOptions, belgianReptilesQuiz, latinReptilesQuiz)
-import BelgianInsects exposing (belgianInsectsOptions, belgianInsectsQuiz, latinInsectsQuiz)
 import Browser
 import FHelper
 import Html exposing (Html, a, button, div, h1, h2, img, label, option, p, select, text)
@@ -364,6 +364,7 @@ update msg model =
 
                 "LatinInsects" ->
                     setNewQuiz latinInsectsQuiz belgianInsectsOptions
+
                 _ ->
                     ( model, Cmd.none )
 

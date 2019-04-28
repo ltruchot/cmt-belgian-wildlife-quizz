@@ -24,7 +24,7 @@
     "license": "Par Kjetil Fjellheim — CC BY 2.0, https://commons.wikimedia.org/w/index.php?curid=64270070"
   },
   {
-    "vernacularName": "Dame",
+    "vernacularName": "Belle-Dame",
     "binominalName": "Cynthia cardui",
     "otherNames": ["Vanesse des chardons"],
     "id": 105,
@@ -62,7 +62,7 @@
     "license": "Par Olei — CC-BY-SA-3.0, https://commons.wikimedia.org/w/index.php?curid=207723"
   },
   {
-    "vernacularName": "Sang",
+    "vernacularName": "Crache-Sang",
     "binominalName": "Timarcha tenebricosa",
     "id": 111,
     "license": "Par Fritz Geller-Grimm — CC BY-SA 2.5, https://commons.wikimedia.org/w/index.php?curid=453339"
@@ -80,7 +80,7 @@
     "license": "Par Unknown artist — CC-BY-SA-3.0, https://commons.wikimedia.org/w/index.php?curid=128757"
   },
   {
-    "vernacularName": "Deuil",
+    "vernacularName": "Demi-Deuil",
     "binominalName": "Melanargia galathea",
     "id": 114,
     "license": "Par Michael Apel — CC BY-SA 2.5, https://commons.wikimedia.org/w/index.php?curid=2372702"
@@ -146,7 +146,7 @@
     "license": "Par Tim Bekaert — Public domain, https://commons.wikimedia.org/w/index.php?curid=210236"
   },
   {
-    "vernacularName": "Volant",
+    "vernacularName": "Lucane cerf-volant",
     "binominalName": "Lucanus cervus",
     "id": 125,
     "license": "Par Didier Descouens — CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=25239625"
@@ -164,7 +164,7 @@
     "license": "Par Alvesgaspar — CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=2641596"
   },
   {
-    "vernacularName": "scorpion",
+    "vernacularName": "Mouche-scorpion",
     "binominalName": "Panorpa communis",
     "otherNames": ["Panorpe"],
     "id": 128,
@@ -230,5 +230,150 @@
     "binominalName": "Vanessa atalanta",
     "id": 138,
     "license": "Par Didier Descouens — CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=41180640"
+  },
+  {
+    "vernacularName": "Agrion",
+    "binominalName": "Ischnura elegans",
+    "id": 139,
+    "license": "Par Thomas Bresson — CC BY 2.0, https://commons.wikimedia.org/w/index.php?curid=6726502"
+  },
+  {
+    "vernacularName": "Blatte",
+    "binominalName": "Blattella germanica",
+    "id": 140,
+    "license": "Par David Monniaux — CC-BY-SA-3.0, https://commons.wikimedia.org/w/index.php?curid=1611434"
+  },
+  {
+    "vernacularName": "Bombyle",
+    "binominalName": "Bombylius major",
+    "id": 141,
+    "license": "Par Unknown artist — GPL, https://commons.wikimedia.org/w/index.php?curid=168876"
+  },
+  {
+    "vernacularName": "Bourdon",
+    "binominalName": "Bombus lucorum",
+    "id": 142,
+    "license": "Par Ivar Leidus — CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=42305170"
+  },
+  {
+    "vernacularName": "Caloptéryx",
+    "binominalName": "Calopteryx virgo",
+    "id": 143,
+    "license": "Par Zeynel Cebeci — CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=26976515"
+  },
+  {
+    "vernacularName": "Charançon",
+    "binominalName": "Sitophilus oryzae",
+    "id": 144,
+    "license": "Par Olaf Leillinger — CC BY-SA 2.5, https://commons.wikimedia.org/w/index.php?curid=1550147"
+  },
+  {
+    "vernacularName": "Chrysope",
+    "binominalName": "Nothochrysa fulviceps",
+    "id": 145,
+    "license": "Par Siga — CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=4571723"
+  },
+  {
+    "vernacularName": "Éphémère",
+    "binominalName": "Ephemera danica",
+    "id": 146,
+    "license": "Par Unknown artist — CC-BY-SA-3.0, https://commons.wikimedia.org/w/index.php?curid=243854"
+  },
+  {
+    "vernacularName": "Fourmi",
+    "binominalName": "Solenopsis invicta",
+    "id": 147,
+    "license": "Par Unknown artist — Public domain, https://commons.wikimedia.org/w/index.php?curid=326305"
+  },
+  {
+    "vernacularName": "Guêpe",
+    "binominalName": "Vespula germanica",
+    "id": 148,
+    "license": "Par Unknown artist — GFDL 1.2, https://commons.wikimedia.org/w/index.php?curid=1931193"
+  },
+  {
+    "vernacularName": "Ichneumon",
+    "binominalName": "Ichneumon suspiciosus",
+    "id": 149,
+    "license": "Par AfroBrazilian — CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=26536367"
+  },
+  {
+    "vernacularName": "Mouche",
+    "binominalName": "Musca domestica",
+    "id": 150,
+    "license": "Par Muhammad Mahdi Karim — GFDL 1.2, https://commons.wikimedia.org/w/index.php?curid=7672794"
+  },
+  {
+    "vernacularName": "Moustique",
+    "binominalName": "Aedes albopictus",
+    "id": 151,
+    "license": "Par James Gathany, CDC — Public domain, https://commons.wikimedia.org/w/index.php?curid=3670049"
+  },
+  {
+    "vernacularName": "Perce-oreilles",
+    "binominalName": "Forficula smyrnensis",
+    "otherNames": ["Forficule"],
+    "id": 152,
+    "license": "Par Assafn — CC BY 2.5, https://commons.wikimedia.org/w/index.php?curid=2108658"
+  },
+  {
+    "vernacularName": "Puceron",
+    "binominalName": "Calaphis flava",
+    "id": 153,
+    "license": "Par Sanjay ach — CC-BY-SA-3.0, https://commons.wikimedia.org/w/index.php?curid=2233748"
+  },
+  {
+    "vernacularName": "Scolyte",
+    "binominalName": "Scolytus multistriatus",
+    "id": 154,
+    "license": "Par Emil Hochdanz — Public domain, https://commons.wikimedia.org/w/index.php?curid=4972896"
+  },
+  {
+    "vernacularName": "Sphinx",
+    "binominalName": "Proserpinus flavofasciata",
+    "id": 155,
+    "license": "Par Didier Descouens — CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=46946117"
+  },
+  {
+    "vernacularName": "Staphylin",
+    "binominalName": "Paederus littoralis",
+    "id": 156,
+    "license": "Par Lmbuga — CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=10560364"
+  },
+  {
+    "vernacularName": "Syrphe",
+    "binominalName": "Episyrphus balteatus",
+    "id": 157,
+    "license": "Par Aka — CC BY-SA 2.5, https://commons.wikimedia.org/w/index.php?curid=221925"
+  },
+  {
+    "vernacularName": "Taon",
+    "binominalName": "Chrysops relictus",
+    "id": 158,
+    "license": "Par Eric Steinert — CC-BY-SA-3.0, https://commons.wikimedia.org/w/index.php?curid=193492"
+  },
+  {
+    "vernacularName": "Taupin",
+    "binominalName": "Agriotes lineatus",
+    "id": 159,
+    "license": "Par Darius Bauzys — Attribution, https://commons.wikimedia.org/w/index.php?curid=4202052"
+  },
+  {
+    "vernacularName": "Tipule",
+    "binominalName": "Tipula oleracea",
+    "id": 160,
+    "license": "Par James K. Lindsey — CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=1971398"
+  },
+  {
+    "vernacularName": "Zygène",
+    "binominalName": "Zygaena trifolii",
+    "id": 161,
+    "license": "Par Frank Vassen — CC BY 2.0, https://commons.wikimedia.org/w/index.php?curid=17018534"
+  },
+  {
+    "vernacularName": "Perle",
+    "binominalName": "Perlinella drymo",
+    "id": 162,
+    "license": "Travail personnel —  Domaine public, https://commons.wikimedia.org/w/index.php?curid=423626"
   }
 ]
