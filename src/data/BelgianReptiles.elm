@@ -9,7 +9,7 @@ belgianReptilesQuiz =
     { qas = getImgWildlifeQuiz data Vernacular options
     , options = options
     , uniqName = "BelgianReptiles"
-    , visibleName = "Reptiles de Belgique"
+    , visibleName = "Reptiles et amphibien de Belgique"
     }
 
 
@@ -18,7 +18,7 @@ binominalReptilesQuiz =
     { qas = getImgWildlifeQuiz data Binominal options
     , options = options
     , uniqName = "BinominalReptiles"
-    , visibleName = "Reptiles (binominal)"
+    , visibleName = "Reptiles et amphibien (binominal)"
     }
 
 
