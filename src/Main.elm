@@ -2,20 +2,39 @@ module Main exposing (Model, Msg(..), init, main, update, view)
 
 import Array exposing (Array)
 import ArrayHelper
-import BelgianBirds exposing (belgianBirdsOptions, belgianBirdsQuiz, latinBirdsQuiz)
-import BelgianInsects exposing (belgianInsectsOptions, belgianInsectsQuiz, latinInsectsQuiz)
-import BelgianMammals exposing (belgianMammalsOptions, belgianMammalsQuiz, latinMammalsQuiz)
-import BelgianPlants exposing (belgianPlantsOptions, belgianPlantsQuiz, latinPlantsQuiz)
-import BelgianReptiles exposing (belgianReptilesOptions, belgianReptilesQuiz, latinReptilesQuiz)
+import BelgianBirds exposing (belgianBirdsQuiz, binominalBirdsQuiz)
+import BelgianInsects exposing (belgianInsectsQuiz, binominalInsectsQuiz)
+import BelgianMammals exposing (belgianMammalsQuiz, binominalMammalsQuiz)
+import BelgianPlants exposing (belgianPlantsQuiz, binominalPlantsQuiz)
+import BelgianReptiles exposing (belgianReptilesQuiz, binominalReptilesQuiz)
+import BelgianTrees exposing (belgianTreesQuiz, binominalTreesQuiz)
 import Browser
 import FHelper
 import Html exposing (Html, a, button, div, h1, h2, img, label, option, p, select, text)
 import Html.Attributes exposing (class, classList, disabled, for, href, id, src, title, value)
 import Html.Events exposing (on, onClick, onInput)
 import Json.Decode as JD
-import Quiz exposing (GameOverMsgs, QuizItem, QuizOptions, QuizQa, pickQuizQa)
+import List.Extra as ListExtra
+import Quiz exposing (DisplayableQuiz, GameOverMsgs, QuizItem, QuizOptions, QuizQa, emptyDisplayableQuiz, emptyOptions, emptyQuizItem, pickQuizQa)
 import StringHelper
 import Time
+
+
+quizzList : List DisplayableQuiz
+quizzList =
+    [ belgianBirdsQuiz
+    , binominalBirdsQuiz
+    , belgianInsectsQuiz
+    , binominalInsectsQuiz
+    , belgianMammalsQuiz
+    , binominalMammalsQuiz
+    , belgianPlantsQuiz
+    , binominalPlantsQuiz
+    , belgianReptilesQuiz
+    , binominalReptilesQuiz
+    , belgianTreesQuiz
+    , binominalTreesQuiz
+    ]
 
 
 type Mode
@@ -97,6 +116,13 @@ getGameOverSentence ratio msgs =
             msgs.proud
 
 
+defaultQuiz : DisplayableQuiz
+defaultQuiz =
+    Maybe.withDefault
+        emptyDisplayableQuiz
+        (ListExtra.getAt 0 quizzList)
+
+
 main =
     Browser.element
         { init = init
@@ -144,12 +170,9 @@ type alias Model =
 
 init : () -> ( Model, Cmd Msg )
 init _ =
-    ( { quizQas = belgianBirdsQuiz
-      , remainingQuizQas = belgianBirdsQuiz
-      , currentQuizItem =
-            { qa = { question = "", answer = "", title = "" }
-            , answers = []
-            }
+    ( { quizQas = defaultQuiz.qas
+      , remainingQuizQas = defaultQuiz.qas
+      , currentQuizItem = emptyQuizItem
       , chosenAnswer = ""
       , mode = Infinite
       , score = ( 0, 1 )
@@ -158,9 +181,9 @@ init _ =
       , gameState = Start
       , examLimit = 20
       , gameOverRatio = Neutral
-      , options = belgianBirdsOptions
+      , options = defaultQuiz.options
       }
-    , cmdNextQuestion belgianBirdsQuiz
+    , cmdNextQuestion defaultQuiz.qas
     )
 
 
@@ -169,14 +192,14 @@ cmdNextQuestion qas =
     ArrayHelper.provideRandomElt DisplayNextQuestion qas
 
 
-setQuiz : Model -> Array QuizQa -> QuizOptions -> ( Model, Cmd Msg )
-setQuiz model qas options =
+setQuiz : Model -> DisplayableQuiz -> ( Model, Cmd Msg )
+setQuiz model displayableQuiz =
     ( { model
-        | quizQas = qas
-        , remainingQuizQas = qas
-        , options = options
+        | quizQas = displayableQuiz.qas
+        , remainingQuizQas = displayableQuiz.qas
+        , options = displayableQuiz.options
       }
-    , cmdNextQuestion qas
+    , cmdNextQuestion displayableQuiz.qas
     )
 
 
@@ -326,47 +349,23 @@ update msg model =
                 _ ->
                     ( model, Cmd.none )
 
-        ChangeQuiz quiz ->
+        ChangeQuiz quizName ->
             let
                 newModel =
                     { model | score = ( 0, 1 ), gameState = Start }
 
                 setNewQuiz =
                     setQuiz newModel
+
+                displaybleQuiz =
+                    Maybe.withDefault
+                        emptyDisplayableQuiz
+                        (ListExtra.find
+                            (\quiz -> quiz.uniqName == quizName)
+                            quizzList
+                        )
             in
-            case quiz of
-                "BelgianBirds" ->
-                    setNewQuiz belgianBirdsQuiz belgianBirdsOptions
-
-                "LatinBirds" ->
-                    setNewQuiz latinBirdsQuiz belgianBirdsOptions
-
-                "BelgianPlants" ->
-                    setNewQuiz belgianPlantsQuiz belgianPlantsOptions
-
-                "LatinPlants" ->
-                    setNewQuiz latinPlantsQuiz belgianPlantsOptions
-
-                "BelgianMammals" ->
-                    setNewQuiz belgianMammalsQuiz belgianMammalsOptions
-
-                "LatinMammals" ->
-                    setNewQuiz latinMammalsQuiz belgianMammalsOptions
-
-                "BelgianReptiles" ->
-                    setNewQuiz belgianReptilesQuiz belgianReptilesOptions
-
-                "LatinReptiles" ->
-                    setNewQuiz latinReptilesQuiz belgianReptilesOptions
-
-                "BelgianInsects" ->
-                    setNewQuiz belgianInsectsQuiz belgianInsectsOptions
-
-                "LatinInsects" ->
-                    setNewQuiz latinInsectsQuiz belgianInsectsOptions
-
-                _ ->
-                    ( model, Cmd.none )
+            setNewQuiz displaybleQuiz
 
 
 
@@ -379,17 +378,7 @@ view model =
         [ div [ class "form-group row m-1 mt-2" ]
             [ div [ class "col-8 p-0" ]
                 [ select [ class "form-control form-control-sm", onInput ChangeQuiz ]
-                    [ option [ value "BelgianBirds" ] [ text "Oiseaux de Belgique" ]
-                    , option [ value "LatinBirds" ] [ text "Oiseaux (latin)" ]
-                    , option [ value "BelgianPlants" ] [ text "Plantes de Belgique" ]
-                    , option [ value "LatinPlants" ] [ text "Plantes (latin)" ]
-                    , option [ value "BelgianMammals" ] [ text "Mammifères de Belgique" ]
-                    , option [ value "LatinMammals" ] [ text "Mammifères (latin)" ]
-                    , option [ value "BelgianReptiles" ] [ text "Reptiles de Belgique" ]
-                    , option [ value "LatinReptiles" ] [ text "Reptiles (latin)" ]
-                    , option [ value "BelgianInsects" ] [ text "Insectes de Belgique" ]
-                    , option [ value "LatinInsects" ] [ text "Insectes (latin)" ]
-                    ]
+                    (List.map (\quiz -> option [ value quiz.uniqName ] [ text quiz.visibleName ]) quizzList)
                 ]
             , div [ class "col-4 p-0" ]
                 [ select [ class "form-control  form-control-sm", onInput ChangeMode ]

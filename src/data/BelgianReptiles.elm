@@ -1,11 +1,37 @@
-module BelgianReptiles exposing (belgianReptilesOptions, belgianReptilesQuiz, latinReptilesQuiz)
+module BelgianReptiles exposing (belgianReptilesQuiz, binominalReptilesQuiz)
 
 import Array exposing (Array)
-import Quiz exposing (GameOverMsgs, ImgQuizItem, QuizOptions, QuizQa, WildlifeQuizType(..), getImgWildlifeQuiz)
+import Quiz exposing (DisplayableQuiz, GameOverMsgs, ImgQuizItem, QuizOptions, QuizQa, WildlifeQuizType(..), getImgWildlifeQuiz)
 
 
-reptilesGameOverMsgs : GameOverMsgs
-reptilesGameOverMsgs =
+belgianReptilesQuiz : DisplayableQuiz
+belgianReptilesQuiz =
+    { qas = getImgWildlifeQuiz data Vernacular options
+    , options = options
+    , uniqName = "BelgianReptiles"
+    , visibleName = "Reptiles de Belgique"
+    }
+
+
+binominalReptilesQuiz : DisplayableQuiz
+binominalReptilesQuiz =
+    { qas = getImgWildlifeQuiz data Binominal options
+    , options = options
+    , uniqName = "BinominalReptiles"
+    , visibleName = "Reptiles (binominal)"
+    }
+
+
+options : QuizOptions
+options =
+    { prefix = "br"
+    , folder = "belgian_reptiles"
+    , gameOverMsgs = gameOverMsgs
+    }
+
+
+gameOverMsgs : GameOverMsgs
+gameOverMsgs =
     { sad =
         "Oh non ! Ton serpent se mord la queue... Tu devrais réviser un peu."
     , neutral =
@@ -17,26 +43,8 @@ reptilesGameOverMsgs =
     }
 
 
-belgianReptilesOptions : QuizOptions
-belgianReptilesOptions =
-    { prefix = "br"
-    , folder = "belgian_reptiles"
-    , gameOverMsgs = reptilesGameOverMsgs
-    }
-
-
-belgianReptilesQuiz : Array QuizQa
-belgianReptilesQuiz =
-    getImgWildlifeQuiz belgianReptilesData Vernacular belgianReptilesOptions
-
-
-latinReptilesQuiz : Array QuizQa
-latinReptilesQuiz =
-    getImgWildlifeQuiz belgianReptilesData Binominal belgianReptilesOptions
-
-
-belgianReptilesData : List ImgQuizItem
-belgianReptilesData =
+data : List ImgQuizItem
+data =
     [ { vernacularName = "alyte accoucheur"
       , binominalName = "Alytes obstetricans"
       , id = "101"

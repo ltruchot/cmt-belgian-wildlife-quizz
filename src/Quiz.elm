@@ -1,8 +1,44 @@
-module Quiz exposing (GameOverMsgs, ImgQuizItem, QuizItem, QuizOptions, QuizQa, WildlifeQuizType(..), getImgWildlifeQuiz, pickQuizQa)
+module Quiz exposing (DisplayableQuiz, GameOverMsgs, ImgQuizItem, QuizItem, QuizOptions, QuizQa, WildlifeQuizType(..), emptyDisplayableQuiz, emptyOptions, emptyQuizItem, getImgWildlifeQuiz, pickQuizQa)
 
 import Array exposing (Array)
 import ArrayHelper
 import StringHelper
+
+
+
+-- Final quiz record to display in view
+
+
+type alias DisplayableQuiz =
+    { qas : Array QuizQa
+    , options : QuizOptions
+    , uniqName : String
+    , visibleName : String
+    }
+
+
+emptyDisplayableQuiz : DisplayableQuiz
+emptyDisplayableQuiz =
+    { qas = Array.empty
+    , options = emptyOptions
+    , uniqName = ""
+    , visibleName = ""
+    }
+
+
+emptyOptions : QuizOptions
+emptyOptions =
+    { prefix = ""
+    , folder = ""
+    , gameOverMsgs = { sad = "", neutral = "", happy = "", proud = "" }
+    }
+
+
+emptyQuizItem : QuizItem
+emptyQuizItem =
+    { qa = { question = "", answer = "", title = "" }
+    , answers = []
+    }
 
 
 type WildlifeQuizType

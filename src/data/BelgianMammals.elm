@@ -1,11 +1,37 @@
-module BelgianMammals exposing (belgianMammalsOptions, belgianMammalsQuiz, latinMammalsQuiz)
+module BelgianMammals exposing (belgianMammalsQuiz, binominalMammalsQuiz)
 
 import Array exposing (Array)
-import Quiz exposing (GameOverMsgs, ImgQuizItem, QuizOptions, QuizQa, WildlifeQuizType(..), getImgWildlifeQuiz)
+import Quiz exposing (DisplayableQuiz, GameOverMsgs, ImgQuizItem, QuizOptions, QuizQa, WildlifeQuizType(..), getImgWildlifeQuiz)
 
 
-mammalsGameOverMsgs : GameOverMsgs
-mammalsGameOverMsgs =
+belgianMammalsQuiz : DisplayableQuiz
+belgianMammalsQuiz =
+    { qas = getImgWildlifeQuiz data Vernacular options
+    , options = options
+    , uniqName = "BelgianMammals"
+    , visibleName = "Mammifères de Belgique"
+    }
+
+
+binominalMammalsQuiz : DisplayableQuiz
+binominalMammalsQuiz =
+    { qas = getImgWildlifeQuiz data Binominal options
+    , options = options
+    , uniqName = "BinominalMammals"
+    , visibleName = "Mammifères (binominal)"
+    }
+
+
+options : QuizOptions
+options =
+    { prefix = "bm"
+    , folder = "belgian_mammals"
+    , gameOverMsgs = gameOverMsgs
+    }
+
+
+gameOverMsgs : GameOverMsgs
+gameOverMsgs =
     { sad =
         "Oh non ! Tu as fait pleurer le petit renard avec ce mauvais score..."
     , neutral =
@@ -17,26 +43,8 @@ mammalsGameOverMsgs =
     }
 
 
-belgianMammalsOptions : QuizOptions
-belgianMammalsOptions =
-    { prefix = "bm"
-    , folder = "belgian_mammals"
-    , gameOverMsgs = mammalsGameOverMsgs
-    }
-
-
-belgianMammalsQuiz : Array QuizQa
-belgianMammalsQuiz =
-    getImgWildlifeQuiz belgianMammalsData Vernacular belgianMammalsOptions
-
-
-latinMammalsQuiz : Array QuizQa
-latinMammalsQuiz =
-    getImgWildlifeQuiz belgianMammalsData Binominal belgianMammalsOptions
-
-
-belgianMammalsData : List ImgQuizItem
-belgianMammalsData =
+data : List ImgQuizItem
+data =
     [ { vernacularName = "Chat sylvestre"
       , binominalName = "Felis sylvestris"
       , id = "219"

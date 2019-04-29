@@ -1,11 +1,37 @@
-module BelgianBirds exposing (belgianBirdsOptions, belgianBirdsQuiz, latinBirdsQuiz)
+module BelgianBirds exposing (belgianBirdsQuiz, binominalBirdsQuiz)
 
 import Array exposing (Array)
-import Quiz exposing (GameOverMsgs, ImgQuizItem, QuizOptions, QuizQa, WildlifeQuizType(..), getImgWildlifeQuiz)
+import Quiz exposing (DisplayableQuiz, GameOverMsgs, ImgQuizItem, QuizOptions, QuizQa, WildlifeQuizType(..), getImgWildlifeQuiz)
 
 
-birdsGameOverMsgs : GameOverMsgs
-birdsGameOverMsgs =
+belgianBirdsQuiz : DisplayableQuiz
+belgianBirdsQuiz =
+    { qas = getImgWildlifeQuiz data Vernacular options
+    , options = options
+    , uniqName = "BelgianBirds"
+    , visibleName = "Oiseaux de Belgique"
+    }
+
+
+binominalBirdsQuiz : DisplayableQuiz
+binominalBirdsQuiz =
+    { qas = getImgWildlifeQuiz data Binominal options
+    , options = options
+    , uniqName = "BinominalBirds"
+    , visibleName = "Oiseaux (binominal)"
+    }
+
+
+options : QuizOptions
+options =
+    { prefix = "bb"
+    , folder = "belgian_birds"
+    , gameOverMsgs = gameOverMsgs
+    }
+
+
+gameOverMsgs : GameOverMsgs
+gameOverMsgs =
     { sad =
         "Oh non ! Tu as rendu les oiseaux tristes avec ce mauvais score..."
     , neutral =
@@ -17,26 +43,8 @@ birdsGameOverMsgs =
     }
 
 
-belgianBirdsOptions : QuizOptions
-belgianBirdsOptions =
-    { prefix = "bb"
-    , folder = "belgian_birds"
-    , gameOverMsgs = birdsGameOverMsgs
-    }
-
-
-belgianBirdsQuiz : Array QuizQa
-belgianBirdsQuiz =
-    getImgWildlifeQuiz belgianBirdsData Vernacular belgianBirdsOptions
-
-
-latinBirdsQuiz : Array QuizQa
-latinBirdsQuiz =
-    getImgWildlifeQuiz belgianBirdsData Binominal belgianBirdsOptions
-
-
-belgianBirdsData : List ImgQuizItem
-belgianBirdsData =
+data : List ImgQuizItem
+data =
     [ { id = "59"
       , vernacularName = "Accenteur mouchet"
       , binominalName = "Prunella modularis"

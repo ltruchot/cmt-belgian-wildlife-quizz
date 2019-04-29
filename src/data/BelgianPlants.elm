@@ -1,11 +1,37 @@
-module BelgianPlants exposing (belgianPlantsOptions, belgianPlantsQuiz, latinPlantsQuiz)
+module BelgianPlants exposing (belgianPlantsQuiz, binominalPlantsQuiz)
 
 import Array exposing (Array)
-import Quiz exposing (GameOverMsgs, ImgQuizItem, QuizOptions, QuizQa, WildlifeQuizType(..), getImgWildlifeQuiz)
+import Quiz exposing (DisplayableQuiz, GameOverMsgs, ImgQuizItem, QuizOptions, QuizQa, WildlifeQuizType(..), getImgWildlifeQuiz)
 
 
-plantsGameOverMsgs : GameOverMsgs
-plantsGameOverMsgs =
+belgianPlantsQuiz : DisplayableQuiz
+belgianPlantsQuiz =
+    { qas = getImgWildlifeQuiz data Vernacular options
+    , options = options
+    , uniqName = "BelgianPlants"
+    , visibleName = "Plantes de Belgique"
+    }
+
+
+binominalPlantsQuiz : DisplayableQuiz
+binominalPlantsQuiz =
+    { qas = getImgWildlifeQuiz data Binominal options
+    , options = options
+    , uniqName = "BinominalPlants"
+    , visibleName = "Plantes (binominal)"
+    }
+
+
+options : QuizOptions
+options =
+    { prefix = "bp"
+    , folder = "belgian_plants"
+    , gameOverMsgs = gameOverMsgs
+    }
+
+
+gameOverMsgs : GameOverMsgs
+gameOverMsgs =
     { sad =
         "Oh non ! Tu as fané toutes les fleurs avec ce mauvais score..."
     , neutral =
@@ -17,26 +43,8 @@ plantsGameOverMsgs =
     }
 
 
-belgianPlantsOptions : QuizOptions
-belgianPlantsOptions =
-    { prefix = "bp"
-    , folder = "belgian_plants"
-    , gameOverMsgs = plantsGameOverMsgs
-    }
-
-
-belgianPlantsQuiz : Array QuizQa
-belgianPlantsQuiz =
-    getImgWildlifeQuiz belgianPlantsData Vernacular belgianPlantsOptions
-
-
-latinPlantsQuiz : Array QuizQa
-latinPlantsQuiz =
-    getImgWildlifeQuiz belgianPlantsData Binominal belgianPlantsOptions
-
-
-belgianPlantsData : List ImgQuizItem
-belgianPlantsData =
+data : List ImgQuizItem
+data =
     [ { vernacularName = "achillée millefeuille"
       , binominalName = "Achillea millefolium"
       , id = "101"

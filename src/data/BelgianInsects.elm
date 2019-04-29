@@ -1,42 +1,50 @@
-module BelgianInsects exposing (belgianInsectsOptions, belgianInsectsQuiz, latinInsectsQuiz)
+module BelgianInsects exposing (belgianInsectsQuiz, binominalInsectsQuiz)
 
 import Array exposing (Array)
-import Quiz exposing (GameOverMsgs, ImgQuizItem, QuizOptions, QuizQa, WildlifeQuizType(..), getImgWildlifeQuiz)
+import Quiz exposing (DisplayableQuiz, GameOverMsgs, ImgQuizItem, QuizOptions, QuizQa, WildlifeQuizType(..), getImgWildlifeQuiz)
 
 
-insectsGameOverMsgs : GameOverMsgs
-insectsGameOverMsgs =
+belgianInsectsQuiz : DisplayableQuiz
+belgianInsectsQuiz =
+    { qas = getImgWildlifeQuiz data Vernacular options
+    , options = options
+    , uniqName = "BelgianInsects"
+    , visibleName = "Insectes de Belgique"
+    }
+
+
+binominalInsectsQuiz : DisplayableQuiz
+binominalInsectsQuiz =
+    { qas = getImgWildlifeQuiz data Binominal options
+    , options = options
+    , uniqName = "BinominalInsects"
+    , visibleName = "Insectes (binominal)"
+    }
+
+
+options : QuizOptions
+options =
+    { prefix = "bi"
+    , folder = "belgian_insects"
+    , gameOverMsgs = gameOverMsgs
+    }
+
+
+gameOverMsgs : GameOverMsgs
+gameOverMsgs =
     { sad =
-        "Oh non ! Tu as rendu la petite araignée toute triste..."
+        "Oh non ! Tu as mis l'abeille sauvage en colère..."
     , neutral =
         "Pas mal. Mais ça n'arrêtera pas la fourmi dans son travail."
     , happy =
-        "Bravo ! Tu as gagné un grand sourire."
+        "Bravo ! Tu as gagné un joli sourire de charançon."
     , proud =
         "Parfait ! Tu as compris toute la complexité du monde des insectes."
     }
 
 
-belgianInsectsOptions : QuizOptions
-belgianInsectsOptions =
-    { prefix = "bi"
-    , folder = "belgian_insects"
-    , gameOverMsgs = insectsGameOverMsgs
-    }
-
-
-belgianInsectsQuiz : Array QuizQa
-belgianInsectsQuiz =
-    getImgWildlifeQuiz belgianInsectsData Vernacular belgianInsectsOptions
-
-
-latinInsectsQuiz : Array QuizQa
-latinInsectsQuiz =
-    getImgWildlifeQuiz belgianInsectsData Binominal belgianInsectsOptions
-
-
-belgianInsectsData : List ImgQuizItem
-belgianInsectsData =
+data : List ImgQuizItem
+data =
     [ { vernacularName = "Abeille domestique"
       , binominalName = "Apis mellifera"
       , id = "101"
