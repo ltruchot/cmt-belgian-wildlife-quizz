@@ -9,7 +9,7 @@ belgianTreesQuiz =
     { qas = getImgWildlifeQuiz data Vernacular options
     , options = options
     , uniqName = "BelgianTrees"
-    , visibleName = "Arbres de Belgique"
+    , visibleName = "Dendrologie"
     }
 
 

@@ -4,7 +4,7 @@ const path = require("path");
 // npm
 const sharp = require("sharp");
 
-const folder = "belgian_trees";
+const folder = "belgian_mushrooms";
 const imgSrc = `./../public/assets/img/${folder}`;
 const imgDest = `${imgSrc}/resized`;
 const imgHeight = 230;

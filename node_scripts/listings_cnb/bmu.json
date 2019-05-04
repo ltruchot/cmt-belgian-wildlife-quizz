@@ -1,0 +1,348 @@
+[
+  {
+    "vernacularName": "agarics",
+    "binominalName": "Agaricus campestris",
+    "otherNames": [
+      "psalliotes"
+    ]
+  },
+  {
+    "vernacularName": "amanite citrine",
+    "binominalName": "Amanita citrina"
+  },
+  {
+    "vernacularName": "amanite panthère",
+    "binominalName": "Amanita pantherina"
+  },
+  {
+    "vernacularName": "amanite phalloïde",
+    "binominalName": "Amanita phalloides"
+  },
+  {
+    "vernacularName": "amanite rougissante",
+    "binominalName": "Amanita rubescens",
+    "otherNames": [
+      "amanite vineuse",
+      "amanite golmotte"
+    ]
+  },
+  {
+    "vernacularName": "amanite tue-mouches",
+    "binominalName": "Amanita muscaria"
+  },
+  {
+    "vernacularName": "armillaires",
+    "binominalName": "Armillaria mellea"
+  },
+  {
+    "vernacularName": "bolets",
+    "binominalName": "Boletus edulis"
+  },
+  {
+    "vernacularName": "calocère visqueuse",
+    "binominalName": "Calocera viscosa"
+  },
+  {
+    "vernacularName": "chanterelle",
+    "binominalName": "Cantharellus cibarius",
+    "otherNames": [
+      "girolle"
+    ]
+  },
+  {
+    "vernacularName": "chanterelle en tube",
+    "binominalName": "Cantharellus tubaeformis"
+  },
+  {
+    "vernacularName": "chlorosplénie bleuâtre",
+    "binominalName": "Chlorociboria aeruginascens"
+  },
+  {
+    "vernacularName": "clavaires",
+    "binominalName": "Clavaria rosea"
+  },
+  {
+    "vernacularName": "clitocybes",
+    "binominalName": "Clitocybe odora"
+  },
+  {
+    "vernacularName": "clitocybe nébuleux",
+    "binominalName": "Clitocybe nebularis"
+  },
+  {
+    "vernacularName": "clitopile petite prune",
+    "binominalName": "Clitopilus prunulus",
+    "otherNames": [
+      "meunier"
+    ]
+  },
+  {
+    "vernacularName": "collybies",
+    "binominalName": "Gymnopus fusipes"
+  },
+  {
+    "vernacularName": "collybie beurrée",
+    "binominalName": "Rhodocollybia butyracea"
+  },
+  {
+    "vernacularName": "coprins",
+    "binominalName": "Coprinellus disseminatus"
+  },
+  {
+    "vernacularName": "coprin chevelu",
+    "binominalName": "Coprinus comatus"
+  },
+  {
+    "vernacularName": "coprin micacé",
+    "binominalName": "Coprinellus micaceus"
+  },
+  {
+    "vernacularName": "coprin noir d'encre",
+    "binominalName": "Coprinus atramentarius"
+  },
+  {
+    "vernacularName": "cortinaires",
+    "binominalName": "Cortinarius purpurascens"
+  },
+  {
+    "vernacularName": "crépidotes",
+    "binominalName": "Cortinarius orellanus"
+  },
+  {
+    "vernacularName": "croûtes",
+    "binominalName": "Inonotus obliquus"
+  },
+  {
+    "vernacularName": "entolomes",
+    "binominalName": "Entoloma sinuatum"
+  },
+  {
+    "vernacularName": "fausse chanterelle",
+    "binominalName": "Hygrophoropsis aurantiaca"
+  },
+  {
+    "vernacularName": "géastres",
+    "binominalName": "Geastrum triplex"
+  },
+  {
+    "vernacularName": "gomphides",
+    "binominalName": "Gomphidius roseus"
+  },
+  {
+    "vernacularName": "gymnopiles",
+    "binominalName": "Gymnopilus penetrans"
+  },
+  {
+    "vernacularName": "hébélomes",
+    "binominalName": "Hebeloma crustuliniforme"
+  },
+  {
+    "vernacularName": "helvelles",
+    "binominalName": "Helvella acetabulum"
+  },
+  {
+    "vernacularName": "helvelle crépue",
+    "binominalName": "Helvella crispa"
+  },
+  {
+    "vernacularName": "hygrocybes",
+    "binominalName": "Hygrocybe coccinea"
+  },
+  {
+    "vernacularName": "hygrophores",
+    "binominalName": "Hygrophorus agathosmus"
+  },
+  {
+    "vernacularName": "hypholome capnoïde",
+    "binominalName": "Hypholoma capnoides"
+  },
+  {
+    "vernacularName": "hypholome couleur de brique",
+    "binominalName": "Hypholoma sublateritium"
+  },
+  {
+    "vernacularName": "hypholome en touffe",
+    "binominalName": "Hypholoma fasciculare",
+    "otherNames": [
+      "hypholome fasciculé"
+    ]
+  },
+  {
+    "vernacularName": "inocybes",
+    "binominalName": "Inocybe rimosa"
+  },
+  {
+    "vernacularName": "laccaire améthyste",
+    "binominalName": "Laccaria amethystina"
+  },
+  {
+    "vernacularName": "laccaire laqué",
+    "binominalName": "Laccaria laccata"
+  },
+  {
+    "vernacularName": "lactaires",
+    "binominalName": "Lactarius vellereus"
+  },
+  {
+    "vernacularName": "lépiotes",
+    "binominalName": "Macrolepiota procera"
+  },
+  {
+    "vernacularName": "lycoperdons",
+    "binominalName": "Lycoperdon pyriforme"
+  },
+  {
+    "vernacularName": "lycoperdon perlé",
+    "binominalName": "Lycoperdon perlatum",
+    "otherNames": [
+      "vesse-de-loup perlée"
+    ]
+  },
+  {
+    "vernacularName": "marasmes",
+    "binominalName": "Marasmius oreades"
+  },
+  {
+    "vernacularName": "morilles",
+    "binominalName": "Morchella esculenta"
+  },
+  {
+    "vernacularName": "mycènes",
+    "binominalName": "Mycena aurantiomarginata"
+  },
+  {
+    "vernacularName": "oreille-de-Judas",
+    "binominalName": "Auricularia auricula-judae"
+  },
+  {
+    "vernacularName": "panéoles",
+    "binominalName": "Panaeolus cyanescens"
+  },
+  {
+    "vernacularName": "paxille enroulé",
+    "binominalName": "Paxillus involutus"
+  },
+  {
+    "vernacularName": "pezizes",
+    "binominalName": "Peziza repanda"
+  },
+  {
+    "vernacularName": "pezize écarlate",
+    "binominalName": "Sarcoscypha coccinea"
+  },
+  {
+    "vernacularName": "pezize orangée",
+    "binominalName": "Aleuria aurantia"
+  },
+  {
+    "vernacularName": "pholiote changeante",
+    "binominalName": "Kuehneromyces mutabilis"
+  },
+  {
+    "vernacularName": "pholiote écailleuse",
+    "binominalName": "Pholiota squarrosa"
+  },
+  {
+    "vernacularName": "pied bleu",
+    "binominalName": "Lepista nuda"
+  },
+  {
+    "vernacularName": "lépiste sordide",
+    "binominalName": "Lepista sordida"
+  },
+  {
+    "vernacularName": "pied de mouton",
+    "binominalName": "Hydnum repandum",
+    "otherNames": [
+      "hydne"
+    ]
+  },
+  {
+    "vernacularName": "pleurotes",
+    "binominalName": "Pleurotus dryinus"
+  },
+  {
+    "vernacularName": "pleurote en huître",
+    "binominalName": "Pleurotus ostreatus"
+  },
+  {
+    "vernacularName": "plutées",
+    "binominalName": "Pluteus cervinus"
+  },
+  {
+    "vernacularName": "polypores",
+    "binominalName": "Polyporus alveolaris"
+  },
+  {
+    "vernacularName": "polypore du bouleau",
+    "binominalName": "Piptoporus betulinus"
+  },
+  {
+    "vernacularName": "psathyrelles",
+    "binominalName": "Psathyrella bipellis"
+  },
+  {
+    "vernacularName": "russules",
+    "binominalName": "Russula emetica"
+  },
+  {
+    "vernacularName": "satyre puant",
+    "binominalName": "Phallus impudicus"
+  },
+  {
+    "vernacularName": "sclérodermes",
+    "binominalName": "Scleroderma verrucosum"
+  },
+  {
+    "vernacularName": "scléroderme commun",
+    "binominalName": "Scleroderma citrinum"
+  },
+  {
+    "vernacularName": "stérée hirsute",
+    "binominalName": "Stereum hirsutum"
+  },
+  {
+    "vernacularName": "strophaires",
+    "binominalName": "Stropharia pseudocyanea"
+  },
+  {
+    "vernacularName": "strophaire vert-de-gris",
+    "binominalName": "Stropharia aeruginosa"
+  },
+  {
+    "vernacularName": "trémelles",
+    "binominalName": "Tremella aurantia"
+  },
+  {
+    "vernacularName": "trémelle mésentérique",
+    "binominalName": "Tremella mesenterica"
+  },
+  {
+    "vernacularName": "tricholomes",
+    "binominalName": "Tricholoma myomyces"
+  },
+  {
+    "vernacularName": "tricholome rutilant",
+    "binominalName": "Tricholomopsis rutilans"
+  },
+  {
+    "vernacularName": "trompette de la mort",
+    "binominalName": "Craterellus cornucopioides"
+  },
+  {
+    "vernacularName": "truffes",
+    "binominalName": "Tuber melanosporum"
+  },
+  {
+    "vernacularName": "volvaires",
+    "binominalName": "Volvariella bombycina"
+  },
+  {
+    "vernacularName": "xylaire du bois",
+    "binominalName": "Xylaria hypoxylon"
+  },
+  {
+    "vernacularName": "xylaire polymorphe",
+    "binominalName": "Xylaria polymorpha"
+  }
+]

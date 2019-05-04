@@ -2,11 +2,11 @@ const bot = require("nodemw");
 const download = require("image-downloader");
 const fs = require("fs");
 
-const prefix = "bt";
-const folder = "belgian_trees";
+const prefix = "bmu";
+const folder = "belgian_mushrooms";
 const path = `./../public/assets/img/${folder}/`;
 
-let lastId = 100;
+let lastId = 120;
 
 const server = "fr.wikipedia.org";
 var client = new bot({
@@ -33,8 +33,8 @@ const getArticleData = (titles, main) =>
         return err
           ? reject({ method: "getArticle", args: titles[0], err, data })
           : data && data.length
-          ? !console.log("close", ++close) && resolve(data)
-          : resolve(getArticleData(titles.slice(1), main));
+            ? !console.log("close", ++close) && resolve(data)
+            : resolve(getArticleData(titles.slice(1), main));
       })
     );
   });
@@ -104,7 +104,7 @@ const getImageInfo = name => imgName =>
   ]).then(([{ descriptionshorturl, url }, { shortLicense, artist }]) => ({
     license: `${artist ? "Par " + artist + " — " : ""}${
       shortLicense ? shortLicense + ", " : ""
-    }${descriptionshorturl}`,
+      }${descriptionshorturl}`,
     url
   }));
 
@@ -179,31 +179,31 @@ fs.readFile(`./listings_cnb/${prefix}.json`, (err, subjects) => {
 });
 
 // insect bugs (lol)
-/* Agrion	
+/* Agrion
 Belle
-Blatte	
-Bombyle	
-Bourdon	
-Caloptéryx	
-Charançon	
-Chrysope	
+Blatte
+Bombyle
+Bourdon
+Caloptéryx
+Charançon
+Chrysope
 Crache
 Demi
-Éphémère	
-Fourmi	
-Guêpe	
-Ichneumon	
+Éphémère
+Fourmi
+Guêpe
+Ichneumon
 Lucane cerf
 Mouche
-Moustique	
-Perce-oreilles ou Forficule	
-Perle	
-Puceron	
-Scolyte	
-Sphinx	
-Staphylin	
-Syrphe 	
-Taon	
-Taupin	
-Tipule	
+Moustique
+Perce-oreilles ou Forficule
+Perle
+Puceron
+Scolyte
+Sphinx
+Staphylin
+Syrphe
+Taon
+Taupin
+Tipule
 Zygène	 */

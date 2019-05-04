@@ -9,7 +9,7 @@ belgianMammalsQuiz =
     { qas = getImgWildlifeQuiz data Vernacular options
     , options = options
     , uniqName = "BelgianMammals"
-    , visibleName = "Mammifères de Belgique"
+    , visibleName = "Mammalogie"
     }
 
 

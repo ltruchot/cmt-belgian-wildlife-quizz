@@ -1,41 +1,17 @@
 module Main exposing (Model, Msg(..), init, main, update, view)
-
 import Array exposing (Array)
 import ArrayHelper
-import BelgianBirds exposing (belgianBirdsQuiz, binominalBirdsQuiz)
-import BelgianInsects exposing (belgianInsectsQuiz, binominalInsectsQuiz)
-import BelgianMammals exposing (belgianMammalsQuiz, binominalMammalsQuiz)
-import BelgianPlants exposing (belgianPlantsQuiz, binominalPlantsQuiz)
-import BelgianReptiles exposing (belgianReptilesQuiz, binominalReptilesQuiz)
-import BelgianTrees exposing (belgianTreesQuiz, binominalTreesQuiz)
 import Browser
 import FHelper
 import Html exposing (Html, a, button, div, h1, h2, img, label, option, p, select, text)
-import Html.Attributes exposing (class, classList, disabled, for, href, id, src, title, value)
+import Html.Attributes exposing (class, classList, disabled, for, href, id, src, title, type_, value, selected)
 import Html.Events exposing (on, onClick, onInput)
 import Json.Decode as JD
 import List.Extra as ListExtra
 import Quiz exposing (DisplayableQuiz, GameOverMsgs, QuizItem, QuizOptions, QuizQa, emptyDisplayableQuiz, emptyOptions, emptyQuizItem, pickQuizQa)
 import StringHelper
 import Time
-
-
-quizzList : List DisplayableQuiz
-quizzList =
-    [ belgianBirdsQuiz
-    , binominalBirdsQuiz
-    , belgianInsectsQuiz
-    , binominalInsectsQuiz
-    , belgianMammalsQuiz
-    , binominalMammalsQuiz
-    , belgianPlantsQuiz
-    , binominalPlantsQuiz
-    , belgianReptilesQuiz
-    , binominalReptilesQuiz
-    , belgianTreesQuiz
-    , binominalTreesQuiz
-    ]
-
+import BelgianWildlife exposing (vernacularQuizzList, binominalQuizzList)
 
 type Mode
     = Infinite
@@ -116,12 +92,28 @@ getGameOverSentence ratio msgs =
             msgs.proud
 
 
-defaultQuiz : DisplayableQuiz
-defaultQuiz =
+allQuizz : List (List DisplayableQuiz)
+allQuizz = [vernacularQuizzList, binominalQuizzList]
+
+
+selectQuizzList : List (List DisplayableQuiz) -> Int -> List DisplayableQuiz
+selectQuizzList all index = 
+    Maybe.withDefault
+        []
+        (ListExtra.getAt index all)
+
+selectFirstQuiz : List DisplayableQuiz -> DisplayableQuiz
+selectFirstQuiz list  =
     Maybe.withDefault
         emptyDisplayableQuiz
-        (ListExtra.getAt 0 quizzList)
+        (ListExtra.getAt 0 list)
 
+
+defaultQuizzList : List DisplayableQuiz
+defaultQuizzList  = selectQuizzList allQuizz 0
+
+defaultQuizz : DisplayableQuiz
+defaultQuizz = selectFirstQuiz defaultQuizzList
 
 main =
     Browser.element
@@ -153,7 +145,11 @@ subscriptions model =
 
 
 type alias Model =
-    { quizQas : Array QuizQa
+    { quizz : List (List DisplayableQuiz)
+    , quizzListIndex : Int
+    , selectedQuizList : List DisplayableQuiz
+    , chosenQuizName : String
+    , quizQas : Array QuizQa
     , remainingQuizQas : Array QuizQa
     , currentQuizItem : QuizItem
     , chosenAnswer : String
@@ -170,8 +166,12 @@ type alias Model =
 
 init : () -> ( Model, Cmd Msg )
 init _ =
-    ( { quizQas = defaultQuiz.qas
-      , remainingQuizQas = defaultQuiz.qas
+    ( { quizz = allQuizz
+      , quizzListIndex = 0
+      , selectedQuizList = defaultQuizzList
+      , chosenQuizName = defaultQuizz.uniqName
+      , quizQas = defaultQuizz.qas
+      , remainingQuizQas = defaultQuizz.qas
       , currentQuizItem = emptyQuizItem
       , chosenAnswer = ""
       , mode = Infinite
@@ -181,9 +181,9 @@ init _ =
       , gameState = Start
       , examLimit = 20
       , gameOverRatio = Neutral
-      , options = defaultQuiz.options
+      , options = defaultQuizz.options
       }
-    , cmdNextQuestion defaultQuiz.qas
+    , cmdNextQuestion defaultQuizz.qas
     )
 
 
@@ -198,6 +198,7 @@ setQuiz model displayableQuiz =
         | quizQas = displayableQuiz.qas
         , remainingQuizQas = displayableQuiz.qas
         , options = displayableQuiz.options
+        , chosenQuizName = displayableQuiz.uniqName
       }
     , cmdNextQuestion displayableQuiz.qas
     )
@@ -214,6 +215,7 @@ type Msg
     | SetOtherAnswers (Array QuizQa)
     | DisplayAnswers (Array QuizQa)
     | DisplayLoadedImg String
+    | NextQuizzList
     | ChangeMode String
     | ChangeQuiz String
 
@@ -221,6 +223,7 @@ type Msg
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
+
         DisplayLoadedImg path ->
             ( { model
                 | imgLoaded = True
@@ -318,10 +321,32 @@ update msg model =
             , Cmd.none
             )
 
+        NextQuizzList ->
+            let
+                lenght = List.length model.quizz
+                newIndex = 
+                    if model.quizzListIndex + 1 < lenght 
+                    then model.quizzListIndex + 1
+                    else 0
+                newQuizzList = selectQuizzList model.quizz newIndex
+                newQuizz = selectFirstQuiz newQuizzList
+                newModel = { model | 
+                        quizzListIndex = newIndex
+                        , score = ( 0, 1 )
+                        , gameState = Start
+                        , selectedQuizList = newQuizzList
+                    }
+            in
+            setQuiz newModel newQuizz
+
+
         ChangeMode mode ->
             let
                 newModel =
-                    { model | remainingQuizQas = model.quizQas, gameState = Start }
+                    { model | 
+                        remainingQuizQas = model.quizQas, 
+                        gameState = Start 
+                    }
             in
             case mode of
                 "Infinite" ->
@@ -362,7 +387,7 @@ update msg model =
                         emptyDisplayableQuiz
                         (ListExtra.find
                             (\quiz -> quiz.uniqName == quizName)
-                            quizzList
+                            model.selectedQuizList
                         )
             in
             setNewQuiz displaybleQuiz
@@ -376,15 +401,24 @@ view : Model -> Html Msg
 view model =
     div [ class "container main-container" ]
         [ div [ class "form-group row m-1 mt-2" ]
-            [ div [ class "col-8 p-0" ]
+            [ div [ class "col-7 p-0" ]
                 [ select [ class "form-control form-control-sm", onInput ChangeQuiz ]
-                    (List.map (\quiz -> option [ value quiz.uniqName ] [ text quiz.visibleName ]) quizzList)
+                    (List.map (\quiz -> 
+                        option [ value quiz.uniqName, selected (model.chosenQuizName == quiz.uniqName)] 
+                            [ text quiz.visibleName ]
+                        ) model.selectedQuizList)
                 ]
-            , div [ class "col-4 p-0" ]
-                [ select [ class "form-control  form-control-sm", onInput ChangeMode ]
-                    [ option [ value "Infinite" ] [ text "Infini" ]
-                    , option [ value "Exam" ] [ text "Examen" ]
-                    , option [ value "Credits" ] [ text "Crédits" ]
+            , div [ class "col-5 p-0" ]
+                [ div [ class "input-group input-group-sm" ]
+                    [ select [ class "custom-select", onInput ChangeMode ]
+                        [ option [ value "Infinite" ] [ text "Infini" ]
+                        , option [ value "Exam" ] [ text "Examen" ]
+                        , option [ value "Credits" ] [ text "Crédits" ]
+                        ]
+                    , div [ class "input-group-append" ]
+                        [ button [ type_ "button", class "btn btn-outline-info", onClick NextQuizzList ]
+                            [ text (if model.quizzListIndex == 0 then "Ω" else "a") ]
+                        ]
                     ]
                 ]
             ]

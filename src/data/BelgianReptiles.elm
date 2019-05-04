@@ -9,7 +9,7 @@ belgianReptilesQuiz =
     { qas = getImgWildlifeQuiz data Vernacular options
     , options = options
     , uniqName = "BelgianReptiles"
-    , visibleName = "Reptiles et amphibiens de Belgique"
+    , visibleName = "Herpétologie"
     }
 
 
