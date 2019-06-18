@@ -28,39 +28,19 @@ build:
 deploy:
   stage: deploy
   script:
-    ## Install ssh-agent if not already installed, it is required by Docker.
-    ## (change apt-get to yum if you use an RPM-based image)
-    ##
-    - "which ssh-agent || ( apk update -y && apk add openssh-client -y )"
-
-    ##
-    ## Run ssh-agent (inside the build environment)
-    ##
+    - apk add --update bash openssh-client
     - eval $(ssh-agent -s)
-
-    ##
-    ## Add the SSH key stored in SSH_PRIVATE_KEY variable to the agent store
-    ## We're using tr to fix line endings which makes ed25519 keys work
-    ## without extra base64 encoding.
-    ## https://gitlab.com/gitlab-examples/ssh-private-key/issues/1#note_48526556
-    ##
-    - echo "$CI_SSH_KEY" | tr -d '\r' | ssh-add - > /dev/null
-
-    ##
-    ## Create the SSH directory and give it the right permissions
-    ##
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
-
-    ##
-    ## Assuming you created the SSH_KNOWN_HOSTS variable, uncomment the
-    ## following two lines.
-    ##
+    - echo "$CI_SSH_KEY" > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
     - echo "$CI_SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
     - chmod 644 ~/.ssh/known_hosts
-    - ssh -p22 root@206.189.14.224 "sudo docker pull $IMAGE_TAG"
-    - scp -p22 docker-compose.yml .env root@206.189.14.224:~/$APP_HOST
-    - ssh -p22 root@206.189.14.224 "cd $APP_HOST && sudo docker-compose up -d"
-    - ssh -p22 root@206.189.14.224 "sudo docker exec $APP_HOST npm run deploy"
+
+    - ssh root@206.189.14.224 "sudo docker pull $IMAGE_TAG"
+    - ssh root@206.189.14.224 "sudo mkdir -p ~/$APP_HOST && sudo chmod a+rwx ~/$APP_HOST"
+    - scp docker-compose.yml .env root@206.189.14.224:~/$APP_HOST
+    - ssh root@206.189.14.224 "cd $APP_HOST && sudo docker-compose up -d"
+    - ssh root@206.189.14.224 "sudo docker exec $APP_HOST npm run deploy"
   only:
     - master
