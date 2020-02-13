@@ -543,7 +543,7 @@ viewCredits =
                 [ text "Le code source en "
                 , a [ href "https://elm-lang.org/" ] [ text "Elm" ]
                 , text " est disponible sur le "
-                , a [ href "https://gitlab.committers.ngo/elm-generic-quiz/v1" ] [ text "github/ltruchot" ]
+                , a [ href "https://github.com/ltruchot/cmt-belgian-wildlife-quizz" ] [ text "github/ltruchot" ]
                 , text "."
                 ]
             ]
