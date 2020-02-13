@@ -3,13 +3,12 @@ import Array exposing (Array)
 import ArrayHelper
 import Browser
 import FHelper
-import Html exposing (Html, a, button, div, h1, h2, img, label, option, p, select, text)
-import Html.Attributes exposing (class, classList, disabled, for, href, id, src, title, type_, value, selected)
+import Html exposing (Html, a, button, div, h1, h2, img, option, p, select, text)
+import Html.Attributes exposing (class, classList, disabled,  href, src, title, type_, value, selected)
 import Html.Events exposing (on, onClick, onInput)
 import Json.Decode as JD
 import List.Extra as ListExtra
-import Quiz exposing (DisplayableQuiz, GameOverMsgs, QuizItem, QuizOptions, QuizQa, emptyDisplayableQuiz, emptyOptions, emptyQuizItem, pickQuizQa)
-import StringHelper
+import Quiz exposing (DisplayableQuiz, GameOverMsgs, QuizItem, QuizOptions, QuizQa, emptyDisplayableQuiz, emptyQuizItem, pickQuizQa)
 import Time
 import BelgianWildlife exposing (vernacularQuizzList, binominalQuizzList)
 
@@ -544,7 +543,7 @@ viewCredits =
                 [ text "Le code source en "
                 , a [ href "https://elm-lang.org/" ] [ text "Elm" ]
                 , text " est disponible sur le "
-                , a [ href "https://gitlab.committers.ngo/elm-generic-quiz/v1" ] [ text "GitLab de l'ASBL Committers" ]
+                , a [ href "https://gitlab.committers.ngo/elm-generic-quiz/v1" ] [ text "github/ltruchot" ]
                 , text "."
                 ]
             ]
