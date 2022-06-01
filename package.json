@@ -22,7 +22,7 @@
   "devDependencies": {
     "image-downloader": "3.5.0",
     "nodemw": "0.12.2",
-    "sharp": "0.24.0"
+    "sharp": "0.30.5"
   },
   "dependencies": {
     "create-elm-app": "4.2.1",
